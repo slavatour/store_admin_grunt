@@ -1,0 +1,16 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+
+//rewrite fonts path for bootstrap
+$icon-font-path:"../../stylesheets/libs/fonts/bootstrap-sass/";
+
+
+@import "compass";
+@import "compass/reset";
+@import "../libs/scss/bootstrap-sass/bootstrap";
+@import "imports/myStyle";
+@import "imports/leftNavBar";
+@import "imports/spinner";

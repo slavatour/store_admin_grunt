@@ -1,0 +1,38 @@
+script(type="text/template" id="templateSliderCompositeView")
+    div.col-lg-12.well#sliderLists
+        table.table.table-striped.table-condensed
+            thead
+                tr
+                    th display
+                    th number
+                    th name
+                    th description
+                    th url link
+                    th photo
+                    th
+            tbody
+        button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target=".bs-example-modal-lg") +add new
+
+script(type="text/template" id="templateSliderItemView")
+    td.switcher.text-center
+        <%if(slider_display){%>
+        div.btn-group.btn-toggle
+            button.btn.btn-xs.active.btn-primary on
+            button(class="btn btn-xs btn-default") off
+        <%}else{%>
+        div.btn-group.btn-toggle
+            button.btn.btn-xs.btn-default on
+            button.btn.btn-xs.active.btn-danger off
+        <%};%>
+    td.text-center <%= slider_position_in_list %>
+        div.numberEdit.pull-right
+            span.up(data-step="1") &#9650
+            span.down(data-step="-1") &#9660
+    td.text-center <%= slider_name %>
+    td.text-center <%= slider_description %>
+    td.text-center <%= slider_url %>
+    td.text-center
+        a.sliderPhoto(data-toggle="modal" data-target=".bs-example-modal-lg") photo
+    td
+        button.btn.btn-default.btn-xs.pull-right.editSliderBtn(data-toggle="modal" data-target=".bs-example-modal-lg") edit
+        button.btn.btn-default.btn-xs.pull-right.deleteSliderBtn delete

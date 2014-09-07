@@ -1,0 +1,51 @@
+//libs
+script(type='text/javascript' src='/javascripts/libs/jquery.js')
+script(type='text/javascript' src='http://code.highcharts.com/highcharts.js')
+script(type='text/javascript' src='http://code.highcharts.com/modules/exporting.js')
+
+script(type='text/javascript' src='/javascripts/libs/underscore.js')
+script(type='text/javascript' src='/javascripts/libs/backbone.js')
+script(type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+script(type='text/javascript' src='/javascripts/libs/bootstrap-switch.js')
+script(type='text/javascript' src='/javascripts/libs/backbone.marionette.js')
+script(type="text/javascript" src="/javascripts/main.js")
+script(type="text/javascript" src="/javascripts/libs/less.js")
+script(type="text/javascript" src="/javascripts/libs/spin.js")
+script(type="text/javascript" src="/javascripts/libs/jquery.spin.js")
+
+//store files
+script(type='text/javascript' src='/javascripts/app.js')
+script(type='text/javascript' src='/javascripts/routes/routes.js')
+
+//models
+script(type='text/javascript' src='/javascripts/models/categoryModel.js')
+script(type='text/javascript' src='/javascripts/models/subcategoryModel.js')
+script(type='text/javascript' src='/javascripts/models/sliderModel.js')
+
+//collections
+script(type='text/javascript' src='/javascripts/collections/categoriesCollection.js')
+script(type='text/javascript' src='/javascripts/collections/subcategoriesCollection.js')
+script(type='text/javascript' src='/javascripts/collections/slidersCollection.js')
+
+//views
+script(type='text/javascript' src='/javascripts/views/modalCategoryView.js')
+script(type='text/javascript' src='/javascripts/views/modalSliderView.js')
+script(type='text/javascript' src='/javascripts/views/loadingView.js')
+script(type='text/javascript' src='/javascripts/views/categoryModelView.js')
+script(type='text/javascript' src='/javascripts/views/subcategoryModelView.js')
+script(type='text/javascript' src='/javascripts/views/categoryCollectionView.js')
+script(type='text/javascript' src='/javascripts/views/subcategoryCollectionView.js')
+script(type='text/javascript' src='/javascripts/views/sliderModelView.js')
+script(type='text/javascript' src='/javascripts/views/sliderCollectionView.js')
+
+//controllers
+script(type='text/javascript' src='/javascripts/controllers/categoriesController.js')
+script(type='text/javascript' src='/javascripts/controllers/subcategoriesController.js')
+script(type='text/javascript' src='/javascripts/controllers/slidersController.js')
+
+
+//start script
+script(type="text/javascript")
+	$(document).ready(function(){
+		Store.start();
+	});

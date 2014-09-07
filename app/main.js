@@ -1,0 +1,56 @@
+var app = require('./app_config'),
+    postgresConfig = require('./postgresql_config'),
+    CategoriesController = require('./controllers/CategoriesController'),
+    SubcategoriesController = require('./controllers/SubcategoriesController'),
+    SliderController = require('./controllers/SliderController'),
+    conString = 'postgres://' + postgresConfig.role.role_name + ':' + postgresConfig.role.role_password +
+                '@localhost/' + postgresConfig.database.database_name,
+    categoriesController = new CategoriesController.CategoriesController(conString),
+    subcategoriesController = new SubcategoriesController.SubcategoriesController(conString),
+    sliderController = new SliderController.SliderController(conString);
+
+app.get("/categories", function (req, res) {
+    categoriesController.fetchCategories(function (data) {
+        console.log(data);
+        res.header();
+        res.end(JSON.stringify(data));
+    });
+});
+
+
+app.get("/subcategories/:attr/:id", function (req, res) {
+//    subcategoriesController.fetchSubcategories(req.params.id, req.params.attr, function (data) {
+//        res.header();
+//        res.end(JSON.stringify(data));
+//    });
+});
+
+app.delete("/subcategories/:id", function (req, res) {
+//    subcategoriesController.deleteSubcategory(req.params.id);
+    res.header();
+    res.end();
+});
+
+app.get("/slider", function (req, res) {
+    sliderController.fetchSliders(function (data) {
+        res.header();
+        res.end(JSON.stringify(data));
+    });
+});
+
+app.put("/slider/:id", function (req, res) {
+    sliderController.putSlider(req.params.id, req.body, req.files);
+    res.end();
+});
+
+app.post("/slider", function (req, res) {
+    sliderController.saveSlider(req.body, req.files);
+    res.header();
+    res.end();
+});
+
+app.delete("/slider/:id", function (req, res) {
+    sliderController.deleteSlider(req.params.id);
+    res.header();
+    res.end();
+});

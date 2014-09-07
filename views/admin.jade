@@ -1,0 +1,67 @@
+doctype 5
+html
+    head
+    include includes/headerScc
+    body.conteiner
+        div.row
+            div.col-lg-12
+                nav.navbar.navbar-default(role="navigation")
+                    div.container
+                        
+                        div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+                            ul.nav.navbar-nav
+                                li.active
+                                    a(href="#") Home
+                                li.dropdown
+                                    a.dropdown-toggle(href="#" data-toggle="dropdown") Products
+                                        b.caret
+                                    ul.dropdown-menu
+                                        li
+                                            a(href="#") 
+                                                span.glyphicon.glyphicon-shopping-cart
+                                                | Action
+                                        li
+                                            a(href="#") Action
+                                        li.divider
+                                        li
+                                            a(href="#") Action
+        div.row.main
+            div.col-lg-2
+                div.panel-group#leftNavBar
+                    div.panel.panel-default
+                        div.panel-heading
+                            h4.panel-title
+                                a(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseProducts")
+                                    span.glyphicon.glyphicon-shopping-cart
+                                    | Products
+                        div.panel-collapse.collapse#collapseProducts
+                            div.panel-body
+                                a.leftNav(href="#categories") Categoris
+                                a.leftNav(href="#products") Products
+                                a.leftNav(href="#") Brands
+                                a.leftNav(href="#") Prices
+                                a.leftNav(href="#") Currencies
+                    div.panel.panel-default
+                        div.panel-heading
+                            h4.panel-title
+                                a#tabOther(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseTwo")
+                                    span.glyphicon.glyphicon-edit
+                                    | Other edits
+                        div.panel-collapse.collapse#collapseTwo
+                            div.panel-body
+                                a#sliderBtn.leftNav(href="#slider") Slider
+            div.col-lg-9.contentContainer
+                include includes/index
+                include includes/categories
+                include includes/products
+                include includes/slider
+        include includes/templates/modalsTemplates
+        include includes/templates/categoriesTemplates
+        include includes/templates/productsTemplates
+        include includes/templates/slidersTemplates
+        include includes/templates/subcategoriesTemplates
+        include includes/templates/spinnerTemplate
+
+    div.modal.fade.bs-example-modal-lg#editModal(tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true")
+
+        script(data-main="./javascripts/main.js" src="./javascripts/libs/js/requirejs/require.js")
