@@ -3,8 +3,8 @@ define(["marionette", "Store", "CategoryModelView"], function (Marionette, Store
 	Store.module("Categories.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.CategoryCollectionView = Marionette.CompositeView.extend({
 			template: "#categoriesCollectionTemplate",
-			itemView: CategoryModelView,
-			itemViewContainer: ".categoriesContainerView",
+            childView: CategoryModelView,
+            childViewContainer: ".categoriesContainerView",
 			events: {
 				'click .addNewSubategory': 'addNewSubcategory'
 			},

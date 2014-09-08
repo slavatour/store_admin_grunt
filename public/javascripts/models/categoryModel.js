@@ -5,25 +5,15 @@ define(["marionette", "Store", "SubcategoriesController"], function (Marionette,
 			urlRoot: "category",
 			defaults: {
 				id: null,
-				name: "noname",
-				serial_number: null,
+                category_id: null,
+				category_name: "noname",
+				category_position_in_list: null,
+                category_description: null,
+                category_image_name: null,
 				subcategories: null
 			},
 			initialize: function () {
 				this.id = this.get('id');
-				var that = this;
-				var subcategoriesController = new SubcategoriesController();
-				var fetchedSubcat = subcategoriesController.fetchCollection(this.get('id'), function (collection) {
-					that.setSubcategories(collection.models);
-				});
-			},
-			setSubcategories: function (subcategoriesArray) {
-				var subcategoriesCollection = Store.request("subcategory:collection");
-				subcategoriesCollection.reset(subcategoriesArray);
-				this.set("subcategories", subcategoriesCollection);
-			},
-			getSubcategories: function () {
-				return this.get("subcategories");
 			}
 		});
 	});
