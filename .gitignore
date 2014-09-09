@@ -1,3 +1,7 @@
 node_modules
 public/javascripts/libs/*
 public/stylesheets/libs/*
+*.rb
+*.iml
+.idea
+files/*
