@@ -80,6 +80,6 @@ requirejs.config({
 	}
 });
 
-require(["marionette", "Store", "bootstrap", "bootstrap-switch"], function (Marionette, Store) {
+require(["marionette", "Store", "bootstrap"], function (Marionette, Store) {
 	Store.start();
 });
