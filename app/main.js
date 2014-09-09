@@ -16,6 +16,11 @@ app.get("/categories", function (req, res) {
     });
 });
 
+app.post("/categories", function (req, res) {
+    categoriesController.fetchCategories(req.params.id, req.body, req.files);
+    res.header();
+    res.end();
+});
 
 app.get("/subcategories/:attr/:id", function (req, res) {
 //    subcategoriesController.fetchSubcategories(req.params.id, req.params.attr, function (data) {
