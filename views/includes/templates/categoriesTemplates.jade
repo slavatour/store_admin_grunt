@@ -10,11 +10,13 @@ script(type="text/template" id="categoriesModelTemplate")
     div.panel.panel-default
         div.panel-heading
             h4.panel-title
-                a(data-toggle="collapse" data-parent="#accordionCategories" href!="#<%= id %>")
-                    <%= name %>
-                button.btn.btn-default.btn-xs.pull-right.deleteCategory(data-category-id!="<%= id %>") delete
-                button.btn.btn-default.btn-xs.pull-right.editCategory(data-category-id!="<%= id %>") edit
-                button.btn.btn-default.btn-xs.pull-right.addNewSubategory(data-category-id!="<%= id %>" data-toggle='modal' data-target='.bs-example-modal-lg') +add
-        div.panel-collapse.collapse(id!="<%= id %>")
-            div.panel-body(id!="<%= name %>")
-                <%= viewSubcategories() %>
+                a(data-toggle="collapse" data-parent="#accordionCategories" href!="#<%= category_id %>")
+                    <%= category_name %>
+                button.btn.btn-default.btn-xs.pull-right.deleteCategory(data-category-id!="<%= category_id %>") delete
+                button.btn.btn-default.btn-xs.pull-right.editCategory(data-category-id!="<%= category_id %>") edit
+                button.btn.btn-default.btn-xs.pull-right.addNewSubategory(data-category-id!="<%= category_id %>" data-toggle='modal' data-target='.bs-example-modal-lg') +add
+        div.panel-collapse.collapse(id!="<%= category_id %>")
+            div.panel-body(id!="<%= category_name %>")
+                <% _.each(subcategories, function(subcategory){%>
+                a.subcategory(data-subcategory-id!="#<%= subcategory.subcategory_id %>") <%= subcategory.subcategory_name %>
+                <%}); %>
