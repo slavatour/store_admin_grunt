@@ -11,7 +11,6 @@ var app = require('./app_config'),
 
 app.get("/categories", function (req, res) {
     categoriesController.fetchCategories(function (data) {
-        console.log(data);
         res.header();
         res.end(JSON.stringify(data));
     });

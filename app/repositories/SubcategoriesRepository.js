@@ -5,11 +5,11 @@ exports.SubcategoriesRepository = function (conString) {
 	var self = {};
 	var dbRepository = new DbRepository.DatabaseRepository(conString);
 
-	self.fetchSubcategories = function (id, attr, callbackFunction) {
+	self.fetchSubcategories = function (id, callbackFunction) {
 		if(id === 'all') {
 			var command = "SELECT * FROM subcategories;";
 		} else {
-			var command = "SELECT * FROM subcategories WHERE "+attr+"="+id+";";
+			var command = "SELECT * FROM subcategories WHERE subcategories_parent_id = "+id+";";
 		}
 		dbRepository.actionData(command, callbackFunction)
 	};

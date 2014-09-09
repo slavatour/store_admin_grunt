@@ -35,7 +35,7 @@ define([
 			},
 			renderView: function () {
 				this.categoriesCollection.fetch();
-				Store.categoriesRegion.show(this.categoriesCollectionView);	
+				Store.categoriesRegion.show(this.categoriesCollectionView);
 			}
 		});
 	});

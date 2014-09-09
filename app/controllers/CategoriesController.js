@@ -1,5 +1,5 @@
-var CategoriesRepository = require ("../repositories/CategoriesRepository");
+var CategoriesService = require ("../service/CategoriesService");
 
 exports.CategoriesController = function (conString) {
-	return new CategoriesRepository.CategoriesRepository(conString);
+	return new CategoriesService.CategoriesService(conString);
 };
