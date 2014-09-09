@@ -1,22 +1,22 @@
 script(type="text/template" id="loadingView")
 	div#spinner
 
-script(type="text/template" id="modalView")
+script(type="text/template" id="modalCategoryView")
 		div.modal-dialog.modal-lg
 			div.modal-content
 				div.modal-header
 					button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
 						| &times;
-					h4.modal-title#myModalLabel Edit <%= name %> subcategory.
+					h4.modal-title#myModalLabel Edit:
 				div.modal-body
 					div.input-group
 						label(for="nameInput") Enter or change name:
-						input#nameInput.form-control(type="text" value!="<%= name %>")
+						input#nameInput.form-control(type="text" value)
 					div.input-group
 						label(for="serialInput") Enter or change serial:
-						input#serialInput.form-control(type="text" value!="<%= serial_number %>")
+						input#serialInput.form-control(type="text" value)
 				div.modal-footer
-					button(type="button" class="btn btn-default btn-xs" data-dismiss="modal") Close
+					button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
 					button(type="button" class="btn btn-success btn-xs") Save
 					button.deleteSubcategory(type="button" class="btn btn-danger btn-xs") dalete
 

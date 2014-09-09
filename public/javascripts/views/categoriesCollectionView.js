@@ -1,4 +1,5 @@
-define(["marionette", "Store", "CategoryModelView"], function (Marionette, Store, CategoryModelView) {
+define(["marionette", "Store", "CategoryModelView", "views/modalCategoryView"],
+    function (Marionette, Store, CategoryModelView, ModalView) {
 
 	Store.module("Categories.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.CategoryCollectionView = Marionette.CompositeView.extend({
@@ -6,10 +7,15 @@ define(["marionette", "Store", "CategoryModelView"], function (Marionette, Store
             childView: CategoryModelView,
             childViewContainer: ".categoriesContainerView",
 			events: {
-				'click .addNewSubategory': 'addNewSubcategory'
+				"click .addNewSubcategory": "addNewSubcategory",
+                "click .addNewCategory": "addNewCategory"
 			},
 			initialize: function () {
 
+            },
+            addNewCategory: function() {
+                var modal = new ModalView();
+                Store.modalRegionCategory.show(modal);
             },
 			addNewSubcategory: function (e) {
 				// var model = new Store.Categories.Models.SubcategoryModel();

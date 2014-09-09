@@ -14,7 +14,7 @@ define(["marionette"], function (Marionette) {
 		},
 		showCategories: function () {
 			$('.contentContainer > div').css('display', 'none');
-			$('#categoriesContainer').fadeIn();
+            $('#categoriesContainer').fadeIn();
 			require(["CategoriesController"], function (CategoriesController) {
 				var categoriesController = new CategoriesController();
 				categoriesController.renderView();

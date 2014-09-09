@@ -4,6 +4,7 @@ define(["marionette"], function (Marionette) {
     Store.addRegions({
         categoriesRegion: "#categoriesContainer",
         modalRegion: "#editModal",
+        modalRegionCategory: "#categoryModal",
         sliderRegion: ".sliderContainer"
     });
 
