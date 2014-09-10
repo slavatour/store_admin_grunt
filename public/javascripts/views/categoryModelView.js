@@ -7,28 +7,21 @@ define(["marionette", "Store", "SubcategoriesController", "views/modalCategoryVi
 
 			},
 			events: {
-				'click .subcategoriesLink': 'openModal',
-                "click .addNewSubcategory": "addNewSubcategoryModal"
+                "click .addNewSubcategory": "addNewSubcategoryModal",
+                "click .editCategory": "editCategory"
 
             },
-			openModal: function (e) {
-				var modelId = 1*($(e.target).attr('data-submodel-id'));
-				var subcategories = this.model.get('subcategories');
-				var openedModel = _.where(subcategories, {id: modelId});
-				var submodel = new Store.Categories.Models.SubcategoryModel();
-				submodel.set(openedModel[0]);
-				require(["ModalCategoryView"], function (ModalCategoryView) {
-					var modalView = new ModalCategoryView({
-						model: submodel
-					});
-					Store.modalRegion.show(modalView);
-				});
-				
-			},
             addNewSubcategoryModal: function(e) {
                 var modal = new ModalView({
                     template: "#modalSubcategoryView",
                     parent_id: $(e.target).attr("data-category-id")
+                });
+                Store.modalRegionCategory.show(modal);
+            },
+            editCategory: function() {
+                var modal = new ModalView({
+                    model: this.model,
+                    template: "#modalCategoryEdit"
                 });
                 Store.modalRegionCategory.show(modal);
             }

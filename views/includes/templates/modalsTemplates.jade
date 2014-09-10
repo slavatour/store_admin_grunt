@@ -22,9 +22,35 @@ script(type="text/template" id="modalCategoryView")
                             p.help-block
                                 | IMG or PNG recomended
                 div.modal-footer
-                    button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
                     button.saveCategory(type="button" class="btn btn-success btn-xs") Save
-                    button.deleteCategory(type="button" class="btn btn-danger btn-xs") dalete
+                    button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
+
+script(type="text/template" id="modalCategoryEdit")
+        div.modal-dialog.modal-lg
+            div.modal-content
+                div.modal-header
+                    button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                        | &times;
+                    h4.modal-title#myModalLabel Add:
+                div.modal-body
+                    form.well(role="form")
+                        div.form-group
+                            label(for="nameInput") Input name:
+                            input#nameInput.form-control(type="text" value!="<%= category_name %>")
+                        div.form-group
+                            label(for="descriptionInput") Input description:
+                            textarea#descriptionInput.form-control(value!="<%= category_description %>") <%= category_description %>
+                        div
+                            label Category image:
+                            img#categoryImage(src!="/images/temp/<%= category_image_name %>" alt!="<%= category_name %>" style="max-height: 100px; display: block")
+                        div.form-group
+                            label(for="categoryImgEdit") Input file
+                            input#categoryImgEdit(type="file" name="categoryImg" required)
+                            p.help-block
+                                | IMG or PNG recomended
+                div.modal-footer
+                    button.saveCategory(type="button" class="btn btn-success btn-xs") Save
+                    button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
 
 script(type="text/template" id="modalSubcategoryView")
         div.modal-dialog.modal-lg
@@ -47,9 +73,8 @@ script(type="text/template" id="modalSubcategoryView")
                             p.help-block
                                 | IMG or PNG recomended
                 div.modal-footer
-                    button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
                     button.saveSubcategory(type="button" class="btn btn-success btn-xs") Save
-                    button.deleteSubcategory(type="button" class="btn btn-danger btn-xs") dalete
+                    button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
 
 script(type="text/template" id="modalEditSlider")
         div.modal-dialog.modal-lg
