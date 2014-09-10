@@ -36,6 +36,7 @@ define([
                 var that = this;
 				this.slidersCollection.fetch({
                     success: function (data) {
+                        console.log(data);
                         that.slidersCollection.sort();
                         setTimeout(function(){
                             Store.sliderRegion.show(that.slidersCollectionView);

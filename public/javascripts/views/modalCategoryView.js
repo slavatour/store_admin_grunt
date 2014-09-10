@@ -22,10 +22,13 @@ define(["marionette"], function (Marionette) {
                 fd.append('file', this.$el.find('#categoryImgEdit')[0].files[0]);
                 $.ajax({
                     type: "POST",
-                    url: '/categories',
+                    url: '/category',
                     data: fd,
                     processData: false,
-                    contentType: false
+                    contentType: false,
+                    success: function() {
+                        $("#categoryModal").modal("hide");
+                    }
                 });
             }
 		});

@@ -16,8 +16,8 @@ app.get("/categories", function (req, res) {
     });
 });
 
-app.post("/categories", function (req, res) {
-    categoriesController.fetchCategories(req.params.id, req.body, req.files);
+app.post("/category", function (req, res) {
+    categoriesController.saveCategory(req.body, req.files);
     res.header();
     res.end();
 });

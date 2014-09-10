@@ -10,6 +10,7 @@ script(type="text/template" id="categoriesModelTemplate")
     div.panel.panel-default
         div.panel-heading
             h4.panel-title
+                img.img-responsive(src!="/images/temp/<%= category_image_name %>" alt!="<%= category_name %>" style="width:50px; display:inline-block; margin-right: 20px")
                 a(data-toggle="collapse" data-parent="#accordionCategories" href!="#<%= category_id %>")
                     <%= category_name %>
                 button.btn.btn-default.btn-xs.pull-right.deleteCategory(data-category-id!="<%= category_id %>") delete
