@@ -14,7 +14,9 @@ define(["marionette", "Store", "CategoryModelView", "views/modalCategoryView"],
 
             },
             addNewCategory: function() {
-                var modal = new ModalView();
+                var modal = new ModalView({
+                    template: "#modalCategoryView"
+                });
                 Store.modalRegionCategory.show(modal);
             },
 			addNewSubcategory: function (e) {

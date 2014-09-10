@@ -22,15 +22,8 @@ app.post("/category", function (req, res) {
     res.end();
 });
 
-app.get("/subcategories/:attr/:id", function (req, res) {
-//    subcategoriesController.fetchSubcategories(req.params.id, req.params.attr, function (data) {
-//        res.header();
-//        res.end(JSON.stringify(data));
-//    });
-});
-
-app.delete("/subcategories/:id", function (req, res) {
-//    subcategoriesController.deleteSubcategory(req.params.id);
+app.post("/subcategory", function (req, res) {
+    subcategoriesController.saveSubcategory(req.body, req.files);
     res.header();
     res.end();
 });

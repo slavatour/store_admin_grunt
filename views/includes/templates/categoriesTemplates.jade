@@ -10,12 +10,13 @@ script(type="text/template" id="categoriesModelTemplate")
     div.panel.panel-default
         div.panel-heading
             h4.panel-title
-                img.img-responsive(src!="/images/temp/<%= category_image_name %>" alt!="<%= category_name %>" style="width:50px; display:inline-block; margin-right: 20px")
+                a
+                    img.img-responsive(data-toggle="collapse" data-parent="#accordionCategories" href!="#<%= category_id %>" src!="/images/temp/<%= category_image_name %>" alt!="<%= category_name %>" style="height:20px; display:inline-block; margin-right: 20px")
                 a(data-toggle="collapse" data-parent="#accordionCategories" href!="#<%= category_id %>")
                     <%= category_name %>
                 button.btn.btn-default.btn-xs.pull-right.deleteCategory(data-category-id!="<%= category_id %>") delete
                 button.btn.btn-default.btn-xs.pull-right.editCategory(data-category-id!="<%= category_id %>") edit
-                button.btn.btn-default.btn-xs.pull-right.addNewSubategory(data-category-id!="<%= category_id %>" data-toggle='modal' data-target='.bs-example-modal-lg') +add
+                button.btn.btn-default.btn-xs.pull-right.addNewSubcategory(data-category-id!="<%= category_id %>" data-toggle='modal' data-target='#categoryModal') +add
         div.panel-collapse.collapse(id!="<%= category_id %>")
             div.panel-body(id!="<%= category_name %>")
                 <% _.each(subcategories, function(subcategory){%>

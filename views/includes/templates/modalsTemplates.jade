@@ -7,11 +7,11 @@ script(type="text/template" id="modalCategoryView")
                 div.modal-header
                     button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
                         | &times;
-                    h4.modal-title#myModalLabel Edit:
+                    h4.modal-title#myModalLabel Add:
                 div.modal-body
                     form.well(role="form")
                         div.form-group
-                            label(for="nameInput") Enter or change name:
+                            label(for="nameInput") Input name:
                             input#nameInput.form-control(type="text" value)
                         div.form-group
                             label(for="descriptionInput") Input description:
@@ -25,6 +25,31 @@ script(type="text/template" id="modalCategoryView")
                     button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
                     button.saveCategory(type="button" class="btn btn-success btn-xs") Save
                     button.deleteCategory(type="button" class="btn btn-danger btn-xs") dalete
+
+script(type="text/template" id="modalSubcategoryView")
+        div.modal-dialog.modal-lg
+            div.modal-content
+                div.modal-header
+                    button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                        | &times;
+                    h4.modal-title#myModalLabel Add:
+                div.modal-body
+                    form.well(role="form")
+                        div.form-group
+                            label(for="nameInput") Input name:
+                            input#nameInput.form-control(type="text" value)
+                        div.form-group
+                            label(for="descriptionInput") Input description:
+                            textarea#descriptionInput.form-control
+                        div.form-group
+                            label(for="categoryImgEdit") Input file
+                            input#categoryImgEdit(type="file" name="categoryImg" required)
+                            p.help-block
+                                | IMG or PNG recomended
+                div.modal-footer
+                    button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
+                    button.saveSubcategory(type="button" class="btn btn-success btn-xs") Save
+                    button.deleteSubcategory(type="button" class="btn btn-danger btn-xs") dalete
 
 script(type="text/template" id="modalEditSlider")
         div.modal-dialog.modal-lg

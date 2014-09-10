@@ -1,4 +1,4 @@
-define(["marionette", "Store", "SubcategoriesController"], function (Marionette, Store, SubcategoriesController) {
+define(["marionette", "Store", "SubcategoriesController", "views/modalCategoryView"], function (Marionette, Store, SubcategoriesController, ModalView) {
 
 	Store.module("Categories.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.CategoryModelView = Backbone.Marionette.ItemView.extend({
@@ -7,14 +7,10 @@ define(["marionette", "Store", "SubcategoriesController"], function (Marionette,
 
 			},
 			events: {
-				'click .subcategoriesLink': 'openModal'
-			},
-			templateHelpers: {
-				viewSubcategories: function () {
-					var subcategoriesCollection = Store.request("subcategory:collection");
-					return "<h1>Ho</h1>";
-				}
-			},
+				'click .subcategoriesLink': 'openModal',
+                "click .addNewSubcategory": "addNewSubcategoryModal"
+
+            },
 			openModal: function (e) {
 				var modelId = 1*($(e.target).attr('data-submodel-id'));
 				var subcategories = this.model.get('subcategories');
@@ -28,7 +24,14 @@ define(["marionette", "Store", "SubcategoriesController"], function (Marionette,
 					Store.modalRegion.show(modalView);
 				});
 				
-			}
+			},
+            addNewSubcategoryModal: function(e) {
+                var modal = new ModalView({
+                    template: "#modalSubcategoryView",
+                    parent_id: $(e.target).attr("data-category-id")
+                });
+                Store.modalRegionCategory.show(modal);
+            }
 		});
 	});
 	return Store.Categories.Views.CategoryModelView;
