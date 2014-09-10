@@ -7,9 +7,10 @@ exports.SubcategoriesRepository = function (conString) {
 
 	self.fetchSubcategories = function (id, callbackFunction) {
 		if(id === 'all') {
-			var command = "SELECT * FROM subcategories;";
+			var command = "SELECT * FROM subcategories ORDER BY subcategory_position_in_list;";
 		} else {
-			var command = "SELECT * FROM subcategories WHERE subcategories_parent_id = "+id+";";
+			var command = "SELECT * FROM subcategories WHERE subcategory_parent_id = "+id+" " +
+                "ORDER BY subcategories_position_in_list;";
 		}
 		dbRepository.actionData(command, callbackFunction)
 	};
@@ -27,7 +28,6 @@ exports.SubcategoriesRepository = function (conString) {
                     "subcategory_start_date, subcategory_image, subcategory_parent_id) VALUES ('"+ model.subcategory_name +
                     "', "+ model.subcategory_position_in_list +", '"+ model.subcategory_description +"', "+
                     getCurrentDate() +", lo_import('"+ file.file.path +"'), " + model.parent_id + ");";
-                console.log(command);
                 dbRepository.actionData(command);
             });
         });
