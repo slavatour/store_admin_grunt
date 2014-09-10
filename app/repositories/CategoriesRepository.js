@@ -39,6 +39,10 @@ exports.CategoriesRepository = function (conString) {
             });
         });
     };
+    self.deleteCategory = function (id) {
+        var command = "DELETE FROM categories WHERE id = "+ id +";";
+        dbRepository.actionData(command);
+    };
     function getCurrentDate() {
         var today = new Date(),
             currentDate = "'";

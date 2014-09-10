@@ -45,6 +45,7 @@ define(["marionette"], function (Marionette) {
                     contentType: false,
                     success: function() {
                         $("#categoryModal").modal("hide");
+
                     }
                 });
             }

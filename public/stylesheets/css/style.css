@@ -7902,3 +7902,32 @@ body .main .contentContainer .productsContainer {
     box-shadow: -0.11em -0.83em 0 -0.4em #ffffff, -0.11em -0.83em 0 -0.42em #ffffff, -0.11em -0.83em 0 -0.44em #ffffff, -0.11em -0.83em 0 -0.46em #ffffff, -0.11em -0.83em 0 -0.477em #ffffff;
   }
 }
+
+/* line 2, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer .addNewCategory {
+  margin: 15px;
+}
+/* line 8, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer #accordionCategories .categoryList .categoryImage img {
+  max-height: 30px;
+  display: inline-block;
+  margin-right: 10px;
+}
+/* line 16, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body {
+  padding: 0px;
+}
+/* line 18, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body .subcategoriesList {
+  margin: 0px;
+  line-height: 30px;
+}
+/* line 22, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body .subcategoriesList .subcategoryPoint:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+}
+/* line 26, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body .subcategoriesList .subcategoryPoint a.subcategory {
+  margin-left: 50px;
+}

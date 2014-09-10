@@ -22,6 +22,12 @@ app.post("/category", function (req, res) {
     res.end();
 });
 
+app.delete("/category/:id", function (req, res) {
+    categoriesController.deleteCategory(req.params.id);
+    res.header();
+    res.end();
+});
+
 app.post("/subcategory", function (req, res) {
     subcategoriesController.saveSubcategory(req.body, req.files);
     res.header();

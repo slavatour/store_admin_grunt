@@ -8,7 +8,8 @@ define(["marionette", "Store", "SubcategoriesController", "views/modalCategoryVi
 			},
 			events: {
                 "click .addNewSubcategory": "addNewSubcategoryModal",
-                "click .editCategory": "editCategory"
+                "click .editCategory": "editCategory",
+                "click .deleteCategory": "deleteCategory"
 
             },
             addNewSubcategoryModal: function(e) {
@@ -24,6 +25,9 @@ define(["marionette", "Store", "SubcategoriesController", "views/modalCategoryVi
                     template: "#modalCategoryEdit"
                 });
                 Store.modalRegionCategory.show(modal);
+            },
+            deleteCategory: function() {
+                this.model.destroy();
             }
 		});
 	});

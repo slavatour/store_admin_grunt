@@ -6,3 +6,4 @@ public/images/temp/*
 *.iml
 .idea
 files/*
+.sass-cache
