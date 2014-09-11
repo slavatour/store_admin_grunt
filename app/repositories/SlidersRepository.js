@@ -68,7 +68,7 @@ exports.SlidersRepository = function (conString) {
 		});
 	};
 	self.deleteSlider = function (id, callbackFunction) {
-		var command = "DELETE1 FROM slider WHERE id="+id+";";
+		var command = "DELETE FROM slider WHERE id="+id+";";
 		dbRepository.actionData(command, function(options){
             options.error ? callbackFunction({error: options.error, status: 500}) : callbackFunction({status: 200});
         });

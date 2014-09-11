@@ -4,7 +4,6 @@ define(["marionette"], function (Marionette) {
         template: "#warningTemplate",
         templateHelpers: {
             appendMessage: function() {
-                console.log(this.options.message);
                 return this.options.message;
             }
         },

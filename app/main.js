@@ -57,6 +57,6 @@ app.post("/slider", function (req, res) {
 app.delete("/slider/:id", function (req, res) {
     sliderController.deleteSlider(req.params.id, function(options){
         res.header();
-        res.status(options.status).end(options.error);
+        res.status(options.status).end(JSON.stringify({error:options.error}));
     });
 });

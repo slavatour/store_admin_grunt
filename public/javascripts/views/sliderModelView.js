@@ -14,9 +14,6 @@ define(["Store", "marionette", "ModalSliderView"], function (Store, Marionette, 
 			deleteSlider: function () {
 				this.model.destroy({
                     wait: true,
-                    success: function(model, res) {
-                        console.log(res);
-                    },
                     error: function(model, xhr) {
                         require(["views/warningMessageView"], function(WarningView){
                             Store.warningRegion.show(new WarningView({message: xhr.statusText}));
