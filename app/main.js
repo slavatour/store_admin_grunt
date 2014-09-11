@@ -49,9 +49,10 @@ app.put("/slider/:id", function (req, res) {
 });
 
 app.post("/slider", function (req, res) {
-    sliderController.saveSlider(req.body, req.files);
-    res.header();
-    res.end();
+    sliderController.saveSlider(req.body, req.files, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify({error:options.error}));
+    });
 });
 
 app.delete("/slider/:id", function (req, res) {

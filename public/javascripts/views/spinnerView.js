@@ -3,7 +3,7 @@ define(function(){
         var html = $('#spinnerTemplate').html();
         $(container).append(html);
         this.destroy = function () {
-            $('.loader').remove();
+            $('.loaderContainer').remove();
         }
     }
     return {

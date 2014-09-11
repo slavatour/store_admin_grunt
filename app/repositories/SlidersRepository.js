@@ -45,10 +45,14 @@ exports.SlidersRepository = function (conString) {
 			}
 		});	
 	};
-	self.saveSlider = function (model, file) {
+	self.saveSlider = function (model, file, callbackFunction) {
 		var command = "SELECT max(slider_position_in_list) FROM slider;";
 		dbRepository.actionData(command, function (options) {
-			for(key in model) {
+			if(options.error) {
+                callbackFunction({error: options.error, status: 500});
+                return;
+            }
+            for(key in model) {
 				if(model[key] === undefined) {
 					model[key] = "";
 				}
@@ -60,10 +64,16 @@ exports.SlidersRepository = function (conString) {
 			}
 			var command = "SELECT max(id) FROM slider;";
 			dbRepository.actionData(command, function (options) {
+                if(options.error) {
+                    callbackFunction({error: options.error, status: 500});
+                    return;
+                }
 				var command = "INSERT INTO slider (slider_position_in_list, slider_name, slider_description, slider_url, slider_image, slider_image_name) VALUES ("+
 					model.number+", '"+model.slider_name+"', '"+model.slider_description+"', '"+model.slider_url+"', lo_import('"+
 					file.file.path+"'), 'slider"+(options.result[0].max+1)+".png');";
-				dbRepository.actionData(command);
+				dbRepository.actionData(command, function(options){
+                    options.error ? callbackFunction({error: options.error, status: 500}) : callbackFunction({status: 200});
+                });
 			});
 		});
 	};

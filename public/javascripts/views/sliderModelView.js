@@ -1,4 +1,4 @@
-define(["Store", "marionette", "ModalSliderView"], function (Store, Marionette, ModalSliderView) {
+define(["Store", "marionette", "ModalSliderView", "views/spinnerView"], function (Store, Marionette, ModalSliderView, Spinner) {
 	
 	Store.module("Slider.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.SliderModelView = Backbone.Marionette.ItemView.extend({
@@ -12,10 +12,15 @@ define(["Store", "marionette", "ModalSliderView"], function (Store, Marionette, 
 				'click .numberEdit'					: 	'changeNumber'
 			},
 			deleteSlider: function () {
+                Spinner.initialize(".sliderContainer");
 				this.model.destroy({
                     wait: true,
+                    success: function() {
+                        Spinner.destroy();
+                    },
                     error: function(model, xhr) {
                         require(["views/warningMessageView"], function(WarningView){
+                            Spinner.destroy();
                             Store.warningRegion.show(new WarningView({message: xhr.statusText}));
                         });
                     }

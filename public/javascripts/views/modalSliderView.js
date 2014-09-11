@@ -1,4 +1,4 @@
-define(["marionette"], function (Marionette) {
+define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 	
 	Store.module("Common.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.ModalView = Marionette.ItemView.extend ({
@@ -44,16 +44,24 @@ define(["marionette"], function (Marionette) {
 				fd.append('slider_description', this.$el.find('#sliderDesc').val());
 				fd.append('slider_url', this.$el.find('#sliderURL').val());
 				fd.append('file', this.$el.find('#sliderImg')[0].files[0]);
+                Spinner.initialize(".sliderContainer");
                 $.ajax({
 					type: "POST",
 					url: '/slider',
 					data: fd,
 					processData: false,
-					contentType: false
+					contentType: false,
+                    success: function(model, status) {
+                        Spinner.destroy();
+                        collectionSliders.fetch();
+                    },
+                    error: function(xhr) {
+                        require(["views/warningMessageView"], function(WarningView){
+                            Spinner.destroy();
+                            Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                        });
+                    }
 				});
-				setTimeout(function () {
-//					collectionSliders.fetch();
-				},1500);
 				$('#editModal').modal('hide');
 			}
 
