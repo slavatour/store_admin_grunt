@@ -11,7 +11,7 @@ script(type="text/template" id="templateSliderCompositeView")
                     th photo
                     th
             tbody
-        button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target=".bs-example-modal-lg") +add new
+        button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
 
 script(type="text/template" id="templateSliderItemView")
     td.switcher.text-center
@@ -34,5 +34,5 @@ script(type="text/template" id="templateSliderItemView")
     td.text-center
         a.sliderPhoto(data-toggle="modal" data-target=".bs-example-modal-lg") photo
     td
-        button.btn.btn-default.btn-xs.pull-right.editSliderBtn(data-toggle="modal" data-target=".bs-example-modal-lg") edit
+        button.btn.btn-default.btn-xs.pull-right.editSliderBtn(data-toggle="modal" data-target="#editModal") edit
         button.btn.btn-default.btn-xs.pull-right.deleteSliderBtn delete

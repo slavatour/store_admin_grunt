@@ -6,11 +6,11 @@ define(["marionette", "SliderModelView", "views/spinnerView"], function (Marione
             childView: Views.SliderModelView,
             childViewContainer: "tbody",
 			events: {
-				"click .addSliderBtn"				: 		"addNewSlider"
+				"click .addSliderBtn": "addNewSlider"
 			},
 			collectionEvents: {
-				"change:number"			: 			"changeNumber",
-                "change"                :           "changeCollection"
+                "change:slider_position_in_list": "changeNumber",
+                "change": "changeCollection"
 			},
             initialize: function () {
                 Spinner.initialize(".sliderContainer");
@@ -32,13 +32,13 @@ define(["marionette", "SliderModelView", "views/spinnerView"], function (Marione
 			},
 			changeNumber: function (model) {
 				var array = this.collection.toJSON();
-				var previousValue = model._previousAttributes.number;
+				var previousValue = model._previousAttributes.slider_position_in_list;
 				var obj = model.toJSON();
 				_.each(array, function (value) {
-					if(obj.number == value.number) {
-						if(obj.id != value.id) {
-							var difference = (1*previousValue - 1*obj.number);
-							value.number = 1*value.number + difference;
+					if(obj.slider_position_in_list == value.slider_position_in_list) {
+						if(obj.slider_id != value.slider_id) {
+							var difference = (1*previousValue - 1*obj.slider_position_in_list);
+							value.slider_position_in_list = 1*value.slider_position_in_list + difference;
 						}
 					}
 				});

@@ -9,58 +9,58 @@ exports.SlidersRepository = function (conString) {
 
 	self.fetchSliders = function (callbackFunction) {
 		var command = "SELECT * FROM slider ORDER BY slider_position_in_list;";
-		dbRepository.actionData(command, function (result) {
-			for (var i = 0; i < result.length; i++) {
-				if(result[i].slider_image_name) {
-					var folder = path.resolve(__dirname, "../../", "public/images/temp/", result[i].slider_image_name);
+		dbRepository.actionData(command, function (options) {
+			for (var i = 0; i < options.result.length; i++) {
+				if(options.result[i].slider_image_name) {
+					var folder = path.resolve(__dirname, "../../", "public/images/temp/", options.result[i].slider_image_name);
 					var command = "SELECT lo_export(slider.slider_image, '"+folder+"') FROM slider WHERE slider_id = "+
-                        result[i].slider_id+";";
+                        options.result[i].slider_id+";";
 					dbRepository.actionData(command);
 				}
 			}
-			callbackFunction(result);
+			callbackFunction(options.result);
 		});	
 	};
 	self.putSlider = function (id, model, file) {
 		var command = "SELECT * FROM slider WHERE slider_id='"+id+"';";
-		dbRepository.actionData(command, function (result) {
-			if(result[0]) {
+		dbRepository.actionData(command, function (options) {
+			if(options.result[0]) {
+                var command = "BEGIN;"
 				for (key in model) {
-					var command = "UPDATE slider SET "+key+" = '"+model[key]+"' WHERE slider_id = "+id+";";
-                    console.log(command);
-					dbRepository.actionData(command);
+					command += "UPDATE slider SET "+key+" = '"+model[key]+"' WHERE slider_id = "+id+";";
 				}
 				if(file !== undefined && file.file !== undefined) {
-					var command = "UPDATE slider SET slider_image = lo_import('"+file.file.path+"') WHERE slider_id = "+id+";"
-					dbRepository.actionData(command, function (result) {
-						fs.unlink(file.file.path, function (err) {
-							if(err){
-								console.error('error delete tepl file', err);
-							}
-						});
-					});
+					command += "UPDATE slider SET slider_image = lo_import('"+file.file.path+"') WHERE slider_id = "+id+";"
 				}
+                command += "COMMIT;";
+                dbRepository.actionData(command, function () {
+                    fs.unlink(file.file.path, function (err) {
+                        if(err){
+                            console.error('error delete tepml file', err);
+                        }
+                    });
+                });
 			}
 		});	
 	};
 	self.saveSlider = function (model, file) {
 		var command = "SELECT max(slider_position_in_list) FROM slider;";
-		dbRepository.actionData(command, function (result) {
+		dbRepository.actionData(command, function (options) {
 			for(key in model) {
 				if(model[key] === undefined) {
 					model[key] = "";
 				}
 			}
-			if(!result[0]) {
+			if(!options.result[0]) {
 				model.number = 1;
 			} else {
-				model.number = 1*result[0].max+1;
+				model.number = 1*options.result[0].max+1;
 			}
 			var command = "SELECT max(id) FROM slider;";
-			dbRepository.actionData(command, function (result) {
+			dbRepository.actionData(command, function (options) {
 				var command = "INSERT INTO slider (slider_position_in_list, slider_name, slider_description, slider_url, slider_image, slider_image_name) VALUES ("+
 					model.number+", '"+model.slider_name+"', '"+model.slider_description+"', '"+model.slider_url+"', lo_import('"+
-					file.file.path+"'), 'slider"+(result[0].max+1)+".png');";
+					file.file.path+"'), 'slider"+(options.result[0].max+1)+".png');";
                 console.log(command);
 				dbRepository.actionData(command);
 			});
