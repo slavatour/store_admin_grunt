@@ -24,9 +24,10 @@ app.post("/category", function (req, res) {
 });
 
 app.delete("/category/:id", function (req, res) {
-    categoriesController.deleteCategory(req.params.id);
-    res.header();
-    res.end();
+    categoriesController.deleteCategory(req.params.id, function(options){
+        res.header();
+        res.status(options.status).end(options.error);
+    });
 });
 
 app.post("/subcategory", function (req, res) {
@@ -54,7 +55,8 @@ app.post("/slider", function (req, res) {
 });
 
 app.delete("/slider/:id", function (req, res) {
-    sliderController.deleteSlider(req.params.id);
-    res.header();
-    res.end();
+    sliderController.deleteSlider(req.params.id, function(options){
+        res.header();
+        res.status(options.status).end(options.error);
+    });
 });

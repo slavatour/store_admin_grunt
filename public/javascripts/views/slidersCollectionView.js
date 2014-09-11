@@ -22,7 +22,7 @@ define(["marionette", "SliderModelView", "views/spinnerView"], function (Marione
 
             },
             changeCollection: function () {
-                this.render();
+//                this.render();
             },
 			addNewSlider: function (e) {
 				var modal = new Store.Common.Views.ModalView({

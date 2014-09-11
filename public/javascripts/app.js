@@ -5,7 +5,8 @@ define(["marionette"], function (Marionette) {
         categoriesRegion: "#categoriesContainer",
         modalRegion: "#editModal",
         modalRegionCategory: "#categoryModal",
-        sliderRegion: ".sliderContainer"
+        sliderRegion: ".sliderContainer",
+        warningRegion: ".warningContainer"
     });
 
     Store.addInitializer(function () {

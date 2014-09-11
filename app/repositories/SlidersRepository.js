@@ -34,11 +34,13 @@ exports.SlidersRepository = function (conString) {
 				}
                 command += "COMMIT;";
                 dbRepository.actionData(command, function () {
-                    fs.unlink(file.file.path, function (err) {
-                        if(err){
-                            console.error('error delete tepml file', err);
-                        }
-                    });
+                    if(file !== undefined && file.file !== undefined) {
+                        fs.unlink(file.file.path, function (err) {
+                            if(err){
+                                console.error('error delete tepml file', err);
+                            }
+                        });
+                    }
                 });
 			}
 		});	
@@ -61,14 +63,15 @@ exports.SlidersRepository = function (conString) {
 				var command = "INSERT INTO slider (slider_position_in_list, slider_name, slider_description, slider_url, slider_image, slider_image_name) VALUES ("+
 					model.number+", '"+model.slider_name+"', '"+model.slider_description+"', '"+model.slider_url+"', lo_import('"+
 					file.file.path+"'), 'slider"+(options.result[0].max+1)+".png');";
-                console.log(command);
 				dbRepository.actionData(command);
 			});
 		});
 	};
-	self.deleteSlider = function (id) {
-		var command = "DELETE FROM slider WHERE id="+id+";";
-		dbRepository.actionData(command);
+	self.deleteSlider = function (id, callbackFunction) {
+		var command = "DELETE1 FROM slider WHERE id="+id+";";
+		dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({error: options.error, status: 500}) : callbackFunction({status: 200});
+        });
 	};
 
 	return self;

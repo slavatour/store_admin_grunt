@@ -1,4 +1,4 @@
-define(["marionette", "ModalSliderView"], function (Marionette, ModalSliderView, bootstrapSwitch) {
+define(["Store", "marionette", "ModalSliderView"], function (Store, Marionette, ModalSliderView) {
 	
 	Store.module("Slider.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.SliderModelView = Backbone.Marionette.ItemView.extend({
@@ -12,7 +12,17 @@ define(["marionette", "ModalSliderView"], function (Marionette, ModalSliderView,
 				'click .numberEdit'					: 	'changeNumber'
 			},
 			deleteSlider: function () {
-				this.model.destroy();
+				this.model.destroy({
+                    wait: true,
+                    success: function(model, res) {
+                        console.log(res);
+                    },
+                    error: function(model, xhr) {
+                        require(["views/warningMessageView"], function(WarningView){
+                            Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                        });
+                    }
+                });
 			},
 			editSlider: function () {
 				var modal = new ModalSliderView({

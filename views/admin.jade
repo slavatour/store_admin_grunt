@@ -51,6 +51,7 @@ html
                             div.panel-body
                                 a#sliderBtn.leftNav(href="#slider") Slider
             div.col-lg-9.contentContainer
+                div.warningContainer
                 include includes/index
                 include includes/categories
                 include includes/products
@@ -61,6 +62,7 @@ html
         include includes/templates/slidersTemplates
         include includes/templates/subcategoriesTemplates
         include includes/templates/spinnerTemplate
+        include includes/templates/warningTemplate
 
 
     script(data-main="./javascripts/main.js" src="./javascripts/libs/js/requirejs/require.js")
