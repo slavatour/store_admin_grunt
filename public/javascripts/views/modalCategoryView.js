@@ -28,6 +28,11 @@ define(["marionette"], function (Marionette) {
                     contentType: false,
                     success: function() {
                         $("#categoryModal").modal("hide");
+                    },
+                    error: function(a, b, c) {
+                        console.log(a);
+                        console.log(b);
+                        console.log(c);
                     }
                 });
             },

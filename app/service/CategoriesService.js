@@ -7,8 +7,11 @@ exports.CategoriesService = function (conString) {
     self.fetchCategories = function(callbackFunction) {
         var categoriesRepository = new CategoriesRepository.CategoriesRepository(conString);
         var subcategoriesRepository = new SubcategoriesRepository.SubcategoriesRepository(conString);
-        categoriesRepository.fetchCategories(function(categories){
-            subcategoriesRepository.fetchSubcategories('all', function(subcategories){
+        categoriesRepository.fetchCategories(function(options){
+            console.log("options", options);
+            var categories = options.result;
+            subcategoriesRepository.fetchSubcategories('all', function(options){
+                var subcategories = options.result;
                 for(var i=0, length = categories.length; i<length; i++) {
                     categories[i].subcategories = [];
                     for(var j=0, lengthSub = subcategories.length; j<lengthSub; j++) {

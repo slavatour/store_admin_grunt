@@ -17,9 +17,10 @@ app.get("/categories", function (req, res) {
 });
 
 app.post("/category", function (req, res) {
-    categoriesController.saveCategory(req.body, req.files);
-    res.header();
-    res.end();
+    categoriesController.saveCategory(req.body, req.files, function(options){
+        res.header();
+        res.status(options.status).end(options.error);
+    });
 });
 
 app.delete("/category/:id", function (req, res) {

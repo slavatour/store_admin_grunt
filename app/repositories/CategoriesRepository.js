@@ -7,35 +7,41 @@ exports.CategoriesRepository = function (conString) {
     var dbRepository = new DbRepository.DatabaseRepository(conString);
 	self.fetchCategories = function (callbackFunction) {
         var command = "SELECT * FROM categories ORDER BY category_position_in_list;";
-		dbRepository.actionData(command, function (result) {
-            for (var i = 0; i < result.length; i++) {
-                if(result[i].category_image) {
+		dbRepository.actionData(command, function (options) {
+            for (var i = 0; i < options.result.length; i++) {
+                if(options.result[i].category_image) {
                     var folder = path.resolve(__dirname, "../../", "public/images/temp/", "categoryImg" +
-                        result[i].category_id + ".png");
+                        options.result[i].category_id + ".png");
                         command = "SELECT lo_export(categories.category_image, '"+folder+"') FROM categories WHERE category_id = "+
-                        result[i].category_id+";";
+                            options.result[i].category_id+";";
                     dbRepository.actionData(command);
-                    result[i].category_image_name = "categoryImg" + result[i].category_id + ".png";
+                    options.result[i].category_image_name = "categoryImg" + options.result[i].category_id + ".png";
                 }
             }
-            callbackFunction(result);
+            callbackFunction({result: options.result});
 		});
 	};
-    self.saveCategory = function (model, file) {
+    self.saveCategory = function (model, file, callbackFunction) {
         var command = "SELECT max(category_position_in_list) FROM categories;";
-        dbRepository.actionData(command, function (result) {
-            if(!result[0]) {
+        dbRepository.actionData(command, function (options) {
+            if(options.error) {
+                callbackFunction({error: options.error, status: 500});
+            }
+            if(!options.result[0]) {
                 model.category_position_in_list = 1;
             } else {
-                model.category_position_in_list = 1*result[0].max+1;
+                model.category_position_in_list = 1*options.result[0].max+1;
             }
-            command = "SELECT max(category_id) FROM categories;";
-            dbRepository.actionData(command, function(result){
-                command = "INSERT INTO categories (category_name, category_position_in_list, category_description, " +
-                    "category_start_date, category_image) VALUES ('"+ model.category_name +
-                    "', "+ model.category_position_in_list +", '"+ model.category_description +"', "+
-                    getCurrentDate() +", lo_import('"+ file.file.path +"'));";
-                dbRepository.actionData(command);
+            command = "INSERT INTO categories (category_name, category_position_in_list, category_description, " +
+                "category_start_date, category_image) VALUES ('"+ model.category_name +
+                "', "+ model.category_position_in_list +", '"+ model.category_description +"', "+
+                getCurrentDate() +", lo_import('"+ file.file.path +"'));";
+            dbRepository.actionData(command, function(options){
+                if(options.error) {
+                    callbackFunction({error: options.error, status: 500});
+                } else {
+                    callbackFunction({status: 200});
+                }
             });
         });
     };
