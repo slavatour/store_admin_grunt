@@ -9,17 +9,10 @@ define(["marionette", "SliderModelView", "views/spinnerView"], function (Marione
 				"click .addSliderBtn": "addNewSlider"
 			},
 			collectionEvents: {
-                "change:slider_position_in_list": "changeNumber",
                 "change": "changeCollection"
 			},
             initialize: function () {
                 Spinner.initialize(".sliderContainer");
-            },
-            onBeforeRenderTemplate: function () {
-
-            },
-            onRender: function () {
-
             },
             changeCollection: function () {
 //                this.render();
@@ -29,23 +22,6 @@ define(["marionette", "SliderModelView", "views/spinnerView"], function (Marione
 					template: '#modalNewSlider'
 				});
 				Store.modalRegion.show(modal);
-			},
-			changeNumber: function (model) {
-				var array = this.collection.toJSON();
-				var previousValue = model._previousAttributes.slider_position_in_list;
-				var obj = model.toJSON();
-				_.each(array, function (value) {
-					if(obj.slider_position_in_list == value.slider_position_in_list) {
-						if(obj.slider_id != value.slider_id) {
-							var difference = (1*previousValue - 1*obj.slider_position_in_list);
-							value.slider_position_in_list = 1*value.slider_position_in_list + difference;
-						}
-					}
-				});
-				this.collection.reset(array);
-				_.each(this.collection.models, function (model) {
-					model.save();
-				});
 			}
 		});
 	});

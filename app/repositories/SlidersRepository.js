@@ -21,9 +21,13 @@ exports.SlidersRepository = function (conString) {
 			callbackFunction(options.result);
 		});	
 	};
-	self.putSlider = function (id, model, file) {
+	self.putSlider = function (id, model, file, callbackFunction) {
 		var command = "SELECT * FROM slider WHERE slider_id='"+id+"';";
 		dbRepository.actionData(command, function (options) {
+            if(options.error) {
+                callbackFunction({error: options.error, status: 500});
+                return;
+            }
 			if(options.result[0]) {
                 var command = "BEGIN;"
 				for (key in model) {
@@ -34,6 +38,7 @@ exports.SlidersRepository = function (conString) {
 				}
                 command += "COMMIT;";
                 dbRepository.actionData(command, function () {
+                    options.error ? callbackFunction({error: options.error, status: 500}) : callbackFunction({status: 200});
                     if(file !== undefined && file.file !== undefined) {
                         fs.unlink(file.file.path, function (err) {
                             if(err){

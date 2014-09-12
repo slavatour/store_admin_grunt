@@ -55,14 +55,47 @@ define(["Store", "marionette", "ModalSliderView", "views/spinnerView"], function
 				Store.modalRegion.show(modal);				
 			},
 			changeNumber: function (e) {
-				var collectionSliders = Store.request('slider:collection');
-				var collectionSlidersView = Store.request('slider:collectionView');
-				var step = $(e.target).attr('data-step');
-				var number = this.model.getNumber() - 1*step;
-				if( number > 0 ) {
-					this.model.setNumber(number);
-				}
-			}
+				var step = $(e.target).attr('data-step'),
+                    collection = Store.request("slider:collection"),
+                    collectionView = Store.request("slider:collectionView"),
+                    currentNumber = this.model.getNumber(),
+				    newNumber = (this.model.getNumber() - 1*step).toString(),
+                    upperModelNumber = (1*this.model.getNumber() + 1).toString(),
+                    newNumberOwner = collection.where({slider_position_in_list: newNumber}),
+                    upperModel = collection.where({slider_position_in_list: upperModelNumber});
+                if (newNumber > 0 && (upperModel.length !== 0 || step === "1")) {
+                    Spinner.initialize(".sliderContainer");
+                    this.model.setNumber(newNumber);
+                    this.model.save({}, {
+                        success: function(model) {
+                            collection.sort();
+                            collectionView.render();
+                            Spinner.destroy();
+                        },
+                        error: function(xhr) {
+                            require(["views/warningMessageView"], function(WarningView){
+                                Spinner.destroy();
+                                Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                            });
+                        }
+                    });
+                    newNumberOwner[0].setNumber(currentNumber);
+                    newNumberOwner[0].save({},{
+                        success: function(model) {
+                            collection.sort();
+                            collectionView.render();
+                            Spinner.destroy();
+                        },
+                        error: function(xhr) {
+                            require(["views/warningMessageView"], function(WarningView){
+                                Spinner.destroy();
+                                Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                            });
+                        }
+                    });
+
+                }
+            }
 		});
 	});
 	return Store.Slider.Views.SliderModelView;

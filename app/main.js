@@ -44,8 +44,10 @@ app.get("/slider", function (req, res) {
 });
 
 app.put("/slider/:id", function (req, res) {
-    sliderController.putSlider(req.params.id, req.body, req.files);
-    res.end();
+    sliderController.putSlider(req.params.id, req.body, req.files, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify({error:options.error}));
+    });
 });
 
 app.post("/slider", function (req, res) {
