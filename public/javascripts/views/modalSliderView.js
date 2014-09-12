@@ -23,15 +23,27 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 				if(file != undefined) {
 					fd.append('file', file);
 				}
+                Spinner.initialize(".sliderContainer");
 				$.ajax({
 					type: "PUT",
 					url: '/slider/'+this.model.getId(),
 					data: fd,
 					processData: false,
 					contentType: false,
-					success: function () {
-						collectionSliders.fetch();
-					}
+                    success: function(model, status) {
+                        collectionSliders.fetch({
+                            success: function(data) {
+                                collectionSlidersView.render();
+                            }
+                        });
+                        Spinner.destroy({timeout: 700});
+                    },
+                    error: function(xhr) {
+                        require(["views/warningMessageView"], function(WarningView){
+                            Spinner.destroy({timeout: 700});
+                            Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                        });
+                    }
 				});
 				$('#editModal').modal('hide');
 			},
@@ -52,12 +64,12 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 					processData: false,
 					contentType: false,
                     success: function(model, status) {
-                        Spinner.destroy();
+                        Spinner.destroy({timeout: 700});
                         collectionSliders.fetch();
                     },
                     error: function(xhr) {
                         require(["views/warningMessageView"], function(WarningView){
-                            Spinner.destroy();
+                            Spinner.destroy({timeout: 700});
                             Store.warningRegion.show(new WarningView({message: xhr.statusText}));
                         });
                     }

@@ -32,10 +32,15 @@ exports.CategoriesRepository = function (conString) {
             } else {
                 model.category_position_in_list = 1*options.result[0].max+1;
             }
+            //MYTODO set valaibility to write data without photo
+            var filePath = null;
+            if (file.file && file.file.path) {
+                filePath = file.file.path;
+            }
             command = "INSERT INTO categories (category_name, category_position_in_list, category_description, " +
                 "category_start_date, category_image) VALUES ('"+ model.category_name +
                 "', "+ model.category_position_in_list +", '"+ model.category_description +"', "+
-                getCurrentDate() +", lo_import('"+ file.file.path +"'));";
+                getCurrentDate() +", lo_import('"+ filePath +"'));";
             dbRepository.actionData(command, function(options){
                 if(options.error) {
                     callbackFunction({error: options.error, status: 500});

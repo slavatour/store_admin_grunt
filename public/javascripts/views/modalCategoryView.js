@@ -19,7 +19,10 @@ define(["marionette"], function (Marionette) {
                 var fd = new FormData();
                 fd.append('category_name', this.$el.find('#nameInput').val());
                 fd.append('category_description', this.$el.find('#descriptionInput').val());
-                fd.append('file', this.$el.find('#categoryImgEdit')[0].files[0]);
+                if (this.$el.find('#categoryImgEdit')[0].files[0]) {
+                    console.log("Oooops!");
+                    fd.append('file', this.$el.find('#categoryImgEdit')[0].files[0]);
+                }
                 $.ajax({
                     type: "POST",
                     url: '/category',
