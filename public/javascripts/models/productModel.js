@@ -1,15 +1,16 @@
-define(function () {
+define(["marionette"], function (Marionette) {
 
     Store.module("Products.Models", function (Models, Store, Backbone, Marionette, $, _) {
 		Models.ProductModel = Backbone.Model.extend({
 			defaults: {
+                id: null,
 				product_id: null,
                 product_parent_id: null,
                 product_fullname: "",
                 product_shortname: "",
                 product_description: "",
                 product_specification: null, // характеристика
-                product_pricesType: "", //тип цен (масив: тип цены цена)
+                product_pricesType: "", //тип цен (масив: тип цены: цена)
                 product_price: null, //розница (основная цена)
                 product_photosUrls: null, // масив список названий фото
                 product_discounts: "", //тип скидки

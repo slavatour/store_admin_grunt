@@ -24,8 +24,8 @@ define(["marionette"], function (Marionette) {
 		showProducts: function () {
 			$('.contentContainer > div').css('display', 'none');
 			$('.productsContainer').css('display', 'block');
-            require(['views/spinnerView'], function(Spinner){
-                new Spinner.initialize('.productsContainer');
+            require(["ProductsController"], function(ProductsController){
+                new ProductsController.renderView();
             });
 		},
 		showSliderEdit: function () {

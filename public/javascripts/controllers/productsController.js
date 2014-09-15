@@ -1,23 +1,39 @@
-$(document).ready(function () {
-	
-	Store.module("Products.Controllers", function (Controllers, Store, Backbone, Marionette, $, _) {
+define([
+    "marionette",
+    "ProductModel",
+    "ProductsCollection",
+    "ProductModelView",
+    "ProductsCollectionView"
+    ], function (Marionette, ProductModel, ProductsCollection, ProductModelView, ProductsCollectionView) {
+
+    Store.module("Products.Controllers", function (Controllers, Store, Backbone, Marionette, $, _) {
 		Controllers.ProductsController = Marionette.Controller.extend({
 			initialize: function () {
-				var this.productModel = new Store.Products.Models.ProductModel();
-				var this.productsCollection = new Store.Products.Collections.ProductsCollection({
+                console.log("init");
+				this.productModel = new ProductModel();
+				this.productsCollection = new ProductsCollection({
 					model: this.productModel
 				});
-				var this.productModelView = new Store.Products.Views.ProductModelView({
+				this.productModelView = new ProductModelView({
 					model: this.productModel
 				});
-				var this.productsCollectionView = new Store.Products.Views.ProductsCollectionView({
+				this.productsCollectionView = new ProductsCollectionView({
 					collection: this.productsCollection
 				});
 			},
 			renderView: function () {
-				
+                console.log("render");
+                var that = this;
+                this.productsCollection.fetch({
+                    success: function (data) {
+                        that.productsCollection.sort();
+                        setTimeout(function(){
+                            Store.productsRegion.show(that.productsCollectionView);
+                        }, 2000);
+                    }
+                });
 			}
 		});
 	});
-
+    return Store.Products.Controllers.ProductsController;
 });

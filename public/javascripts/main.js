@@ -21,11 +21,13 @@ requirejs.config({
 		SliderModel: "models/sliderModel",
 		CategoryModel: "models/categoryModel",
 		SubcategoryModel: "models/subcategoryModel",
+        ProductModel: "models/productModel",
 
 		//collections
 		SlidersCollection: "collections/slidersCollection",
 		CategoriesCollection: "collections/categoriesCollection",
 		SubcategoriesCollection: "collections/subcategoriesCollection",
+		ProductsCollection: "collections/productsCollection",
 
 		//models views
 		SliderModelView: "views/sliderModelView",
@@ -33,16 +35,19 @@ requirejs.config({
 		CategoryModelView: "views/categoryModelView",
 		SubcategoryModelView: "views/subcategoryModelView",
 		ModalCategoryView: "views/modalCategoryView",
+		ProductModelView: "views/productModelView",
 
 		//collections views
 		SlidersCollectionView: "views/slidersCollectionView",
 		CategoryCollectionView: "views/categoriesCollectionView",
 		SubcategoriesCollectionView: "views/subcategoriesCollectionView",
+		ProductsCollectionView: "views/productCollectionView",
 
 		//controllers
 		SliderController: "controllers/slidersController",
 		CategoriesController: "controllers/categoriesController",
-		SubcategoriesController: "controllers/subcategoriesController"
+		SubcategoriesController: "controllers/subcategoriesController",
+		ProductsController: "controllers/productsController"
 	},
 	shim: {
 		jquery: {
