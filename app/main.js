@@ -26,7 +26,7 @@ app.post("/category", function (req, res) {
 app.delete("/category/:id", function (req, res) {
     categoriesController.deleteCategory(req.params.id, function(options){
         res.header();
-        res.status(options.status).end(options.error);
+        res.status(options.status).end(JSON.stringify({error:options.error}));
     });
 });
 

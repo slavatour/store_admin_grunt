@@ -26,7 +26,7 @@ script(type="text/template" id="modalCategoryView")
                     button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
 
 script(type="text/template" id="modalCategoryEdit")
-        div.modal-dialog.modal-lg
+        div.modal-dialog.modal-lg.categoryModal(data-category-id!="<%= category_id %>")
             div.modal-content
                 div.modal-header
                     button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
@@ -49,7 +49,7 @@ script(type="text/template" id="modalCategoryEdit")
                             p.help-block
                                 | IMG or PNG recomended
                 div.modal-footer
-                    button.saveCategory(type="button" class="btn btn-success btn-xs") Save
+                    button.saveEditCategory(type="button" class="btn btn-success btn-xs") Save
                     button(type="button" class="closeModal btn btn-default btn-xs" data-dismiss="modal") Close
 
 script(type="text/template" id="modalSubcategoryView")

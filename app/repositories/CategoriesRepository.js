@@ -33,7 +33,7 @@ exports.CategoriesRepository = function (conString) {
                 model.category_position_in_list = 1*options.result[0].max+1;
             }
             //MYTODO set valaibility to write data without photo
-            var filePath = null;
+            var filePath = "../public/images/no_photo.jpg";
             if (file.file && file.file.path) {
                 filePath = file.file.path;
             }
@@ -50,9 +50,11 @@ exports.CategoriesRepository = function (conString) {
             });
         });
     };
-    self.deleteCategory = function (id) {
+    self.deleteCategory = function (id, callbackFunction) {
         var command = "DELETE FROM categories WHERE id = "+ id +";";
-        dbRepository.actionData(command);
+        dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({error: options.error, status: 500}) : callbackFunction({status: 200});
+        });
     };
     function getCurrentDate() {
         var today = new Date(),

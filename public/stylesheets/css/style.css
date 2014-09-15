@@ -7826,6 +7826,11 @@ body .main .contentContainer .productsContainer {
 }
 
 /* line 10, ../sass/imports/_spinner.scss */
+.well .loaderContainer {
+  margin: -19px;
+}
+
+/* line 13, ../sass/imports/_spinner.scss */
 .loader {
   font-size: 90px;
   text-indent: -9999em;
@@ -7840,30 +7845,30 @@ body .main .contentContainer .productsContainer {
 }
 
 @-webkit-keyframes load6 {
-  /* line 23, ../sass/imports/_spinner.scss */
+  /* line 26, ../sass/imports/_spinner.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
     box-shadow: -0.11em -0.83em 0 -0.4em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.42em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.44em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.46em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.477em rgba(0, 0, 0, 0.3);
   }
 
-  /* line 29, ../sass/imports/_spinner.scss */
+  /* line 32, ../sass/imports/_spinner.scss */
   5%,
   95% {
     box-shadow: -0.11em -0.83em 0 -0.4em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.42em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.44em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.46em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.477em rgba(0, 0, 0, 0.3);
   }
 
-  /* line 32, ../sass/imports/_spinner.scss */
+  /* line 35, ../sass/imports/_spinner.scss */
   30% {
     box-shadow: -0.11em -0.83em 0 -0.4em rgba(0, 0, 0, 0.3), -0.51em -0.66em 0 -0.42em rgba(0, 0, 0, 0.3), -0.75em -0.36em 0 -0.44em rgba(0, 0, 0, 0.3), -0.83em -0.03em 0 -0.46em rgba(0, 0, 0, 0.3), -0.81em 0.21em 0 -0.477em rgba(0, 0, 0, 0.3);
   }
 
-  /* line 35, ../sass/imports/_spinner.scss */
+  /* line 38, ../sass/imports/_spinner.scss */
   55% {
     box-shadow: -0.11em -0.83em 0 -0.4em rgba(0, 0, 0, 0.3), -0.29em -0.78em 0 -0.42em rgba(0, 0, 0, 0.3), -0.43em -0.72em 0 -0.44em rgba(0, 0, 0, 0.3), -0.52em -0.65em 0 -0.46em rgba(0, 0, 0, 0.3), -0.57em -0.61em 0 -0.477em rgba(0, 0, 0, 0.3);
   }
 
-  /* line 38, ../sass/imports/_spinner.scss */
+  /* line 41, ../sass/imports/_spinner.scss */
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -7872,30 +7877,30 @@ body .main .contentContainer .productsContainer {
 }
 
 @keyframes load6 {
-  /* line 45, ../sass/imports/_spinner.scss */
+  /* line 48, ../sass/imports/_spinner.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
     box-shadow: -0.11em -0.83em 0 -0.4em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.42em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.44em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.46em rgba(0, 0, 0, 0.3), -0.11em -0.83em 0 -0.477em rgba(0, 0, 0, 0.3);
   }
 
-  /* line 51, ../sass/imports/_spinner.scss */
+  /* line 54, ../sass/imports/_spinner.scss */
   5%,
   95% {
     box-shadow: -0.11em -0.83em 0 -0.4em #ffffff, -0.11em -0.83em 0 -0.42em #ffffff, -0.11em -0.83em 0 -0.44em #ffffff, -0.11em -0.83em 0 -0.46em #ffffff, -0.11em -0.83em 0 -0.477em #ffffff;
   }
 
-  /* line 54, ../sass/imports/_spinner.scss */
+  /* line 57, ../sass/imports/_spinner.scss */
   30% {
     box-shadow: -0.11em -0.83em 0 -0.4em #ffffff, -0.51em -0.66em 0 -0.42em #ffffff, -0.75em -0.36em 0 -0.44em #ffffff, -0.83em -0.03em 0 -0.46em #ffffff, -0.81em 0.21em 0 -0.477em #ffffff;
   }
 
-  /* line 57, ../sass/imports/_spinner.scss */
+  /* line 60, ../sass/imports/_spinner.scss */
   55% {
     box-shadow: -0.11em -0.83em 0 -0.4em #ffffff, -0.29em -0.78em 0 -0.42em #ffffff, -0.43em -0.72em 0 -0.44em #ffffff, -0.52em -0.65em 0 -0.46em #ffffff, -0.57em -0.61em 0 -0.477em #ffffff;
   }
 
-  /* line 60, ../sass/imports/_spinner.scss */
+  /* line 63, ../sass/imports/_spinner.scss */
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);

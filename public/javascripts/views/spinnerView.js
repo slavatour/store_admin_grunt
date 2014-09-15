@@ -1,7 +1,7 @@
 define(function(){
     function initialize (container) {
         var html = $('#spinnerTemplate').html();
-        $(container).append(html);
+        $(container).prepend(html);
         this.destroy = function (options) {
             var timeout;
             !options || !options.timeout ?  timeout = 0 : timeout = options.timeout;

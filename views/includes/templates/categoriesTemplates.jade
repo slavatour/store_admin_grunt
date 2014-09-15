@@ -20,7 +20,12 @@ script(type="text/template" id="categoriesModelTemplate")
         div.panel-collapse.collapse.subcategoriesListContainer(id!="<%= category_id %>")
             div.panel-body(id!="<%= category_name %>")
                 ul.subcategoriesList
+                    <% if(subcategories == null) {%>
+                    //- MYTODO dont appent "li" in this case
+                    li#subcategoryPoint No subcategories.
+                    <%} else {%>
                     <% _.each(subcategories, function(subcategory){%>
                     li.subcategoryPoint
                         a.subcategory(data-subcategory-id!="#<%= subcategory.subcategory_id %>") <%= subcategory.subcategory_name %>
                     <%}); %>
+                    <%};%>

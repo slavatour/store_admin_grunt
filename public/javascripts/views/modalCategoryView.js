@@ -1,4 +1,4 @@
-define(["marionette"], function (Marionette) {
+define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 	
 	Store.module("Common.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.ModalView = Marionette.ItemView.extend ({
@@ -7,6 +7,7 @@ define(["marionette"], function (Marionette) {
                 "click .close": "closeModal",
                 "click .deleteCategory": "deleteCategory",
                 "click .saveCategory": "saveCategory",
+                "click .saveEditCategory": "saveEditCategory",
                 "click .saveSubcategory": "saveSubcategory"
             },
             closeModal: function(e) {
@@ -20,9 +21,9 @@ define(["marionette"], function (Marionette) {
                 fd.append('category_name', this.$el.find('#nameInput').val());
                 fd.append('category_description', this.$el.find('#descriptionInput').val());
                 if (this.$el.find('#categoryImgEdit')[0].files[0]) {
-                    console.log("Oooops!");
                     fd.append('file', this.$el.find('#categoryImgEdit')[0].files[0]);
                 }
+                Spinner.initialize("#categoriesContainer");
                 $.ajax({
                     type: "POST",
                     url: '/category',
@@ -30,12 +31,45 @@ define(["marionette"], function (Marionette) {
                     processData: false,
                     contentType: false,
                     success: function() {
+                        Spinner.destroy({timeout: 700});
                         $("#categoryModal").modal("hide");
+                        Store.request("category:collection").fetch();
                     },
-                    error: function(a, b, c) {
-                        console.log(a);
-                        console.log(b);
-                        console.log(c);
+                    error: function(xhr) {
+                        Spinner.destroy({timeout: 700});
+                        require(["views/warningMessageView"], function(WarningView){
+                            Spinner.destroy();
+                            Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                        });
+                    }
+                });
+            },
+            saveEditCategory: function() {
+                var fd = new FormData();
+                fd.append('category_name', this.$el.find('#nameInput').val());
+                fd.append('category_description', this.$el.find('#descriptionInput').val());
+                if (this.$el.find('#categoryImgEdit')[0].files[0]) {
+                    fd.append('file', this.$el.find('#categoryImgEdit')[0].files[0]);
+                }
+                Spinner.initialize("#categoriesContainer");
+                $.ajax({
+                    type: "PUT",
+                    url: '/category/'+this.model.setCategoryId(),
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    success: function() {
+                        Spinner.destroy({timeout: 700});
+                        $("#categoryModal").modal("hide");
+                        Store.request("category:collection").fetch();
+                    },
+                    error: function(xhr) {
+                        Spinner.destroy({timeout: 700});
+                        require(["views/warningMessageView"], function(WarningView){
+                            Spinner.destroy();
+                            $("#categoryModal").modal("hide");
+                            Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                        });
                     }
                 });
             },
