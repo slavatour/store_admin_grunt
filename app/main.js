@@ -30,6 +30,13 @@ app.delete("/category/:id", function (req, res) {
     });
 });
 
+app.put("/category/:id", function (req, res) {
+    categoriesController.putCategory(req.params.id, req.body, req.files, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify({error:options.error}));
+    });
+});
+
 app.post("/subcategory", function (req, res) {
     subcategoriesController.saveSubcategory(req.body, req.files);
     res.header();

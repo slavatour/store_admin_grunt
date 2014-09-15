@@ -7,7 +7,7 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 "click .close": "closeModal",
                 "click .deleteCategory": "deleteCategory",
                 "click .saveCategory": "saveCategory",
-                "click .saveEditCategory": "saveEditCategory",
+                "click .saveEditCategory": "editCategory",
                 "click .saveSubcategory": "saveSubcategory"
             },
             closeModal: function(e) {
@@ -44,7 +44,7 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                     }
                 });
             },
-            saveEditCategory: function() {
+            editCategory: function() {
                 var fd = new FormData();
                 fd.append('category_name', this.$el.find('#nameInput').val());
                 fd.append('category_description', this.$el.find('#descriptionInput').val());
@@ -54,14 +54,15 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 Spinner.initialize("#categoriesContainer");
                 $.ajax({
                     type: "PUT",
-                    url: '/category/'+this.model.setCategoryId(),
+                    url: '/category/'+this.model.getCategoryId(),
                     data: fd,
                     processData: false,
                     contentType: false,
                     success: function() {
                         Spinner.destroy({timeout: 700});
-                        $("#categoryModal").modal("hide");
                         Store.request("category:collection").fetch();
+                        Store.request("category:collectionView").render();
+                        $("#categoryModal").modal("hide");
                     },
                     error: function(xhr) {
                         Spinner.destroy({timeout: 700});

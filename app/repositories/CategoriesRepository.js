@@ -50,6 +50,35 @@ exports.CategoriesRepository = function (conString) {
             });
         });
     };
+    self.putCategory = function(id, model, file, callbackFunction) {
+        var command = "SELECT * FROM categories WHERE category_id='"+id+"';";
+        dbRepository.actionData(command, function (options) {
+            if(options.error) {
+                callbackFunction({error: options.error, status: 500});
+                return;
+            }
+            if(options.result[0]) {
+                var command = "BEGIN;"
+                for (key in model) {
+                    command += "UPDATE categories SET "+key+" = '"+model[key]+"' WHERE category_id = "+id+";";
+                }
+                if(file !== undefined && file.file !== undefined) {
+                    command += "UPDATE categories SET category_image = lo_import('"+file.file.path+"') WHERE category_id = "+id+";"
+                }
+                command += "COMMIT;";
+                dbRepository.actionData(command, function () {
+                    options.error ? callbackFunction({error: options.error, status: 500}) : callbackFunction({status: 200});
+                    if(file !== undefined && file.file !== undefined) {
+                        fs.unlink(file.file.path, function (err) {
+                            if(err){
+                                console.error('error delete tepml file', err);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    };
     self.deleteCategory = function (id, callbackFunction) {
         var command = "DELETE FROM categories WHERE id = "+ id +";";
         dbRepository.actionData(command, function(options){

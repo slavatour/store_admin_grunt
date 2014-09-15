@@ -8,7 +8,6 @@ exports.CategoriesService = function (conString) {
         var categoriesRepository = new CategoriesRepository.CategoriesRepository(conString);
         var subcategoriesRepository = new SubcategoriesRepository.SubcategoriesRepository(conString);
         categoriesRepository.fetchCategories(function(options){
-            console.log("options", options);
             var categories = options.result;
             subcategoriesRepository.fetchSubcategories('all', function(options){
                 var subcategories = options.result;
