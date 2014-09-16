@@ -1,4 +1,4 @@
-define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
+define(["Store", "marionette", "views/spinnerView"], function (Store, Marionette, Spinner) {
 
     Store.module("Products.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.ProductsCollectionView = Backbone.Marionette.CompositeView.extend({

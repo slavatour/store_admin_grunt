@@ -25,7 +25,8 @@ define(["marionette"], function (Marionette) {
 			$('.contentContainer > div').css('display', 'none');
 			$('.productsContainer').css('display', 'block');
             require(["ProductsController"], function(ProductsController){
-                new ProductsController.renderView();
+                var productsController = new ProductsController();
+                productsController.renderView();
             });
 		},
 		showSliderEdit: function () {
