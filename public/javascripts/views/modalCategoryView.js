@@ -60,8 +60,11 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                     contentType: false,
                     success: function() {
                         Spinner.destroy({timeout: 700});
-                        Store.request("category:collection").fetch();
-                        Store.request("category:collectionView").render();
+                        Store.request("category:collection").fetch({
+                            success: function(){
+                                Store.request("category:collectionView").render();
+                            }
+                        });
                         $("#categoryModal").modal("hide");
                     },
                     error: function(xhr) {

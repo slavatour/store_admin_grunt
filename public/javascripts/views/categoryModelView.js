@@ -24,7 +24,6 @@ define(["marionette",
                 Store.modalRegionCategory.show(modal);
             },
             editCategory: function() {
-                console.log(this.model);
                 var modal = new ModalView({
                     model: this.model,
                     template: "#modalCategoryEdit"

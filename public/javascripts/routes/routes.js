@@ -15,7 +15,9 @@ define(["marionette"], function (Marionette) {
 		showCategories: function () {
 			$('.contentContainer > div').css('display', 'none');
             $('#categoriesContainer').fadeIn();
-			require(["CategoriesController"], function (CategoriesController) {
+            $('#tabProducts').trigger('click');
+            $('a[href="#products"]').trigger('click');
+            require(["CategoriesController"], function (CategoriesController) {
 				var categoriesController = new CategoriesController();
 				categoriesController.renderView();
 			});
@@ -24,6 +26,7 @@ define(["marionette"], function (Marionette) {
 		showProducts: function () {
 			$('.contentContainer > div').css('display', 'none');
 			$('.productsContainer').css('display', 'block');
+            $('#tabProducts').trigger('click');
             require(["ProductsController"], function(ProductsController){
                 var productsController = new ProductsController();
                 productsController.renderView();
