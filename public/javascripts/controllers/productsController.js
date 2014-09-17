@@ -23,14 +23,14 @@ define([
 			},
 			renderView: function () {
                 var that = this;
-//                this.productsCollection.fetch({
-//                    success: function (data) {
-//                        that.productsCollection.sort();
-//                        setTimeout(function(){
+                this.productsCollection.fetch({
+                    success: function (data) {
+                        that.productsCollection.sort();
+                        setTimeout(function(){
                             Store.productsRegion.show(that.productsCollectionView);
-//                        }, 2000);
-//                    }
-//                });
+                        }, 2000);
+                    }
+                });
 			}
 		});
 	});

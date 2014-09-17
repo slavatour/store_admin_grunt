@@ -1,12 +1,18 @@
 script(type="text/template" id="productsCollectionTemplate")
-    div.productsContainerView
+    table.table.table-condensed
+        caption Products list:
+        thead
+            tr
+                th categories
+                th subcategories
+                th products
+        tbody.productsContainerView
 
 script(type="text/template" id="productModelTemplate")
-    ul#sortable
-        li.ui-state-default Item 1
-        li.ui-state-default Item 2
-        li.ui-state-default Item 3
-        li.ui-state-default Item 4
-        li.ui-state-default Item 5
-        li.ui-state-default Item 6
-        li.ui-state-default Item 7
+    td 
+    td
+    td 
+        table.table.table-condensed
+            thead
+            tbody
+                tr

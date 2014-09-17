@@ -3,11 +3,13 @@ var app = require('./app_config'),
     CategoriesController = require('./controllers/CategoriesController'),
     SubcategoriesController = require('./controllers/SubcategoriesController'),
     SliderController = require('./controllers/SliderController'),
+    ProductsController = require('./controllers/ProductsController'),
     conString = 'postgres://' + postgresConfig.role.role_name + ':' + postgresConfig.role.role_password +
                 '@localhost/' + postgresConfig.database.database_name,
     categoriesController = new CategoriesController.CategoriesController(conString),
     subcategoriesController = new SubcategoriesController.SubcategoriesController(conString),
-    sliderController = new SliderController.SliderController(conString);
+    sliderController = new SliderController.SliderController(conString),
+    productsController = new ProductsController.ProductsController(conString);
 
 app.get("/categories", function (req, res) {
     categoriesController.fetchCategories(function (data) {
@@ -41,6 +43,13 @@ app.post("/subcategory", function (req, res) {
     subcategoriesController.saveSubcategory(req.body, req.files);
     res.header();
     res.end();
+});
+
+app.get("/products", function (req, res) {
+    productsController.fetchProducts(function(options){
+        res.header();
+        res.status(options.status).end(options.error);
+    });
 });
 
 app.get("/slider", function (req, res) {

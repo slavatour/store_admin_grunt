@@ -14,6 +14,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.multipart({uploadDir:path.join(__dirname,'../files')})); //uploaded files path join
 app.use(express.cookieParser('your secret here'));
+//MYTODO add session for users
 app.use(express.session());
 app.use(i18n.handle); //multilamguage modal, have to be after cookie, before router
 app.use(app.router);
