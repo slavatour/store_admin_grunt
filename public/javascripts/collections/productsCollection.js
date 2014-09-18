@@ -6,11 +6,11 @@ define(["marionette", "ProductModel", "Store"], function (Marionette, ProductMod
             url: "/products",
             comparator: function (productA, productB) {
                 //MYTODO - check validation
-                if(1*productA.getNumber() > 1*productB.getNumber()) {
-                    return 1;
-                } else {
-                    return -1;
-                }
+//                if(1*productA.getNumber() > 1*productB.getNumber()) {
+//                    return 1;
+//                } else {
+//                    return -1;
+//                }
             }
         });
 	});

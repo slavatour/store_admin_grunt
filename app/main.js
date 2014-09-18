@@ -10,7 +10,7 @@ var app = require('./app_config'),
     subcategoriesController = new SubcategoriesController.SubcategoriesController(conString),
     sliderController = new SliderController.SliderController(conString),
     productsController = new ProductsController.ProductsController(conString);
-
+//MYTODO add error handler
 app.get("/categories", function (req, res) {
     categoriesController.fetchCategories(function (data) {
         res.header();
@@ -44,14 +44,16 @@ app.post("/subcategory", function (req, res) {
     res.header();
     res.end();
 });
-
+//MYTODO add error handler
 app.get("/products", function (req, res) {
     productsController.fetchProducts(function(options){
+        var response;
+        options.error ? response = {error:options.error} : response = options.data;
         res.header();
-        res.status(options.status).end(options.error);
+        res.status(options.status).end(JSON.stringify(response));
     });
 });
-
+//MYTODO add error handler
 app.get("/slider", function (req, res) {
     sliderController.fetchSliders(function (data) {
         res.header();

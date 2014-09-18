@@ -31,7 +31,7 @@ exports.ProductsService = function (conString) {
                             }
                         }
                     }
-                    callbackFunction(categories);
+                    callbackFunction({data: categories, status: 200});
                 });
             });
         });

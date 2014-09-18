@@ -11,7 +11,7 @@ exports.ProductsRepository = function (conString) {
         var command = "SELECT * FROM products ORDER BY product_position_in_list;";
         dbRepository.actionData(command, function (options) {
             //MYTODO finish this function
-            callbackFunction(options.result);
+            callbackFunction(options);
         });
     };
 

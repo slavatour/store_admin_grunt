@@ -1,18 +1,34 @@
 script(type="text/template" id="productsCollectionTemplate")
-    table.table.table-condensed
-        caption Products list:
-        thead
-            tr
-                th categories
-                th subcategories
-                th products
-        tbody.productsContainerView
+    div.panel.panel-default
+        div.panel-heading
+            | Products list:
+        div.panel-body
+            table.table.table-condensed.table-striped
+                tbody.productsContainerView
 
 script(type="text/template" id="productModelTemplate")
-    td 
-    td
-    td 
-        table.table.table-condensed
+    td(colspan="5") 
+        table.table.table-condensed.table-hover
+            caption 
+                a
+                    h4 
+                        span.glyphicon.glyphicon-chevron-right
+                        | Category mane:
+                a
+                    h5 
+                        span.glyphicon.glyphicon-chevron-right
+                        | Subcategory name:
             thead
-            tbody
                 tr
+                    th 1
+                    th 2
+                    th 3
+                    th 4
+                    th 4
+            tbody
+                tr 
+                    td Product 1
+                    td 2
+                    td 3
+                    td 4
+                    td 4 
