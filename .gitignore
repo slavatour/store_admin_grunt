@@ -4,6 +4,7 @@ public/stylesheets/libs/*
 public/images/temp/*
 *.rb
 *.iml
+.idea/*.xml
 .idea
 files/*
 .sass-cache

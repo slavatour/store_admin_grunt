@@ -7,16 +7,17 @@ script(type="text/template" id="productsCollectionTemplate")
                 tbody.productsContainerView
 
 script(type="text/template" id="productModelTemplate")
-    td(colspan="5") 
-        table.table.table-condensed.table-hover
-            caption 
-                a
-                    h4 
-                        span.glyphicon.glyphicon-chevron-right
+    td(colspan="5")
+        a.captionLevelA.toggleTable
+                    h5
+                        i.fa.fa-caret-right
                         | Category mane:
-                a
-                    h5 
-                        span.glyphicon.glyphicon-chevron-right
+        table.table.table-condensed.table-hover.hide
+            caption 
+
+                a.captionLevelB
+                    h6
+                        i.fa.fa-caret-right
                         | Subcategory name:
             thead
                 tr
