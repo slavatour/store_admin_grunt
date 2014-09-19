@@ -25,6 +25,7 @@ define([
                 var that = this;
                 this.productsCollection.fetch({
                     success: function (data) {
+                        console.log(data);
                         that.productsCollection.sort();
                         setTimeout(function(){
                             Store.productsRegion.show(that.productsCollectionView);

@@ -7936,3 +7936,8 @@ body .main .contentContainer .productsContainer {
 #categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body .subcategoriesList .subcategoryPoint a.subcategory {
   margin-left: 50px;
 }
+
+/* line 8, ../sass/imports/_productsTab.scss */
+.productsContainer .productsTable .headerFilter th input, .productsContainer .productsTable .headerFilter th select {
+  height: 30px;
+}

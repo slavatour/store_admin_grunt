@@ -1,35 +1,46 @@
 script(type="text/template" id="productsCollectionTemplate")
     div.panel.panel-default
         div.panel-heading
-            | Products list:
+            | Products list
         div.panel-body
-            table.table.table-condensed.table-striped
+            table.table.table-condensed.table-hover.productsTable
+                thead
+                    tr.headerTable
+                        th.col-md-1 №
+                        th Photo
+                        th Short name
+                        th Category
+                        th.col-md-1 Price
+                        th.col-md-1 Quantity
+                        th.col-md-1 Display
+                        th.col-md-2
+                    tr.headerFilter
+                        th.text-center --
+                        th.text-center --
+                        th 
+                            input.form-control(type="text")
+                        th 
+                            select.form-control
+                                option cat
+                                option cat
+                                option cat
+                        th 
+                            input.form-control(type="text") 
+                        th.text-center --
+                        th 
+                            input.form-control(type="text")
+                        th 
+                            button.btn.btn-default.btn-xs.pull-right filter
                 tbody.productsContainerView
 
 script(type="text/template" id="productModelTemplate")
-    td(colspan="5")
-        a.captionLevelA.toggleTable
-                    h5
-                        i.fa.fa-caret-right
-                        | Category mane:
-        table.table.table-condensed.table-hover.hide
-            caption 
-
-                a.captionLevelB
-                    h6
-                        i.fa.fa-caret-right
-                        | Subcategory name:
-            thead
-                tr
-                    th 1
-                    th 2
-                    th 3
-                    th 4
-                    th 4
-            tbody
-                tr 
-                    td Product 1
-                    td 2
-                    td 3
-                    td 4
-                    td 4 
+    td.text-center <%= product_position_in_list %>
+    td.col-md-1
+        img.col-md-offset-2.col-md-8.img-thumbnail(src="/images/temp/slider2.png")
+    td <%= product_shortname %>
+    td <%= product_parent_id %>
+    td <%= product_price.sale %>
+    td <%= product_quantitystock %>
+    td <%= product_display %>
+    td
+        button.btn.btn-default.btn-xs edit
