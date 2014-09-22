@@ -7941,3 +7941,9 @@ body .main .contentContainer .productsContainer {
 .productsContainer .productsTable .headerFilter th input, .productsContainer .productsTable .headerFilter th select {
   height: 30px;
 }
+
+/* line 19, ../sass/imports/_productsTab.scss */
+.ui-state-highlight {
+  height: 1.5em;
+  line-height: 1.2em;
+}

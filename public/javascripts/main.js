@@ -4,6 +4,7 @@ requirejs.config({
 		// vendor libs
 		backbone: "libs/js/backbone/backbone",//
 		jquery: "libs/js/jquery/jquery.min",//
+		jqueryUi: "http://code.jquery.com/ui/1.11.1/jquery-ui",//
 		marionette: "libs/js/backbone.marionette/backbone.marionette.min",//
 		underscore: "libs/js/underscore/underscore",
 		i18next: "libs/js/i18next/18next.amd.min",//

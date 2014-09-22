@@ -31,7 +31,7 @@ script(type="text/template" id="productsCollectionTemplate")
                             input.form-control(type="text")
                         th 
                             button.btn.btn-default.btn-xs.pull-right filter
-                tbody.productsContainerView
+                tbody.productsContainerView#sortable
 
 script(type="text/template" id="productModelTemplate")
     td.text-center <%= product_position_in_list %>
@@ -39,8 +39,8 @@ script(type="text/template" id="productModelTemplate")
         img.col-md-offset-2.col-md-8.img-thumbnail(src="/images/temp/slider2.png")
     td <%= product_shortname %>
     td <%= product_parent_id %>
-    td <%= product_price.sale %>
-    td <%= product_quantitystock %>
-    td <%= product_display %>
+    td.text-center <%= product_price.sale %>
+    td.text-center <%= product_quantitystock %>
+    td.text-center <%= product_display %>
     td
-        button.btn.btn-default.btn-xs edit
+        button.btn.btn-default.btn-xs.pull-right edit
