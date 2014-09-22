@@ -1,6 +1,7 @@
 node_modules
-public/javascripts/libs/*
-public/stylesheets/libs/*
+public/javascripts/libs
+public/javascripts/libs/bower_components
+public/stylesheets/libs/
 public/images/temp/*
 *.rb
 *.iml

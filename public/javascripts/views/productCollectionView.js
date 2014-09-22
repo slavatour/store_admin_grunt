@@ -13,7 +13,9 @@ define(["Store", "marionette", "views/spinnerView", "jquery", "jqueryUi"], funct
                 $("#sortable").sortable({
                     placeholder: "ui-state-highlight",
                     axis: "y",
-                    revert: true
+                    revert: true,
+                    opacity: 0.7,
+                    cursor: "move"
                 });
                 $("#sortable").disableSelection();
             }

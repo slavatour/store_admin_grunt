@@ -1,4 +1,4 @@
-define(["marionette", "SliderModelView", "views/spinnerView"], function (Marionette, SliderModelView, Spinner) {
+define(["marionette", "SliderModelView", "views/spinnerView", "jquerySortable"], function (Marionette, SliderModelView, Spinner) {
 	
 	Store.module("Slider.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.SlidersCollectionView = Backbone.Marionette.CompositeView.extend({
@@ -11,6 +11,12 @@ define(["marionette", "SliderModelView", "views/spinnerView"], function (Marione
 			collectionEvents: {
                 "change": "changeCollection"
 			},
+            //MYTODO make in photoshop dotted area for
+            onShow: function(){
+                //initialize jquery UI sortable for slider table
+                this.initSortableCells();
+                $("#tooltipHas").tooltip();
+            },
             initialize: function () {
                 Spinner.initialize(".sliderContainer");
             },
@@ -22,7 +28,18 @@ define(["marionette", "SliderModelView", "views/spinnerView"], function (Marione
 					template: '#modalNewSlider'
 				});
 				Store.modalRegion.show(modal);
-			}
+			},
+            //MYTODO make sortable independent module
+            initSortableCells: function() {
+                $("#sortableSlider").sortable({
+                    placeholder: "ui-state-highlight",
+                    axis: "y",
+                    revert: true,
+                    opacity: 0.7,
+                    cursor: "move"
+                });
+                $("#sortableSlider").disableSelection();
+            }
 		});
 	});
 	return Store.Slider.Views.SlidersCollectionView;

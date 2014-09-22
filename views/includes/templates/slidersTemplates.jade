@@ -3,7 +3,8 @@ script(type="text/template" id="templateSliderCompositeView")
         table.table.table-striped.table-condensed
             thead
                 tr
-                    th display
+                    th.th-container 
+                        a(data-toggle="tooltip" title="Some tooltip text!" data-placement="top" data-container="body")#tooltipHas display
                     th number
                     th name
                     th description
@@ -11,7 +12,7 @@ script(type="text/template" id="templateSliderCompositeView")
                     th photo
                     th 
                         button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
-            tbody
+            tbody#sortableSlider
         button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
 
 script(type="text/template" id="templateSliderItemView")

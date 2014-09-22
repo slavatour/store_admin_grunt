@@ -577,11 +577,11 @@ cite {
 
 /* line 44, ../libs/scss/bootstrap-sass/_type.scss */
 .text-warning {
-  color: white;
+  color: #c09853;
 }
 /* line 46, ../libs/scss/bootstrap-sass/_type.scss */
 .text-warning:hover {
-  color: #e6e6e6;
+  color: #a47e3c;
 }
 
 /* line 50, ../libs/scss/bootstrap-sass/_type.scss */
@@ -2200,13 +2200,13 @@ table th[class*="col-"] {
 .table > tfoot > tr > th.warning,
 .table > tfoot > tr.warning > td,
 .table > tfoot > tr.warning > th {
-  background-color: #f07209;
+  background-color: #fcf8e3;
 }
 
 /* line 452, ../libs/scss/bootstrap-sass/_mixins.scss */
 .table-hover > tbody > tr > td.warning:hover,
 .table-hover > tbody > tr > th.warning:hover, .table-hover > tbody > tr.warning:hover > td, .table-hover > tbody > tr.warning:hover > th {
-  background-color: #d76608;
+  background-color: #faf2cc;
 }
 
 @media (max-width: 767px) {
@@ -2532,25 +2532,25 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
 .has-warning .checkbox,
 .has-warning .radio-inline,
 .has-warning .checkbox-inline {
-  color: white;
+  color: #c09853;
 }
 /* line 801, ../libs/scss/bootstrap-sass/_mixins.scss */
 .has-warning .form-control {
-  border-color: white;
+  border-color: #c09853;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 /* line 804, ../libs/scss/bootstrap-sass/_mixins.scss */
 .has-warning .form-control:focus {
-  border-color: #e6e6e6;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px white;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px white;
+  border-color: #a47e3c;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #dbc59e;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #dbc59e;
 }
 /* line 811, ../libs/scss/bootstrap-sass/_mixins.scss */
 .has-warning .input-group-addon {
-  color: white;
-  border-color: white;
-  background-color: #f07209;
+  color: #c09853;
+  border-color: #c09853;
+  background-color: #fcf8e3;
 }
 
 /* line 797, ../libs/scss/bootstrap-sass/_mixins.scss */
@@ -5806,17 +5806,17 @@ a.thumbnail.active {
 
 /* line 62, ../libs/scss/bootstrap-sass/_alerts.scss */
 .alert-warning {
-  background-color: #f07209;
-  border-color: #d74408;
-  color: white;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #c09853;
 }
 /* line 422, ../libs/scss/bootstrap-sass/_mixins.scss */
 .alert-warning hr {
-  border-top-color: #bf3c07;
+  border-top-color: #f7e1b5;
 }
 /* line 425, ../libs/scss/bootstrap-sass/_mixins.scss */
 .alert-warning .alert-link {
-  color: #e6e6e6;
+  color: #a47e3c;
 }
 
 /* line 65, ../libs/scss/bootstrap-sass/_alerts.scss */
@@ -6330,25 +6330,25 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
 
 /* line 164, ../libs/scss/bootstrap-sass/_panels.scss */
 .panel-warning {
-  border-color: #d74408;
+  border-color: #faebcc;
 }
 /* line 396, ../libs/scss/bootstrap-sass/_mixins.scss */
 .panel-warning > .panel-heading {
-  color: white;
-  background-color: #f07209;
-  border-color: #d74408;
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
 }
 /* line 401, ../libs/scss/bootstrap-sass/_mixins.scss */
 .panel-warning > .panel-heading + .panel-collapse .panel-body {
-  border-top-color: #d74408;
+  border-top-color: #faebcc;
 }
 /* line 404, ../libs/scss/bootstrap-sass/_mixins.scss */
 .panel-warning > .panel-heading > .dropdown .caret {
-  border-color: white transparent;
+  border-color: #c09853 transparent;
 }
 /* line 409, ../libs/scss/bootstrap-sass/_mixins.scss */
 .panel-warning > .panel-footer + .panel-collapse .panel-body {
-  border-bottom-color: #d74408;
+  border-bottom-color: #faebcc;
 }
 
 /* line 167, ../libs/scss/bootstrap-sass/_panels.scss */

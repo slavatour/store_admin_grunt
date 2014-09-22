@@ -4,6 +4,7 @@ define(["Store", "marionette", "ModalSliderView", "views/spinnerView"], function
 		Views.SliderModelView = Backbone.Marionette.ItemView.extend({
 			template: '#templateSliderItemView',
 			tagName: 'tr',
+            className: "ui-state-default",
 			events: {
 				'click .editSliderBtn'				: 	'editSlider', 
 				'click .deleteSliderBtn'			: 	'deleteSlider',

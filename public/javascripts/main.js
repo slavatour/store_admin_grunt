@@ -4,7 +4,11 @@ requirejs.config({
 		// vendor libs
 		backbone: "libs/js/backbone/backbone",//
 		jquery: "libs/js/jquery/jquery.min",//
-		jqueryUi: "http://code.jquery.com/ui/1.11.1/jquery-ui",//
+		jquerySortable: "libs/js/jquery-ui/sortable",//
+        jqueryUiCore: "libs/js/jquery-ui/core",
+        jqueryUiWidget: "libs/js/jquery-ui/widget",
+        jqueryUiMouse: "libs/js/jquery-ui/mouse",
+        jqueryUiPosition: "libs/js/jquery-ui/position",
 		marionette: "libs/js/backbone.marionette/backbone.marionette.min",//
 		underscore: "libs/js/underscore/underscore",
 		i18next: "libs/js/i18next/18next.amd.min",//
@@ -82,6 +86,9 @@ requirejs.config({
 		},
         Store: {
             exports: "Store"
+        },
+        jquerySortable: {
+            deps: ["jquery", "libs/js/jquery-ui/core", "libs/js/jquery-ui/widget", "libs/js/jquery-ui/mouse"]
         }
 	}
 });
