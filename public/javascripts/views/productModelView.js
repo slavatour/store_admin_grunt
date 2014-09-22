@@ -1,4 +1,4 @@
-define(["Store", "marionette", "views/spinnerView", "jquery", "jqueryUi"], function (Store, Marionette, Spinner) {
+define(["Store", "marionette", "views/spinnerView"], function (Store, Marionette, Spinner) {
 
     Store.module("Products.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.ProductModelView = Backbone.Marionette.ItemView.extend({

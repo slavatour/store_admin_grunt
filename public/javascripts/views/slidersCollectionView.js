@@ -1,4 +1,4 @@
-define(["marionette", "SliderModelView", "views/spinnerView", "jquerySortable"], function (Marionette, SliderModelView, Spinner) {
+define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable"], function (Marionette, SliderModelView, Spinner) {
 	
 	Store.module("Slider.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.SlidersCollectionView = Backbone.Marionette.CompositeView.extend({

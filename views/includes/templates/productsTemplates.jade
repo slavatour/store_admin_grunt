@@ -7,7 +7,7 @@ script(type="text/template" id="productsCollectionTemplate")
                 thead
                     tr.headerTable
                         th.col-md-1 №
-                        th Photo
+                        th.col-md-1 Photo
                         th Short name
                         th Category
                         th.col-md-1 Price
@@ -34,13 +34,15 @@ script(type="text/template" id="productsCollectionTemplate")
                 tbody.productsContainerView#sortable
 
 script(type="text/template" id="productModelTemplate")
-    td.text-center <%= product_position_in_list %>
+    td.text-center.col-md-1
+        | <%= product_position_in_list %>
+        a.sortableSelector.pull-right
     td.col-md-1
         img.col-md-offset-2.col-md-8.img-thumbnail(src="/images/temp/slider2.png")
-    td <%= product_shortname %>
-    td <%= product_parent_id %>
-    td.text-center <%= product_price.sale %>
-    td.text-center <%= product_quantitystock %>
-    td.text-center <%= product_display %>
-    td
+    td.col-md-4 <%= product_shortname %>
+    td.col-md-2 <%= product_parent_id %>
+    td.text-center.col-md-1 <%= product_price.sale %>
+    td.text-center.col-md-1 <%= product_quantitystock %>
+    td.text-center.col-md-1 <%= product_display %>
+    td.col-md-1
         button.btn.btn-default.btn-xs.pull-right edit

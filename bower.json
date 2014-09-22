@@ -41,7 +41,7 @@
             "js": ["dist/*min.js", "dist/*min.map"]
         },
         "jquery-ui": {
-            "js": ["ui/core.js", "ui/widget.js", "ui/mouse.js", "ui/position.js", "ui/sortable.js"]
+            "js": ["jquery-ui.min.js", "ui/*.js"]
         },
         "underscore": {
             "js": "underscore.js"

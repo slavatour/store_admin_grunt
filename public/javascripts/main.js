@@ -4,11 +4,7 @@ requirejs.config({
 		// vendor libs
 		backbone: "libs/js/backbone/backbone",//
 		jquery: "libs/js/jquery/jquery.min",//
-		jquerySortable: "libs/js/jquery-ui/sortable",//
-        jqueryUiCore: "libs/js/jquery-ui/core",
-        jqueryUiWidget: "libs/js/jquery-ui/widget",
-        jqueryUiMouse: "libs/js/jquery-ui/mouse",
-        jqueryUiPosition: "libs/js/jquery-ui/position",
+        jqueryui: "libs/js/jquery-ui",//
 		marionette: "libs/js/backbone.marionette/backbone.marionette.min",//
 		underscore: "libs/js/underscore/underscore",
 		i18next: "libs/js/i18next/18next.amd.min",//
