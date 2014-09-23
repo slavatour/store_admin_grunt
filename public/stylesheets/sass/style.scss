@@ -10,9 +10,14 @@ $icon-font-path:"../../stylesheets/libs/fonts/bootstrap-sass/";
 
 @import "compass";
 @import "compass/reset";
+
+//imports
 @import "../libs/scss/bootstrap-sass/bootstrap";
 @import "imports/myStyle";
 @import "imports/leftNavBar";
 @import "imports/spinner";
 @import "imports/categoriesTab";
 @import "imports/productsTab";
+
+//widgets
+@import "widgets/switch";

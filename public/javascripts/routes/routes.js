@@ -5,7 +5,8 @@ define(["marionette"], function (Marionette) {
 			"/" 					: "index",
 			"categories" 			: "showCategories",
 			"products" 				: "showProducts",
-			"slider"				: "showSliderEdit"
+			"slider"				: "showSliderEdit",
+			"examples"				: "examples"
 
 		},
 		index: function () {
@@ -13,33 +14,54 @@ define(["marionette"], function (Marionette) {
 			$('.indexContainer').css('display', 'block');
 		},
 		showCategories: function () {
-			$('.contentContainer > div').css('display', 'none');
-            $('#categoriesContainer').fadeIn();
-            $('#tabProducts').trigger('click');
-            $('a[href="#products"]').trigger('click');
+            this.routeView({
+                toggleContainer: '#categoriesContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#categories']"
+            });
             require(["CategoriesController"], function (CategoriesController) {
 				var categoriesController = new CategoriesController();
 				categoriesController.renderView();
 			});
-			
 		},
 		showProducts: function () {
-			$('.contentContainer > div').css('display', 'none');
-			$('.productsContainer').css('display', 'block');
-            $('#tabProducts').trigger('click');
+            this.routeView({
+                toggleContainer: '.productsContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#products']"
+            });
             require(["ProductsController"], function(ProductsController){
                 var productsController = new ProductsController();
                 productsController.renderView();
             });
 		},
 		showSliderEdit: function () {
-			$('.contentContainer > div').css('display', 'none');
-			$('.sliderContainer').css('display', 'block');
-            $('#tabOther').trigger('click');
+            this.routeView({
+                toggleContainer: '.sliderContainer',
+                selectorTab: '#tabOther',
+                selectorBtn: "a[href='#slider']"
+            });
 			require(["SliderController"], function (SliderController) {
 				new SliderController().renderView();
 			});
-		}
+		},
+        examples: function () {
+            this.routeView({
+                toggleContainer: '.exampleWidgets',
+                selectorTab: '#tabOther',
+                selectorBtn: "a[href='#examples']"
+            });
+        },
+        routeView: function(options) {
+            $('.contentContainer > div').css('display', 'none');
+            $(options.toggleContainer).css('display', 'block');
+            var idCollapse = $(options.selectorTab).attr("href");
+            if(!$(idCollapse).hasClass('in')) {
+                $(".leftNav").removeClass('active');
+                $(options.selectorTab).trigger('click');
+                $(options.selectorBtn).addClass('active');
+            }
+        }
 	});
 	return StoreRouter;
 });

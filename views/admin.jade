@@ -31,31 +31,73 @@ html
                     div.panel.panel-default
                         div.panel-heading
                             h4.panel-title
-                                a#tabProducts(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseProducts")
-                                    span.glyphicon.glyphicon-shopping-cart
-                                    | Products
+                                a#tabCategories(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseProducts")
+                                    i.fa.fa-list-alt
+                                    | Catalog
                         div.panel-collapse.collapse#collapseProducts
                             div.panel-body
                                 a.leftNav(href="#categories") Categoris
                                 a.leftNav(href="#products") Products
                                 a.leftNav(href="#") Brands
+                                a.leftNav(href="#") Discounts
                                 a.leftNav(href="#") Prices
                                 a.leftNav(href="#") Currencies
                     div.panel.panel-default
                         div.panel-heading
                             h4.panel-title
-                                a#tabOther(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseTwo")
-                                    span.glyphicon.glyphicon-edit
-                                    | Other edits
+                                a(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseTwo")
+                                    i.fa.fa-bars
+                                    | Orders
                         div.panel-collapse.collapse#collapseTwo
                             div.panel-body
+                                a.leftNav(href="#") Orders
+                    div.panel.panel-default
+                        div.panel-heading
+                            h4.panel-title
+                                a(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseThree")
+                                    i.fa.fa-calculator
+                                    | Accounting
+                        div.panel-collapse.collapse#collapseThree
+                            div.panel-body
+                                a.leftNav(href="#") Accounting
+                    div.panel.panel-default
+                        div.panel-heading
+                            h4.panel-title
+                                a(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseFour")
+                                    i.fa.fa-line-chart
+                                    | Statistic
+                        div.panel-collapse.collapse#collapseFour
+                            div.panel-body
+                                a.leftNav(href="#") Sales statistics
+                                a.leftNav(href="#") Orders statistics
+                                a.leftNav(href="#") Client statistics
+                                a.leftNav(href="#") Stock statistics
+                    div.panel.panel-default
+                        div.panel-heading
+                            h4.panel-title
+                                a(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseFive")
+                                    i.fa.fa-language
+                                    | Languages
+                        div.panel-collapse.collapse#collapseFive
+                            div.panel-body
+                                a.leftNav(href="#") Languages
+                    div.panel.panel-default
+                        div.panel-heading
+                            h4.panel-title
+                                a#tabOther(data-toggle="collapse" data-parent="#leftNavBar" href="#collapseSix")
+                                    i.fa.fa-pencil-square-o
+                                    | Widgets
+                        div.panel-collapse.collapse#collapseSix
+                            div.panel-body
                                 a#sliderBtn.leftNav(href="#slider") Slider
+                                a#sliderBtn.leftNav(href="#examples") examples
             div.col-lg-10.contentContainer
                 div.warningContainer
                 include includes/index
                 include includes/categories
                 include includes/products
                 include includes/slider
+                include includes/examplesWidgets
         include includes/templates/modalsTemplates
         include includes/templates/categoriesTemplates
         include includes/templates/productsTemplates
