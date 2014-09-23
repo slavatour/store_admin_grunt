@@ -17,9 +17,15 @@ module.exports = function (grunt) {
     //register tasks
     grunt.registerTask('compile', "Compile SASS files.", ['compass']);
 
-    grunt.registerTask('server', "Run nodejs server.", ['express:dev']);
+    grunt.registerTask('server', "Run nodejs server.", function(){
+        grunt.task.run(['express']);
+    });
 
     grunt.registerTask('build',"Load bower components.", function(){
         grunt.task.run(['bower:install']);
     });
+
+//    grunt.registerTask('watch', "Run tasks that need watching.", function(){
+//        grunt.task.run(['express']);
+//    });
 };

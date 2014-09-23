@@ -6,16 +6,18 @@ script(type="text/template" id="productsCollectionTemplate")
             table.table.table-condensed.table-hover.productsTable
                 thead
                     tr.headerTable
-                        th.col-md-1 №
-                        th.col-md-1 Photo
+                        th.text-center №
+                        th
+                        th.col-md-1.text-center Photo
                         th Short name
                         th Category
-                        th.col-md-1 Price
-                        th.col-md-1 Quantity
-                        th.col-md-1 Display
+                        th.col-md-1.text-center Price
+                        th.col-md-1.text-center Quantity
+                        th.col-md-1.text-center Display
                         th.col-md-2
                     tr.headerFilter
                         th.text-center --
+                        th
                         th.text-center --
                         th 
                             input.form-control(type="text")
@@ -34,11 +36,12 @@ script(type="text/template" id="productsCollectionTemplate")
                 tbody.productsContainerView#sortable
 
 script(type="text/template" id="productModelTemplate")
-    td.text-center.col-md-1
+    td.text-center
         | <%= product_position_in_list %>
+    td
         a.sortableSelector.pull-right
-    td.col-md-1
-        img.col-md-offset-2.col-md-8.img-thumbnail(src="/images/temp/slider2.png")
+    td.col-md-1.text-center.productImage
+        img.img-thumbnail(src="/images/temp/slider2.png")
     td.col-md-4 <%= product_shortname %>
     td.col-md-2 <%= product_parent_id %>
     td.text-center.col-md-1 <%= product_price.sale %>

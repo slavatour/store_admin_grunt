@@ -7941,17 +7941,14 @@ body .main .contentContainer .productsContainer {
 .productsContainer .productsTable .headerFilter th input, .productsContainer .productsTable .headerFilter th select {
   height: 30px;
 }
-
-/* line 19, ../sass/imports/_productsTab.scss */
-.ui-state-highlight {
-  height: 1.5em;
-  line-height: 1.2em;
+/* line 15, ../sass/imports/_productsTab.scss */
+.productsContainer .productsTable .productsContainerView tr td {
+  vertical-align: middle;
 }
-
-/* line 24, ../sass/imports/_productsTab.scss */
-.sortableSelector {
+/* line 17, ../sass/imports/_productsTab.scss */
+.productsContainer .productsTable .productsContainerView tr td a.sortableSelector {
   width: 12px;
-  height: 30px;
+  height: 50px;
   margin: -5px;
   background-image: -moz-linear-gradient(45deg, #666666 25%, transparent 25%), -moz-linear-gradient(-45deg, #666666 25%, transparent 25%), -moz-linear-gradient(45deg, transparent 75%, #666666 75%), -moz-linear-gradient(-45deg, transparent 75%, #666666 75%);
   background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, #666666), color-stop(0.25, transparent)), -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.25, #666666), color-stop(0.25, transparent)), -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.75, transparent), color-stop(0.75, #666666)), -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.75, transparent), color-stop(0.75, #666666));
@@ -7964,7 +7961,17 @@ body .main .contentContainer .productsContainer {
   /* override value for webkit */
   background-position: 0 0, 1px 0, 1px -1px, 0px 1px;
 }
-/* line 52, ../sass/imports/_productsTab.scss */
-.sortableSelector:hover {
+/* line 45, ../sass/imports/_productsTab.scss */
+.productsContainer .productsTable .productsContainerView tr td a.sortableSelector:hover {
   cursor: all-scroll;
+}
+/* line 51, ../sass/imports/_productsTab.scss */
+.productsContainer .productsTable .productsContainerView tr td.productImage img {
+  max-height: 50px;
+}
+
+/* line 60, ../sass/imports/_productsTab.scss */
+.ui-state-highlight {
+  height: 1.5em;
+  line-height: 1.2em;
 }
