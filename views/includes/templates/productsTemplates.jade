@@ -51,6 +51,15 @@ script(type="text/template" id="productModelTemplate")
         a <%= subcategory_name %>
     td.text-center.col-md-1 <%= product_price.sale %>
     td.text-center.col-md-1 <%= product_quantitystock %>
+        <%if(product_quantitystock == "0"){%>
+        span.label.label-default
+        <%}else if(product_quantitystock > "0" && product_quantitystock =< "2"){%>
+        span.label.label-danger
+        <%}else if(product_quantitystock > "3" && product_quantitystock < "10"){%>
+        span.label.label-warning
+        <%}else if(product_quantitystock => "10"){%>
+        span.label.label-success
+        <%};%>
     td.text-center.col-md-1
         <% if(product_display) {%>
         div.switch.text-center

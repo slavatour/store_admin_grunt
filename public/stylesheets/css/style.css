@@ -7983,14 +7983,15 @@ body .main .contentContainer .productsContainer {
 /* line 1, ../sass/widgets/_switch.scss */
 .switch {
   display: inline-block;
+  text-align: center;
 }
-/* line 3, ../sass/widgets/_switch.scss */
+/* line 4, ../sass/widgets/_switch.scss */
 .switch .switchInput {
   position: absolute;
   margin-left: -9999px;
   visibility: hidden;
 }
-/* line 8, ../sass/widgets/_switch.scss */
+/* line 9, ../sass/widgets/_switch.scss */
 .switch .switchInput + label {
   display: block;
   position: relative;
@@ -7998,7 +7999,7 @@ body .main .contentContainer .productsContainer {
   outline: none;
   user-select: none;
 }
-/* line 15, ../sass/widgets/_switch.scss */
+/* line 16, ../sass/widgets/_switch.scss */
 .switch input.switchInputRound + label {
   padding: 2px;
   width: 60px;
@@ -8006,7 +8007,7 @@ body .main .contentContainer .productsContainer {
   background-color: #dddddd;
   border-radius: 60px;
 }
-/* line 23, ../sass/widgets/_switch.scss */
+/* line 24, ../sass/widgets/_switch.scss */
 .switch input.switchInputRound + label:before,
 .switch input.switchInputRound + label:after {
   display: block;
@@ -8016,7 +8017,7 @@ body .main .contentContainer .productsContainer {
   bottom: 1px;
   content: "";
 }
-/* line 31, ../sass/widgets/_switch.scss */
+/* line 32, ../sass/widgets/_switch.scss */
 .switch input.switchInputRound + label:before {
   right: 1px;
   background-color: #f1f1f1;
@@ -8025,11 +8026,11 @@ body .main .contentContainer .productsContainer {
   content: "off";
   color: rgba(0, 0, 0, 0.5);
 }
-/* line 39, ../sass/widgets/_switch.scss */
+/* line 40, ../sass/widgets/_switch.scss */
 .switch input.switchInputRound:not(:checked) + label:before {
   padding-left: 20px;
 }
-/* line 42, ../sass/widgets/_switch.scss */
+/* line 43, ../sass/widgets/_switch.scss */
 .switch input.switchInputRound + label:after {
   width: 22px;
   background-color: #fff;
@@ -8037,13 +8038,13 @@ body .main .contentContainer .productsContainer {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   transition: margin 0.4s;
 }
-/* line 49, ../sass/widgets/_switch.scss */
+/* line 50, ../sass/widgets/_switch.scss */
 .switch input.switchInputRound:checked + label:before {
   background-color: #8ce196;
   content: "on";
   padding-right: 20px;
 }
-/* line 54, ../sass/widgets/_switch.scss */
+/* line 55, ../sass/widgets/_switch.scss */
 .switch input.switchInputRound:checked + label:after {
   margin-left: 36px;
 }
