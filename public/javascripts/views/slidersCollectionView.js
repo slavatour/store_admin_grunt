@@ -15,7 +15,7 @@ define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable
             onShow: function(){
                 //initialize jquery UI sortable for slider table
                 this.initSortableCells();
-                $("#tooltipHas").tooltip();
+                $(".tooltipHas").tooltip();
             },
             initialize: function () {
                 Spinner.initialize(".sliderContainer");

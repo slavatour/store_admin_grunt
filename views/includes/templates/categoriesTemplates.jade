@@ -1,10 +1,11 @@
 script(type="text/template" id="categoriesCollectionTemplate")
-    div.categoriesTitle
-        h3 Categories list.
-        button.addNewCategory.btn.btn-default.btn-xs.pull-right(data-toggle="modal" data-target="#categoryModal") + add new
-    div.col-lg-12
-        div.panel-group#accordionCategories.categoriesContainerView
-    button.addNewCategory.btn.btn-default.btn-xs.pull-right(data-toggle="modal" data-target="#categoryModal") + add new
+    div.panel.panel-default
+        div.panel-heading.categoriesPanelHeader
+            h4.categoriesPanelTitle Categories list.
+            button.addNewCategory.btn.btn-default.btn-xs.pull-right(data-toggle="modal" data-target="#categoryModal") + add new
+        div.panel-body
+            div.col-lg-12
+                div.panel-group#accordionCategories.categoriesContainerView
 
 script(type="text/template" id="categoriesModelTemplate")
     div.panel.panel-default

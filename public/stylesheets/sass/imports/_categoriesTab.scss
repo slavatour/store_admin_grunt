@@ -1,6 +1,11 @@
 #categoriesContainer {
-  .addNewCategory {
-    margin: 15px;
+  .categoriesPanelHeader {
+    .addNewCategory {
+      margin: 10px;
+    }
+    .categoriesPanelTitle {
+      display: inline-block;
+    }
   }
   #accordionCategories {
     .categoryList {

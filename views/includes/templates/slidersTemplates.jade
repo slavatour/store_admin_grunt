@@ -1,32 +1,31 @@
 script(type="text/template" id="templateSliderCompositeView")
-    div.col-lg-12.well#sliderLists
-        table.table.table-striped.table-condensed
-            thead
-                tr
-                    th.th-container 
-                        a(data-toggle="tooltip" title="Some tooltip text!" data-placement="top" data-container="body")#tooltipHas display
-                    th number
-                    th name
-                    th description
-                    th url link
-                    th photo
-                    th 
-                        button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
-            tbody#sortableSlider
-        button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
+    div.panel.panel-default
+        div.panel-heading
+            | Sliders list.
+        div.panel-body
+            div.col-lg-12#sliderLists
+                table.table.table-striped.table-condensed
+                    thead
+                        tr
+                            th.col-sm-1 
+                                a(data-toggle="tooltip" title="Posotion of this slider in sleders list." data-placement="top" data-container="body").tooltipHas number
+                            th 
+                                a(data-toggle="tooltip" title="Name of slider. You will see it under slide ib bold font." data-placement="top" data-container="body").tooltipHas name
+                            th 
+                                a(data-toggle="tooltip" title="Description of slide, show below slides name." data-placement="top" data-container="body").tooltipHas description
+                            th 
+                                a(data-toggle="tooltip" title="Link on a page which used by button on slide. If cell is empty, button don't displayed." data-placement="top" data-container="body").tooltipHas url link
+                            th 
+                                a(data-toggle="tooltip" title="Photo of slide." data-placement="top" data-container="body").tooltipHas photo
+                            th.th-container.col-sm-1  
+                                a(data-toggle="tooltip" title="Select display slider on client side or not." data-placement="top" data-container="body").tooltipHas display
+                            th.col-sm-2 
+                            button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
+                    tbody#sortableSlider
+                button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
 
 script(type="text/template" id="templateSliderItemView")
-    td.switcher.text-center
-        <%if(slider_display){%>
-        div.btn-group.btn-toggle
-            button.btn.btn-xs.active.btn-primary on
-            button(class="btn btn-xs btn-default") off
-        <%}else{%>
-        div.btn-group.btn-toggle
-            button.btn.btn-xs.btn-default on
-            button.btn.btn-xs.active.btn-danger off
-        <%};%>
-    td.text-center <%= slider_position_in_list %>
+    td.text-center.col-sm-1 <%= slider_position_in_list %>
         div.numberEdit.pull-right
             span.up(data-step="1") &#9650
             span.down(data-step="-1") &#9660
@@ -34,7 +33,17 @@ script(type="text/template" id="templateSliderItemView")
     td.text-center <%= slider_description %>
     td.text-center <%= slider_url %>
     td.text-center
-        a.sliderPhoto(data-toggle="modal" data-target="#editModal") photo
+        a.sliderPhoto(data-toggle="modal" data-target="#editModal") open photo
+    td.switcher.text-center.col-sm-1
+        <%if(slider_display){%>
+        div.switch.text-center
+            input.switchInput.switchInputRound.btn-toggle(type="checkbox" checked id!="<%= slider_id %>")
+            label(for!="<%= slider_id %>")
+        <%}else{%>
+        div.switch.text-center
+            input.switchInput.switchInputRound.btn-toggle(type="checkbox" id!="<%= slider_id %>")
+            label(for!="<%= slider_id %>")
+        <%};%>
     td
         button.btn.btn-default.btn-xs.pull-right.editSliderBtn(data-toggle="modal" data-target="#editModal") edit
         button.btn.btn-default.btn-xs.pull-right.deleteSliderBtn delete

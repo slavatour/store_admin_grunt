@@ -29,8 +29,10 @@ script(type="text/template" id="productsCollectionTemplate")
                         th 
                             input.form-control(type="text") 
                         th.text-center --
-                        th 
-                            input.form-control(type="text")
+                        th.text-center 
+                            div.switch.text-center
+                                input.switchInput.switchInputRound(type="checkbox" checked id="displayAll")
+                                label(for="displayAll")
                         th 
                             button.btn.btn-default.btn-xs.pull-right filter
                 tbody.productsContainerView#sortable
@@ -43,9 +45,21 @@ script(type="text/template" id="productModelTemplate")
     td.col-md-1.text-center.productImage
         img.img-thumbnail(src="/images/temp/slider2.png")
     td.col-md-4 <%= product_shortname %>
-    td.col-md-2 <%= product_parent_id %>
+    td.col-md-2 
+        a <%= category_name %> 
+        | / 
+        a <%= subcategory_name %>
     td.text-center.col-md-1 <%= product_price.sale %>
     td.text-center.col-md-1 <%= product_quantitystock %>
-    td.text-center.col-md-1 <%= product_display %>
+    td.text-center.col-md-1
+        <% if(product_display) {%>
+        div.switch.text-center
+            input.switchInput.switchInputRound(type="checkbox" checked id!="<%= product_id %>")
+            label(for!="<%= product_id %>")
+        <%}else{%>
+        div.switch.text-center
+            input.switchInput.switchInputRound(type="checkbox" id!="<%= product_id %>")
+            label(for!="<%= product_id %>")
+        <%};%>
     td.col-md-1
         button.btn.btn-default.btn-xs.pull-right edit

@@ -35,40 +35,37 @@ define(["Store", "marionette", "ModalSliderView", "views/spinnerView"], function
 				Store.modalRegion.show(modal);	
 			},
 			toggleDisplayStatus: function (e) {
+                e.preventDefault();
                 Spinner.initialize(".sliderContainer");
                 var that = this;
-				if(!$(e.target).hasClass('active')) {
-					if($(e.target).text() == 'off') {
-						$(e.currentTarget.lastChild).removeClass('btn-default').addClass('active btn-danger');
-						$(e.currentTarget.firstChild).removeClass('active btn-primary').addClass('btn-default');
-                        this.model.save({slider_display: false}, {
-                            success: function () {
-                                Spinner.destroy({timeout: 700});
-                            },
-                            error: function (xhr) {
-                                require(["views/warningMessageView"], function(WarningView){
-                                    Spinner.destroy();
-                                    Store.warningRegion.show(new WarningView({message: xhr.statusText}));
-                                });
-                            }
-                        });
-					} else {
-						$(e.currentTarget.lastChild).removeClass('active btn-danger').addClass('btn-default');
-						$(e.currentTarget.firstChild).removeClass('btn-default').addClass('active btn-primary');
-                        this.model.save({slider_display: true}, {
-                            wait: true,
-                            success: function () {
-                                Spinner.destroy({timeout: 700});
-                            },
-                            error: function (xhr) {
-                                require(["views/warningMessageView"], function(WarningView){
-                                    Spinner.destroy();
-                                    Store.warningRegion.show(new WarningView({message: xhr.statusText}));
-                                });
-                            }
-                        });
-					}
-				}
+                if($(e.target).prop('checked')) {
+                    this.model.save({slider_display: true}, {
+                        wait: true,
+                        success: function () {
+                            Spinner.destroy({timeout: 700});
+                            $(e.target).prop('checked', true);
+                        },
+                        error: function (xhr) {
+                            require(["views/warningMessageView"], function(WarningView){
+                                Spinner.destroy();
+                                Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                            });
+                        }
+                    });
+                } else {
+                    this.model.save({slider_display: false}, {
+                        success: function () {
+                            Spinner.destroy({timeout: 700});
+                            $(e.target).prop('checked', false);
+                        },
+                        error: function (xhr) {
+                            require(["views/warningMessageView"], function(WarningView){
+                                Spinner.destroy();
+                                Store.warningRegion.show(new WarningView({message: xhr.statusText}));
+                            });
+                        }
+                    });
+                }
 			},
 			showSliderPhoto: function () {
 				var modal = new ModalSliderView({
