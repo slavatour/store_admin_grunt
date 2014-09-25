@@ -21,6 +21,17 @@ exports.CategoriesRepository = function (conString) {
             callbackFunction({result: options.result});
 		});
 	};
+    self.fetchCategoriesTree = function (callbackFunction) {
+        var command = 'WITH RECURSIVE categories_temp ("category_id", PATH, LEVEL ) AS (' +
+            'SELECT "category_id", CAST (T1."category_name" AS VARCHAR (50)) as PATH, 1 ' +
+            'FROM categories T1 WHERE T1."category_parent_id" IS NULL union select T2."category_id", ' +
+            'CAST ( categories_temp.PATH ||\'/\'|| T2."category_name" AS VARCHAR(50)) ,LEVEL + 1 ' +
+            'FROM categories T2 INNER JOIN categories_temp ON( categories_temp."category_id"= T2."category_parent_id")) ' +
+            'select * from categories_temp ORDER BY PATH;';
+        dbRepository.actionData(command, function (options) {
+            callbackFunction({result: options.result});
+        });
+    };
     self.saveCategory = function (model, file, callbackFunction) {
         var command = "SELECT max(category_position_in_list) FROM categories;";
         dbRepository.actionData(command, function (options) {

@@ -46,19 +46,18 @@ script(type="text/template" id="productModelTemplate")
         img.img-thumbnail(src="/images/temp/slider2.png")
     td.col-md-4 <%= product_shortname %>
     td.col-md-2 
-        a <%= category_name %> 
-        | / 
-        a <%= subcategory_name %>
+        a
+            | <%= product_parents.path %>
     td.text-center.col-md-1 <%= product_price.sale %>
-    td.text-center.col-md-1 <%= product_quantitystock %>
+    td.text-center.col-md-1
         <%if(product_quantitystock == "0"){%>
-        span.label.label-default
-        <%}else if(product_quantitystock > "0" && product_quantitystock =< "2"){%>
-        span.label.label-danger
-        <%}else if(product_quantitystock > "3" && product_quantitystock < "10"){%>
-        span.label.label-warning
-        <%}else if(product_quantitystock => "10"){%>
-        span.label.label-success
+        span.badge  <%= product_quantitystock %>
+        <%}else if(product_quantitystock > 0 && product_quantitystock <= 2){%>
+        span.badge.alert-danger  <%= product_quantitystock %>
+        <%}else if(product_quantitystock > 3 && product_quantitystock < 10){%>
+        span.badge.alert-warning  <%= product_quantitystock %>
+        <%}else if(product_quantitystock >= 10){%>
+        span.badge.alert-success  <%= product_quantitystock %>
         <%};%>
     td.text-center.col-md-1
         <% if(product_display) {%>

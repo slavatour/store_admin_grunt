@@ -36,10 +36,9 @@ define([
                 var that = this;
 				this.slidersCollection.fetch({
                     success: function (data) {
+                        //MYTODO add in table category column(select) category-subcategory tree for selection and sortable
                         that.slidersCollection.sort();
-                        setTimeout(function(){
-                            Store.sliderRegion.show(that.slidersCollectionView);
-                        }, 2000);
+                        Store.sliderRegion.show(that.slidersCollectionView);
                     }
                 });
 			}
