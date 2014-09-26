@@ -34,7 +34,11 @@ define([
 				},this);
 			},
 			renderView: function () {
-				this.categoriesCollection.fetch();
+				this.categoriesCollection.fetch({
+                    success: function(data) {
+                        console.log(data.toJSON());
+                    }
+                });
 				Store.categoriesRegion.show(this.categoriesCollectionView);
 			}
 		});

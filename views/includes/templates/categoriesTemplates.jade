@@ -5,9 +5,9 @@ script(type="text/template" id="categoriesCollectionTemplate")
             button.addNewCategory.btn.btn-default.btn-xs.pull-right(data-toggle="modal" data-target="#categoryModal") + add new
         div.panel-body
             div.col-lg-12
-                div.panel-group#accordionCategories.categoriesContainerView
+                ul.panel-group#accordionCategories.categoriesContainerView
 
-script(type="text/template" id="categoriesModelTemplate")
+script(type="text/template" id="categoriesModelTemplateOld")
     div.panel.panel-default
         div.panel-heading.categoryList
             h4.panel-title
@@ -30,3 +30,12 @@ script(type="text/template" id="categoriesModelTemplate")
                         a.subcategory(data-subcategory-id!="#<%= subcategory.subcategory_id %>") <%= subcategory.subcategory_name %>
                     <%}); %>
                     <%};%>
+
+script(type="text/template" id="categoriesModelTemplate")
+        span <%= category_name %>
+        <% if(subcategories == null) {%>
+        //- MYTODO dont appent "li" in this case
+        li#subcategoryPoint No subcategories.
+        <%} else {%>
+        <%= renderCategoriesTre() %>
+        <%};%>                    
