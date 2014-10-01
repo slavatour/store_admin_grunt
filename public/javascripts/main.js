@@ -10,6 +10,7 @@ requirejs.config({
 		i18next: "libs/js/i18next/18next.amd.min",//
 		"jquery-spin": "libs/jquery.spin",//
 //		spin: "libs/spin",
+		chartjs: "libs/js/chartjs/Chart",
 		bootstrap: "libs/js/bootstrap-sass/bootstrap.min",
 		"bootstrap-switch": "libs/js/bootstrap-switch/bootstrap-switch.min",
 
@@ -85,6 +86,9 @@ requirejs.config({
         },
         jquerySortable: {
             deps: ["jquery", "libs/js/jquery-ui/core", "libs/js/jquery-ui/widget", "libs/js/jquery-ui/mouse"]
+        },
+        chartjs: {
+            exports: "Chart"
         }
 	}
 });

@@ -1,69 +1,79 @@
 {
-    "name": "store application (admin)",
-    "version": "0.0.4",
-    "homepage": "https://github.com/slavatour/store-admin-require",
-    "authors": [
-        "dzvinok.cv@gmail.con"
-    ],
-    "description": "internet store with admin",
-    "main": "app.js",
-    "keywords": [
-        "internet",
-        "store",
-        "shop"
-    ],
-    "dependencies": {
-
+  "name": "store application (admin)",
+  "version": "0.0.4",
+  "homepage": "https://github.com/slavatour/store-admin-require",
+  "authors": [
+    "dzvinok.cv@gmail.con"
+  ],
+  "description": "internet store with admin",
+  "main": "app.js",
+  "keywords": [
+    "internet",
+    "store",
+    "shop"
+  ],
+  "exportsOverride": {
+    "bootstrap-sass": {
+      "js": "dist/js/*min.js",
+      "../../stylesheets/libs/scss": "lib/*.scss",
+      "../../stylesheets/libs/fonts": "fonts/*"
     },
-    "exportsOverride": {
-        "bootstrap-sass": {
-            "js": "dist/js/*min.js",
-            "../../stylesheets/libs/scss": "lib/*.scss",
-            "../../stylesheets/libs/fonts": "fonts/*"
-        },
-        "requirejs": {
-            "js": "require.js"
-        },
-        "backbone": {
-            "js": "backbone.js"
-        },
-        "backbone.*": {
-            "js": ["lib/*.min.js", "lib/*.map"]
-        },
-        "bootstrap-switch": {
-            "js": "dist/js/*.min.js",
-            "../../stylesheets/libs/css": "dist/css/bootstrap3/*min.css"
-        },
-        "i18next": {
-            "js": "*amd.min.js"
-        },
-        "jquery": {
-            "js": ["dist/*min.js", "dist/*min.map"]
-        },
-        "jquery-ui": {
-            "js": ["jquery-ui.min.js", "ui/*.js"]
-        },
-        "underscore": {
-            "js": "underscore.js"
-        }
+    "requirejs": {
+      "js": "require.js"
     },
-    "devDependencies": {
-        "backbone": "latest",
-        "jquery": "latest",
-        "jquery-ui": "latest",
-        "backbone.marionette": "latest",
-        "underscore": "latest",
-        "i18next": "~1.7.2",
-        "bootstrap-switch": "latest",
-        "bootstrap-sass": "*",
-        "requirejs": "*"
+    "backbone": {
+      "js": "backbone.js"
     },
-    "license": "free",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ]
+    "backbone.*": {
+      "js": [
+        "lib/*.min.js",
+        "lib/*.map"
+      ]
+    },
+    "bootstrap-switch": {
+      "js": "dist/js/*.min.js",
+      "../../stylesheets/libs/css": "dist/css/bootstrap3/*min.css"
+    },
+    "i18next": {
+      "js": "*amd.min.js"
+    },
+    "jquery": {
+      "js": [
+        "dist/*min.js",
+        "dist/*min.map"
+      ]
+    },
+    "jquery-ui": {
+      "js": [
+        "jquery-ui.min.js",
+        "ui/*.js"
+      ]
+    },
+    "underscore": {
+      "js": "underscore.js"
+    },
+    "chartjs": {
+        "js": "Chart.js"
+    }
+  },
+  "devDependencies": {
+    "backbone": "latest",
+    "jquery": "latest",
+    "jquery-ui": "latest",
+    "backbone.marionette": "latest",
+    "underscore": "latest",
+    "i18next": "~1.7.2",
+    "bootstrap-switch": "latest",
+    "bootstrap-sass": "*",
+    "chartjs": "~0.2.0",
+    "requirejs": "*"
+  },
+  "license": "free",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }

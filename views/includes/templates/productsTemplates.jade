@@ -47,7 +47,7 @@ script(type="text/template" id="productModelTemplate")
     td.col-md-4 <%= product_shortname %>
     td.col-md-2 
         a
-            | <%= product_parents.path %>
+            | <%= path %>
     td.text-center.col-md-1 <%= product_price.sale %>
     td.text-center.col-md-1
         <%if(product_quantitystock == "0"){%>

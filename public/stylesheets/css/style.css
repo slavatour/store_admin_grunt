@@ -2,6 +2,8 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 /* line 17, c:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -8070,10 +8072,7 @@ body .main .contentContainer .productsContainer {
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/**
- * Create the checkbox button
- */
-/* line 83, ../sass/widgets/_switch.scss */
+/* line 1, ../sass/widgets/_checkbox.scss */
 .checkboxFour label {
   display: block;
   width: 12px;
@@ -8095,10 +8094,218 @@ body .main .contentContainer .productsContainer {
   box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/**
- * Create the checked state
- */
-/* line 109, ../sass/widgets/_switch.scss */
+/* line 24, ../sass/widgets/_checkbox.scss */
 .checkboxFour input[type=checkbox]:checked + label {
   background: #26ca28;
+}
+
+/* line 5, ../sass/widgets/_profile.scss */
+.profile-container {
+  font-family: Open Sans;
+}
+
+/* line 9, ../sass/widgets/_profile.scss */
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* line 14, ../sass/widgets/_profile.scss */
+.containerProf {
+  margin: 40px auto 0;
+  width: 143px;
+}
+
+/* line 18, ../sass/widgets/_profile.scss */
+.profile-container {
+  position: relative;
+  width: 143px;
+  float: left;
+}
+
+/* line 24, ../sass/widgets/_profile.scss */
+.profile {
+  background: #f6f6f6;
+  float: left;
+  padding: 4px;
+  border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+/* line 40, ../sass/widgets/_profile.scss */
+.avatar img {
+  display: block;
+  border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+/* line 49, ../sass/widgets/_profile.scss */
+.follow {
+  margin: 4px 0 0 0;
+}
+
+/* line 53, ../sass/widgets/_profile.scss */
+.follow button {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: #268cde;
+  color: white;
+  padding: 7px 0;
+  margin: 0;
+  border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* line 74, ../sass/widgets/_profile.scss */
+.follow button i {
+  font-size: 10px;
+  color: #b9daf4;
+}
+
+/* line 79, ../sass/widgets/_profile.scss */
+.follow button:hover {
+  background: #3096e8;
+}
+
+/* line 83, ../sass/widgets/_profile.scss */
+.follow button:active {
+  background: #2085d6;
+}
+
+/* line 87, ../sass/widgets/_profile.scss */
+.profile-list {
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  color: #767b7e;
+  font-size: 13px;
+}
+
+/* line 95, ../sass/widgets/_profile.scss */
+.profile-list li {
+  cursor: pointer;
+  background: #ffffff;
+  border-top: 1px solid #e5e6e6;
+  padding: 15px 10px;
+}
+
+/* line 102, ../sass/widgets/_profile.scss */
+.profile-list li:last-child {
+  border-radius: 0 0 3px 3px;
+  -o-border-radius: 0 0 3px 3px;
+  -ms-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 3px 3px;
+}
+
+/* line 110, ../sass/widgets/_profile.scss */
+.profile-list li [class^="icon-"] {
+  margin: 0 3px 0 0;
+}
+
+/* line 115, ../sass/widgets/_profile.scss */
+.profile-list .profile {
+  border-radius: 3px 3px 0 0;
+  position: relative;
+}
+
+/* line 120, ../sass/widgets/_profile.scss */
+.profile-list li {
+  -webkit-transform-origin: 50% 0%;
+  -o-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+  -webkit-transform: perspective(250px) rotateX(-90deg);
+  -o-transform: perspective(250px) rotateX(-90deg);
+  transform: perspective(250px) rotateX(-90deg);
+  -moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* line 130, ../sass/widgets/_profile.scss */
+.profile-list .first {
+  -webkit-transition: 0.2s linear 0.8s;
+  -o-transition: 0.2s linear 0.8s;
+  transition: 0.2s linear 0.8s;
+}
+
+/* line 136, ../sass/widgets/_profile.scss */
+.profile-list .second {
+  -webkit-transition: 0.2s linear 0.6s;
+  -o-transition: 0.2s linear 0.6s;
+  transition: 0.2s linear 0.6s;
+}
+
+/* line 142, ../sass/widgets/_profile.scss */
+.profile-list .third {
+  -webkit-transition: 0.2s linear 0.4s;
+  -o-transition: 0.2s linear 0.4s;
+  transition: 0.2s linear 0.4s;
+}
+
+/* line 148, ../sass/widgets/_profile.scss */
+.profile-list .fourth {
+  -webkit-transition: 0.2s linear 0.2s;
+  -o-transition: 0.2s linear 0.2s;
+  transition: 0.2s linear 0.2s;
+}
+
+/* line 154, ../sass/widgets/_profile.scss */
+.profile-container:hover .profile {
+  border-radius: 3px 3px 0 0;
+  -o-border-radius: 3px 3px 0 0;
+  -ms-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 3px 3px 0 0;
+}
+
+/* line 162, ../sass/widgets/_profile.scss */
+.profile-container:hover .profile-list li {
+  -webkit-transform: perspective(350px) rotateX(0deg);
+  -o-transform: perspective(350px) rotateX(0deg);
+  transform: perspective(350px) rotateX(0deg);
+  -webkit-transition: 0.2s linear 0s;
+  -o-transition: 0.2s linear 0s;
+  transition: 0.2s linear 0s;
+}
+
+/* line 171, ../sass/widgets/_profile.scss */
+.profile-container:hover .profile-list .second {
+  -webkit-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+
+/* line 177, ../sass/widgets/_profile.scss */
+.profile-container:hover .profile-list .third {
+  -webkit-transition-delay: 0.4s;
+  -o-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+}
+
+/* line 183, ../sass/widgets/_profile.scss */
+.profile-container:hover .profile-list .fourth {
+  transition-delay: 0.6s;
+  -o-transition-delay: 0.6s;
+  transition-delay: 0.6s;
 }

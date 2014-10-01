@@ -1,7 +1,38 @@
 div.exampleWidgets
+    div.col-lg-12
+        canvas#chart_div(width="1000" height="409" style="width: 1000px; height: 409px;")
     div.switch
         input#switchInput.switchInput.switchInputRound(type="checkbox")
         label(for="switchInput")
     div.checkboxFour
         input(type="checkbox" value="1" id="checkboxFourInput" name="" checked)
         label(for="checkboxFourInput")
+    div.radiobutton
+        ul
+            li
+                input(type="radio" name="radiog_dark" id="radio4" class="css-checkbox")
+                label(for="radio4" class="css-label radGroup2") Option 1
+            li
+                input(type="radio" name="radiog_dark" id="radio5" class="css-checkbox" checked="checked")
+                label(for="radio5" class="css-label radGroup2") Option 2
+            li
+                input(type="radio" name="radiog_dark" id="radio6" class="css-checkbox")
+                label(for="radio6" class="css-label radGroup2") Option 3
+    div.flipCard.row(style="display:none;")
+        div.containerProf
+            div.profile-container.unfold
+            div.profile
+                div.avatar
+                    img(src="http://i.imgur.com/L1rfQG5.jpg")
+                div.follow
+                    button
+                        i.icon-plus Follow
+            ul.profile-list
+                li.first
+                    i.icon-user Profile
+                li.second
+                    i.icon-list-alt Activity
+                li.third
+                    i.icon-time Timeline
+                li.fourth
+                    i.icon-heart Favorites

@@ -27,6 +27,6 @@ script(type="text/template" id="categoriesModelTemplate")
                     <%} else {%>
                     <% _.each(subcategories, function(subcategory){%>
                     li.subcategoryPoint
-                        a.subcategory(data-subcategory-id!="#<%= subcategory.subcategory_id %>") <%= subcategory.subcategory_name %>
+                        a.subcategory(data-subcategory-id!="#<%= subcategory.subcategory_id %>") <%= subcategory.category_name %>
                     <%}); %>
                     <%};%>
