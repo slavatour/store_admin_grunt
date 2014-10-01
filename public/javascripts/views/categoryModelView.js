@@ -7,6 +7,7 @@ define(["marionette",
 	Store.module("Categories.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.CategoryModelView = Backbone.Marionette.ItemView.extend({
 			template: '#categoriesModelTemplate',
+            tagName: "ul",
 			initialize: function () {
 
 			},
@@ -15,6 +16,23 @@ define(["marionette",
                 "click .editCategory": "editCategory",
                 "click .deleteCategory": "deleteCategory"
 
+            },
+            templateHelpers: {
+                renderCategoriesTre: function() {
+                    return this.buildViewCategoriesTre(this.subcategories);
+                },
+                buildViewCategoriesTre: function(subcategories) {
+                    console.log(subcategories);
+                    var content = "<ul>";
+                    for(var i= 0, length = subcategories.length; i < length; i++) {
+                        if(subcategories[i].subcategories && subcategories[i].subcategories.length) {
+                            content += subcategories[i].category_name+"<li>" + this.buildViewCategoriesTre(subcategories[i].subcategories) + "</li>";
+                        } else {
+                            content += "<li>" + subcategories[i].category_name + "</li>";
+                        }
+                        return content += "</ul>";
+                    }
+                }
             },
             addNewSubcategoryModal: function(e) {
                 var modal = new ModalView({

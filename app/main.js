@@ -12,9 +12,11 @@ var app = require('./app_config'),
     productsController = new ProductsController.ProductsController(conString);
 //MYTODO add error handler
 app.get("/categories", function (req, res) {
-    categoriesController.fetchCategories(function (data) {
+    categoriesController.fetchCategories(function (options) {
+        var response;
+        options.error ? response = {error:options.error} : response = options.data;
         res.header();
-        res.end(JSON.stringify(data));
+        res.status(options.status).end(JSON.stringify(response));
     });
 });
 
