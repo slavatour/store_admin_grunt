@@ -7,33 +7,4 @@
       display: inline-block;
     }
   }
-  #accordionCategories {
-    .categoryList {
-      .categoryImage {
-        img {
-          max-height: 30px;
-          display: inline-block;
-          margin-right: 10px;
-        }
-      }
-    }
-    .subcategoriesListContainer {
-      .panel-body {
-        padding: 0px;
-        .subcategoriesList {
-          margin: 0px;
-          line-height: 30px;
-          .subcategoryPoint {
-            &:hover {
-              cursor: pointer;
-              background: rgba(0,0,0,.1);
-            }
-            a.subcategory {
-              margin-left: 50px;
-            }
-          }
-        }
-      }
-    }
-  }
 }

@@ -7918,30 +7918,6 @@ body .main .contentContainer .productsContainer {
 #categoriesContainer .categoriesPanelHeader .categoriesPanelTitle {
   display: inline-block;
 }
-/* line 13, ../sass/imports/_categoriesTab.scss */
-#categoriesContainer #accordionCategories .categoryList .categoryImage img {
-  max-height: 30px;
-  display: inline-block;
-  margin-right: 10px;
-}
-/* line 21, ../sass/imports/_categoriesTab.scss */
-#categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body {
-  padding: 0px;
-}
-/* line 23, ../sass/imports/_categoriesTab.scss */
-#categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body .subcategoriesList {
-  margin: 0px;
-  line-height: 30px;
-}
-/* line 27, ../sass/imports/_categoriesTab.scss */
-#categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body .subcategoriesList .subcategoryPoint:hover {
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.1);
-}
-/* line 31, ../sass/imports/_categoriesTab.scss */
-#categoriesContainer #accordionCategories .subcategoriesListContainer .panel-body .subcategoriesList .subcategoryPoint a.subcategory {
-  margin-left: 50px;
-}
 
 /* line 8, ../sass/imports/_productsTab.scss */
 .productsContainer .productsTable .headerFilter th input, .productsContainer .productsTable .headerFilter th select {

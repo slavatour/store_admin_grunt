@@ -34,11 +34,7 @@ define([
 				},this);
 			},
 			renderView: function () {
-				this.categoriesCollection.fetch({
-                    success: function(data) {
-                        console.log(data.toJSON());
-                    }
-                });
+				this.categoriesCollection.fetch();
 				Store.categoriesRegion.show(this.categoriesCollectionView);
 			}
 		});

@@ -10,7 +10,7 @@ define(["marionette", "Store", "SubcategoriesController"], function (Marionette,
 				category_position_in_list: null,
                 category_description: null,
                 category_image_name: null,
-				subcategories: null
+				subcategories: []
 			},
 			initialize: function () {
 				this.id = this.get('id');

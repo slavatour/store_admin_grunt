@@ -7,7 +7,7 @@ define(["marionette",
 	Store.module("Categories.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.CategoryModelView = Backbone.Marionette.ItemView.extend({
 			template: '#categoriesModelTemplate',
-            tagName: "ul",
+            className: "level level0",
 			initialize: function () {
 
 			},
@@ -19,18 +19,23 @@ define(["marionette",
             },
             templateHelpers: {
                 renderCategoriesTre: function() {
-                    return this.buildViewCategoriesTre(this.subcategories);
+                    return this.buildViewCategoriesTre(this);
                 },
-                buildViewCategoriesTre: function(subcategories) {
-                    console.log(subcategories);
-                    var content = "<ul>";
-                    for(var i= 0, length = subcategories.length; i < length; i++) {
-                        if(subcategories[i].subcategories && subcategories[i].subcategories.length) {
-                            content += subcategories[i].category_name+"<li>" + this.buildViewCategoriesTre(subcategories[i].subcategories) + "</li>";
-                        } else {
-                            content += "<li>" + subcategories[i].category_name + "</li>";
+                buildViewCategoriesTre: function(category) {
+                    var content = "";
+                    if (category.subcategories.length) {
+                        var subcategories = category.subcategories;
+                        for(var i= 0; i < subcategories.length; i++) {
+                            if(subcategories[i].subcategories && subcategories[i].subcategories.length) {
+                                content += "<tr class='level level" + category.level + "'>" +
+                                    "<td><i class='fa fa-plus-circle fa-lg'></i>" + subcategories[i].category_name+"</td>" +
+                                    "<td class='col-md-2'></td></tr>" +
+                                    this.buildViewCategoriesTre(subcategories[i]);
+                            } else {
+                                content += "<tr class='level level" + subcategories[i].level + "'><td>" + subcategories[i].category_name + "</td><td class='col-md-2'></td></tr>";
+                            }
                         }
-                        return content += "</ul>";
+                        return content;
                     }
                 }
             },

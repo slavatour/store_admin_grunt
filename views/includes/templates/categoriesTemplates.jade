@@ -3,11 +3,9 @@ script(type="text/template" id="categoriesCollectionTemplate")
         div.panel-heading.categoriesPanelHeader
             h4.categoriesPanelTitle Categories list.
             button.addNewCategory.btn.btn-default.btn-xs.pull-right(data-toggle="modal" data-target="#categoryModal") + add new
-        div.panel-body
-            div.col-lg-12
-                ul.panel-group#accordionCategories.categoriesContainerView
-
-script(type="text/template" id="categoriesModelTemplateOld")
+        div.panel-body.categoriesContainerView
+            
+script(type="text/template" id="categoriesModelTemplate1")
     div.panel.panel-default
         div.panel-heading.categoryList
             h4.panel-title
@@ -32,7 +30,23 @@ script(type="text/template" id="categoriesModelTemplateOld")
                     <%};%>
 
 script(type="text/template" id="categoriesModelTemplate")
-        span <%= category_name %>
+    table.table.table-condensed.table-hover
+                thead
+                    tr
+                        //- th.categorySortableBtn
+                        th.categoryName
+                            i.fa.fa-plus-circle.fa-lg
+                            | <%= category_name %>
+                        th.categoryBtns.col-md-2
+                            i.fa.fa-cogs.fa-lg.pull-right
+                tbody
+                    <%= renderCategoriesTre() %>    
+
+
+script(type="text/template" id="categoriesModelTemplateOld")
+        span 
+            i.fa.fa-folder-open-o.fa-lg
+            | <%= category_name %>
         <% if(subcategories == null) {%>
         //- MYTODO dont appent "li" in this case
         li#subcategoryPoint No subcategories.
