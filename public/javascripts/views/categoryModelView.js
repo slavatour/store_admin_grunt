@@ -7,7 +7,6 @@ define(["marionette",
 	Store.module("Categories.Views", function (Views, Store, Backbone, Marionette, $, _) {
 		Views.CategoryModelView = Backbone.Marionette.ItemView.extend({
 			template: '#categoriesModelTemplate',
-            className: "level level0",
 			initialize: function () {
 
 			},
@@ -27,12 +26,12 @@ define(["marionette",
                         var subcategories = category.subcategories;
                         for(var i= 0; i < subcategories.length; i++) {
                             if(subcategories[i].subcategories && subcategories[i].subcategories.length) {
-                                content += "<tr class='level level" + category.level + "'>" +
-                                    "<td><i class='fa fa-plus-circle fa-lg'></i>" + subcategories[i].category_name+"</td>" +
+                                content += "<tr class='level level" + subcategories[i].level + "'>" +
+                                    "<td class='categoryName'><a><i class='fa fa-plus-square-o'></i>" + subcategories[i].category_name+"</a></td>" +
                                     "<td class='col-md-2'></td></tr>" +
                                     this.buildViewCategoriesTre(subcategories[i]);
                             } else {
-                                content += "<tr class='level level" + subcategories[i].level + "'><td>" + subcategories[i].category_name + "</td><td class='col-md-2'></td></tr>";
+                                content += "<tr class='level level" + subcategories[i].level + "'><td class='categoryName'><a><i class='fa fa-square-o'></i>" + subcategories[i].category_name + "</a></td><td class='col-md-2'></td></tr>";
                             }
                         }
                         return content;

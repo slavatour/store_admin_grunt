@@ -7918,6 +7918,68 @@ body .main .contentContainer .productsContainer {
 #categoriesContainer .categoriesPanelHeader .categoriesPanelTitle {
   display: inline-block;
 }
+/* line 15, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer .categoriesContainerView table tbody {
+  background: rgba(244, 244, 244, 0.3);
+}
+/* line 20, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer .categoriesContainerView table .level .categoryName a {
+  text-decoration: none;
+}
+/* line 22, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer .categoriesContainerView table .level .categoryName a i {
+  margin-right: 7px;
+}
+
+/* line 31, ../sass/imports/_categoriesTab.scss */
+.level1 .categoryName {
+  padding-left: 10px;
+}
+
+/* line 34, ../sass/imports/_categoriesTab.scss */
+.level2 .categoryName {
+  padding-left: 30px;
+}
+
+/* line 37, ../sass/imports/_categoriesTab.scss */
+.level3 .categoryName {
+  padding-left: 50px;
+}
+
+/* line 40, ../sass/imports/_categoriesTab.scss */
+.level4 .categoryName {
+  padding-left: 70px;
+}
+
+/* line 43, ../sass/imports/_categoriesTab.scss */
+.level5 .categoryName {
+  padding-left: 90px;
+}
+
+/* line 46, ../sass/imports/_categoriesTab.scss */
+.level6 .categoryName {
+  padding-left: 110px;
+}
+
+/* line 49, ../sass/imports/_categoriesTab.scss */
+.level7 .categoryName {
+  padding-left: 130px;
+}
+
+/* line 52, ../sass/imports/_categoriesTab.scss */
+.level8 .categoryName {
+  padding-left: 150px;
+}
+
+/* line 55, ../sass/imports/_categoriesTab.scss */
+.level9 .categoryName {
+  padding-left: 170px;
+}
+
+/* line 58, ../sass/imports/_categoriesTab.scss */
+.level10 .categoryName {
+  padding-left: 190px;
+}
 
 /* line 8, ../sass/imports/_productsTab.scss */
 .productsContainer .productsTable .headerFilter th input, .productsContainer .productsTable .headerFilter th select {

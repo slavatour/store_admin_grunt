@@ -7,4 +7,54 @@
       display: inline-block;
     }
   }
+  .categoriesContainerView {
+      table {
+        thead {
+
+        }
+        tbody {
+          background: rgba(244,244,244,.3);
+        }
+        .level {
+          .categoryName {
+            a{
+              text-decoration: none;
+              i {
+                margin-right: 7px;
+              }
+            }
+          }
+        }
+      }
+  }
+}
+.level1 .categoryName {
+  padding-left: 10px;
+}
+.level2 .categoryName {
+  padding-left: 30px;
+}
+.level3 .categoryName {
+  padding-left: 50px;
+}
+.level4 .categoryName {
+  padding-left: 70px;
+}
+.level5 .categoryName {
+  padding-left: 90px;
+}
+.level6 .categoryName {
+  padding-left: 110px;
+}
+.level7 .categoryName {
+  padding-left: 130px;
+}
+.level8 .categoryName {
+  padding-left: 150px;
+}
+.level9 .categoryName {
+  padding-left: 170px;
+}
+.level10 .categoryName {
+  padding-left: 190px;
 }

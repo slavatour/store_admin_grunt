@@ -8,24 +8,17 @@ define(["marionette", "Store", "CategoryModelView", "views/modalCategoryView"],
             childViewContainer: ".categoriesContainerView",
 			events: {
 				"click .addNewSubcategory": "addNewSubcategory",
-                "click .addNewCategory": "addNewCategory"
+                "click .addNewCategory": "openModalAddNewCategory"
 			},
 			initialize: function () {
 
             },
-            addNewCategory: function() {
+            openModalAddNewCategory: function() {
                 var modal = new ModalView({
                     template: "#modalCategoryView"
                 });
                 Store.modalRegionCategory.show(modal);
-            },
-			addNewSubcategory: function (e) {
-				// var model = new Store.Categories.Models.SubcategoryModel();
-				// var modalView = new Store.Common.Views.ModalView({
-				// 	model: model
-				// });
-				// Store.modalRegion.show(modalView);
-			}
+            }
 		});
 	});
 	return Store.Categories.Views.CategoryCollectionView;

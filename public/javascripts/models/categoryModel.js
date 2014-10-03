@@ -10,6 +10,7 @@ define(["marionette", "Store", "SubcategoriesController"], function (Marionette,
 				category_position_in_list: null,
                 category_description: null,
                 category_image_name: null,
+                level: null,
 				subcategories: []
 			},
 			initialize: function () {
