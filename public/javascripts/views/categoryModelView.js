@@ -13,7 +13,8 @@ define(["marionette",
 			events: {
                 "click .addNewSubcategory": "addNewSubcategoryModal",
                 "click .editCategory": "editCategory",
-                "click .deleteCategory": "deleteCategory"
+                "click .deleteCategory": "deleteCategory",
+                "click .collapseChildren": "collapseChildren"
 
             },
             templateHelpers: {
@@ -27,11 +28,14 @@ define(["marionette",
                         for(var i= 0; i < subcategories.length; i++) {
                             if(subcategories[i].subcategories && subcategories[i].subcategories.length) {
                                 content += "<tr class='level level" + subcategories[i].level + "'>" +
-                                    "<td class='categoryName'><a><i class='fa fa-plus-square-o'></i>" + subcategories[i].category_name+"</a></td>" +
+                                    "<td class='categoryName'><a><i class='fa fa-plus-square-o'></i>" +
+                                    subcategories[i].category_name+"</a></td>" +
                                     "<td class='col-md-2'></td></tr>" +
                                     this.buildViewCategoriesTre(subcategories[i]);
                             } else {
-                                content += "<tr class='level level" + subcategories[i].level + "'><td class='categoryName'><a><i class='fa fa-square-o'></i>" + subcategories[i].category_name + "</a></td><td class='col-md-2'></td></tr>";
+                                content += "<tr class='level level" + subcategories[i].level +
+                                    "'><td class='categoryName'><a><i class='fa fa-square-o'></i>" +
+                                    subcategories[i].category_name + "</a></td><td class='col-md-2'></td></tr>";
                             }
                         }
                         return content;
@@ -66,6 +70,10 @@ define(["marionette",
                         });
                     }
                 });
+            },
+            collapseChildren: function(event) {
+                $(event.target).parents('table').find("tbody").toggle("display");
+                $(event.target).find(".fa").toggleClass("fa-plus-square-o").toggleClass("fa-minus-square-o");
             }
 		});
 	});

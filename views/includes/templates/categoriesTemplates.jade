@@ -11,10 +11,31 @@ script(type="text/template" id="categoriesModelTemplate")
                     tr.level(class!="level<%= level %>")
                         //- th.categorySortableBtn
                         th.categoryName
-                            a
+                            a.collapseChildren
                                 i.fa.fa-plus-square-o
                                 | <%= category_name %>
                         th.categoryBtns.col-md-2
-                            i.fa.fa-cogs.fa-lg.pull-right
+                            div.btn-group.pull-right
+                                a.btn.btn-default.btn-sm +add new
+                                a.btn.btn-default.btn-sm.dropdown-toggle(data-toggle="dropdown") 
+                                    i.fa.fa-gears.fa-lg
+                                ul.dropdown-menu(role="menu")
+                                    li
+                                        a(href="#") 
+                                            i.fa.fa-wrench   
+                                            |edit
+                                    li
+                                        a(href="#") 
+                                            i.fa.fa-exchange
+                                            | replace
+                                    li
+                                        a(href="#") 
+                                            i.fa.fa-warning
+                                            | smth else
+                                    li.divider
+                                    li
+                                        a(href="#") 
+                                            i.fa.fa-times
+                                            | delete
                 tbody
                     <%= renderCategoriesTre() %>    

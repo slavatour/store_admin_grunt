@@ -9,15 +9,26 @@
   }
   .categoriesContainerView {
       table {
+        font-size: 16px;
         thead {
+          tr {
+            height: 40px;
+          }
+          a {
+            color: rgb(101, 101, 101);
+            &:hover {
 
+            }
+          }
         }
         tbody {
+          display: none;
           background: rgba(244,244,244,.3);
         }
         .level {
           .categoryName {
             a{
+              color: rgb(101, 101, 101);
               text-decoration: none;
               i {
                 margin-right: 7px;
