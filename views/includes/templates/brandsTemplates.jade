@@ -1,0 +1,72 @@
+script(type="text/template" id="brandsCollectionTemplate")
+    div.panel.panel-default
+        div.panel-heading
+            | Products list
+        div.panel-body
+            table.table.table-condensed.table-hover.productsTable
+                thead
+                    tr.headerTable
+                        th.text-center №
+                        th
+                        th.col-md-1.text-center Photo
+                        th Short name
+                        th Category
+                        th.col-md-1.text-center Price
+                        th.col-md-1.text-center Quantity
+                        th.col-md-1.text-center Display
+                        th.col-md-2
+                    tr.headerFilter
+                        th.text-center --
+                        th
+                        th.text-center --
+                        th
+                            input.form-control(type="text")
+                        th
+                            select.form-control
+                                option cat
+                                option cat
+                                option cat
+                        th
+                            input.form-control(type="text")
+                        th.text-center --
+                        th.text-center
+                            div.switch.text-center
+                                input.switchInput.switchInputRound(type="checkbox" checked id="displayAll")
+                                label(for="displayAll")
+                        th
+                            button.btn.btn-default.btn-xs.pull-right filter
+                tbody.productsContainerView#sortable
+script(type="text/template" id="brandtModelTemplate")
+    td.text-center
+        | <%= product_position_in_list %>
+    td
+        a.sortableSelector.pull-right
+    td.col-md-1.text-center.productImage
+        img.img-thumbnail(src="/images/temp/slider2.png")
+    td.col-md-4 <%= product_shortname %>
+    td.col-md-2
+        a
+            | <%= path %>
+    td.text-center.col-md-1 <%= product_price.sale %>
+    td.text-center.col-md-1
+        <%if(product_quantitystock == "0"){%>
+        span.badge  <%= product_quantitystock %>
+        <%}else if(product_quantitystock > 0 && product_quantitystock <= 2){%>
+        span.badge.alert-danger  <%= product_quantitystock %>
+        <%}else if(product_quantitystock > 3 && product_quantitystock < 10){%>
+        span.badge.alert-warning  <%= product_quantitystock %>
+        <%}else if(product_quantitystock >= 10){%>
+        span.badge.alert-success  <%= product_quantitystock %>
+        <%};%>
+    td.text-center.col-md-1
+        <% if(product_display) {%>
+        div.switch.text-center
+            input.switchInput.switchInputRound(type="checkbox" checked id!="<%= product_id %>")
+            label(for!="<%= product_id %>")
+        <%}else{%>
+        div.switch.text-center
+            input.switchInput.switchInputRound(type="checkbox" id!="<%= product_id %>")
+            label(for!="<%= product_id %>")
+        <%};%>
+    td.col-md-1
+        button.btn.btn-default.btn-xs.pull-right edit

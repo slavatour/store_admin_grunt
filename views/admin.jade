@@ -38,7 +38,7 @@ html
                             div.panel-body
                                 a.leftNav(href="#categories") Categoris
                                 a.leftNav(href="#products") Products
-                                a.leftNav(href="#") Brands
+                                a.leftNav(href="#brands") Brands
                                 a.leftNav(href="#") Discounts
                                 a.leftNav(href="#") Prices
                                 a.leftNav(href="#") Currencies
@@ -97,6 +97,7 @@ html
                 include includes/categories
                 include includes/products
                 include includes/slider
+                include includes/brands
                 include includes/examplesWidgets
         include includes/templates/modalsTemplates
         include includes/templates/categoriesTemplates
@@ -105,6 +106,7 @@ html
         include includes/templates/subcategoriesTemplates
         include includes/templates/spinnerTemplate
         include includes/templates/warningTemplate
+        include includes/templates/productsTemplates
 
 
     script(data-main="./javascripts/main.js" src="./javascripts/libs/js/requirejs/require.js")

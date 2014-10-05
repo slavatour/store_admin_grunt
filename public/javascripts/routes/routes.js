@@ -6,6 +6,7 @@ define(["marionette"], function (Marionette) {
 			"categories" 			: "showCategories",
 			"products" 				: "showProducts",
 			"slider"				: "showSliderEdit",
+			"brands"				: "showBrands",
 			"examples"				: "examples"
 
 		},
@@ -45,6 +46,16 @@ define(["marionette"], function (Marionette) {
 				new SliderController().renderView();
 			});
 		},
+        showBrands: function() {
+            this.routeView({
+                toggleContainer: '.brandsContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#brands']"
+            });
+//            require(["SliderController"], function (SliderController) {
+//                new SliderController().renderView();
+//            });
+        },
         examples: function () {
             this.routeView({
                 toggleContainer: '.exampleWidgets',
