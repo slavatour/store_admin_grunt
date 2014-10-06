@@ -1,4 +1,4 @@
-define(["marionette", "Store", "SubcategoriesController"], function (Marionette, Store, SubcategoriesController) {
+define(["marionette", "Store"], function (Marionette, Store) {
 
 	Store.module("Categories.Models", function (Models, Store, Backbone, Marionette, $, _) {
 		Models.CategoryModel = Backbone.Model.extend({

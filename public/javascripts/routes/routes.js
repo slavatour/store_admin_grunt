@@ -52,9 +52,9 @@ define(["marionette"], function (Marionette) {
                 selectorTab: '#tabCategories',
                 selectorBtn: "a[href='#brands']"
             });
-//            require(["SliderController"], function (SliderController) {
-//                new SliderController().renderView();
-//            });
+            require(["BrandsController"], function (BrandsController) {
+                new BrandsController().renderView();
+            });
         },
         examples: function () {
             this.routeView({

@@ -4,12 +4,14 @@ var app = require('./app_config'),
     SubcategoriesController = require('./controllers/SubcategoriesController'),
     SliderController = require('./controllers/SliderController'),
     ProductsController = require('./controllers/ProductsController'),
+    BrandsController = require('./controllers/BrandsController'),
     conString = 'postgres://' + postgresConfig.role.role_name + ':' + postgresConfig.role.role_password +
                 '@localhost/' + postgresConfig.database.database_name,
     categoriesController = new CategoriesController.CategoriesController(conString),
     subcategoriesController = new SubcategoriesController.SubcategoriesController(conString),
     sliderController = new SliderController.SliderController(conString),
-    productsController = new ProductsController.ProductsController(conString);
+    productsController = new ProductsController.ProductsController(conString),
+    brandsController = new BrandsController.BrandsController(conString);
 //MYTODO add error handler
 app.get("/categories", function (req, res) {
     categoriesController.fetchCategories(function (options) {
@@ -81,5 +83,14 @@ app.delete("/slider/:id", function (req, res) {
     sliderController.deleteSlider(req.params.id, function(options){
         res.header();
         res.status(options.status).end(JSON.stringify({error:options.error}));
+    });
+});
+
+app.get("/brands", function (req, res) {
+    brandsController.fetchBrands(function (options) {
+        var response;
+        options.error ? response = {error:options.error} : response = options.data;
+        res.header();
+        res.status(options.status).end(JSON.stringify(response));
     });
 });
