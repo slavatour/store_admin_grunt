@@ -6,7 +6,7 @@ script(type="text/template" id="brandsCollectionTemplate")
             table.table.table-condensed.table-hover.brandsTable
                 thead
                     tr.headerTable
-                        th.text-center Id
+                        th.col-sm-1.text-center Id
                         th.col-sm-1.text-center Photo
                         th Name
                         th Description
@@ -14,7 +14,7 @@ script(type="text/template" id="brandsCollectionTemplate")
                         th.col-md-2
                 tbody.brandsContainerView
 script(type="text/template" id="brandtModelTemplate")
-    td.text-center <%= brand_id %>
+    td.col-sm-1.text-center <%= brand_id %>
     td.col-sm-1.text-center.productImage
         img.img-thumbnail(src="/images/temp/slider2.png")
     td.col-md-4 <%= brand_name %>

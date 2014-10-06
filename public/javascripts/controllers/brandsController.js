@@ -22,8 +22,12 @@ define([
                 });
             },
             renderView: function () {
-                this.brandsCollection.fetch();
-                Store.brandsRegion.show(this.brandsCollectionView);
+                var that = this;
+                this.brandsCollection.fetch({
+                    success: function() {
+                        Store.brandsRegion.show(that.brandsCollectionView);
+                    }
+                });
             }
         });
     });

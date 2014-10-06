@@ -6,7 +6,8 @@ define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable
             childView: Views.SliderModelView,
             childViewContainer: "tbody",
 			events: {
-				"click .addSliderBtn": "addNewSlider"
+				"click .addSliderBtn": "addNewSlider",
+                "sortstop #sortableSlider" : "changeNumber"
 			},
 			collectionEvents: {
                 "change": "changeCollection"
@@ -29,6 +30,12 @@ define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable
 				});
 				Store.modalRegion.show(modal);
 			},
+            changeNumber: function(event, ui) {
+                //MYTODO finish func for change positions in list parameter  
+                console.log(ui.item[0]);
+                console.log($(ui.item[0]).next());
+                console.log($(ui.item[0]).before());
+            },
             //MYTODO make sortable independent module
             initSortableCells: function() {
                 $("#sortableSlider").sortable({
@@ -36,7 +43,8 @@ define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable
                     axis: "y",
                     revert: true,
                     opacity: 0.7,
-                    cursor: "move"
+                    cursor: "move",
+                    handle: ".numberEdit"
                 });
                 $("#sortableSlider").disableSelection();
             }

@@ -1,0 +1,35 @@
+.sliderContainer {
+  #sliderLists {
+    table {
+      thead {
+        tr {
+          th {
+            text-align: center;
+            border: none;
+          }
+        }
+        a {
+          text-decoration: none;
+          color: rgb(101,101,101);
+        }
+      }
+      #sortableSlider {
+        tr {
+          text-align: center;
+          td {
+            max-width: 200px;
+            vertical-align: middle;
+            .numberEdit {
+              height: 38px;
+              width: 12px;
+              background: url("../../images/dotte.png");
+              &:hover {
+                cursor: move;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

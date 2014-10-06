@@ -9,5 +9,6 @@ define(["marionette", "Store", "BrandModel"], function (Marionette, Store, Brand
             }
         });
     });
+
     return Store.Brands.Collections.BrandsCollection;
 });
