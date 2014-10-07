@@ -7,6 +7,7 @@ define(["marionette"], function (Marionette) {
 			"products" 				: "showProducts",
 			"slider"				: "showSliderEdit",
 			"brands"				: "showBrands",
+			"currencies"			: "showCurrencies",
 			"examples"				: "examples"
 
 		},
@@ -54,6 +55,18 @@ define(["marionette"], function (Marionette) {
             });
             require(["BrandsController"], function (BrandsController) {
                 new BrandsController().renderView();
+            });
+        },
+        showCurrencies: function() {
+            this.routeView({
+                toggleContainer: '.currenciesContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#currencies']"
+            });
+            require(["jqueryui/datepicker"], function () {
+                $(".hasDatePicker").datepicker({
+                    dateFormat: "dd.mm.yy"
+                });
             });
         },
         examples: function () {

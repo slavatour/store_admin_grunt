@@ -8022,6 +8022,15 @@ body .main .contentContainer .productsContainer {
   cursor: move;
 }
 
+/* line 4, ../sass/imports/_currencyTab.scss */
+.currenciesContainer table tr th {
+  position: relative;
+}
+/* line 7, ../sass/imports/_currencyTab.scss */
+.currenciesContainer table tr td {
+  position: relative;
+}
+
 /* line 1, ../sass/widgets/_switch.scss */
 .switch {
   display: inline-block;

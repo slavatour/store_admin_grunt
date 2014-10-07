@@ -31,7 +31,7 @@ define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable
 				Store.modalRegion.show(modal);
 			},
             changeNumber: function(event, ui) {
-                //MYTODO finish func for change positions in list parameter  
+                //MYTODO finish func for change positions in list parameter
                 console.log(ui.item[0]);
                 console.log($(ui.item[0]).next());
                 console.log($(ui.item[0]).before());

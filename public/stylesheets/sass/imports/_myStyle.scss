@@ -27,7 +27,7 @@ body {
 		width: 100%;
 		color: $color-menu-font-disactive;
 		&:hover {
-          @extend .active-button
+          @extend .active-button;
 		}
 	}
 	.main {
@@ -63,6 +63,10 @@ body {
 }
 
 .subcategoriesLink {
-	display: block;
-	line-height: 25px;
+  display: block;
+  line-height: 25px;
+}
+
+.subPanel{
+
 }
