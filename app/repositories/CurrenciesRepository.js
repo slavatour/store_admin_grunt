@@ -17,7 +17,8 @@ exports.CurrenciesRepository = function(conString) {
         });
     };
     self.fetchCurrenciesHistory = function(callbackFunction) {
-        var command = "SELECT * FROM currenciesHistory ORDER BY currency_history_date_update";
+        var command = "SELECT ch.*, c.currency_literal_code FROM currenciesHistory ch " +
+            "LEFT JOIN currencies c ON (c.currency_id = ch.currency_parent_id) ORDER BY currency_history_date_update;";
         dbRepository.actionData(command, function(options){
             if(options.error) {
                 callbackFunction({data: options.error, status:500});

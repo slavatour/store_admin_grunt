@@ -8,6 +8,8 @@ define(["marionette"], function (Marionette) {
 			"slider"				: "showSliderEdit",
 			"brands"				: "showBrands",
 			"currencies"			: "showCurrencies",
+			"discounts"	    		: "showDiscounts",
+			"prices"		    	: "showPrices",
 			"examples"				: "examples"
 
 		},
@@ -65,6 +67,20 @@ define(["marionette"], function (Marionette) {
             });
             require(["CurrenciesController"], function (CurrenciesController) {
                 new CurrenciesController().renderView();
+            });
+        },
+        showDiscounts: function() {
+            this.routeView({
+                toggleContainer: '.discountsContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#discounts']"
+            });
+        },
+        showPrices: function() {
+            this.routeView({
+                toggleContainer: '.pricesContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#prices']"
             });
         },
         examples: function () {

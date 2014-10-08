@@ -6,7 +6,8 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 currency_history_id: null,
                 currency_history_date_update: null,
                 currency_history_value: null,
-                currency_history_difference: null
+                currency_history_difference: null,
+                currency_literal_code: null
             },
             urlRoot: "currencyHistory"
         });

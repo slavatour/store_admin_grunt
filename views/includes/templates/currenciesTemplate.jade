@@ -35,10 +35,10 @@ script(type="text/template" id="currenciesCollectionTemplate")
 
 
 script(type="text/template" id="currencyHistoryModelTemplate")
-    td.text-center UAH
-    td.text-center 01.01.2014
-    td.text-center 12.35
-    td.text-center +1.3%
+    td.text-center <%= currency_literal_code %>
+    td.text-center <%= currency_history_date_update %>
+    td.text-center <%= currency_history_value %>
+    td.text-center <%= currency_history_difference %>
 
 script(type="text/template" id="currenciesHistoryCollectionTemplate")
     div.panel-heading

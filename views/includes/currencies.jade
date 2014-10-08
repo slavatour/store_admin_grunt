@@ -1,17 +1,13 @@
 div.row.currenciesContainer
-    div.panel.panel-default
-        div.panel-heading
-            | Currency
-        div.panel-body
-            div.col-lg-5
-                div.currenciesList
-                div.alert.alert-info(role="alert")
-                    button.close(type="button" data-dismiss="alert")
-                        span(aria-hidden="true") &times;
-                        span.sr-only Close
-                    strong Currencies info!
-                    p You can not delete default currency.
-            div.col-lg-7.currenciesHistory
+    div.col-lg-5
+        div.currenciesList
+        div.alert.alert-info(role="alert")
+            button.close(type="button" data-dismiss="alert")
+                span(aria-hidden="true") &times;
+                span.sr-only Close
+            strong Currencies info!
+            p You can not delete default currency.
+    div.col-lg-7.currenciesHistory
                 
                     
 include templates/currenciesTemplate

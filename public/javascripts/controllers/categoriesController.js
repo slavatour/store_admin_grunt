@@ -34,8 +34,12 @@ define([
 				},this);
 			},
 			renderView: function () {
-				this.categoriesCollection.fetch();
-				Store.categoriesRegion.show(this.categoriesCollectionView);
+                var that = this;
+				this.categoriesCollection.fetch({
+                    success: function() {
+                        Store.categoriesRegion.show(that.categoriesCollectionView);
+                    }
+                });
 			}
 		});
 	});
