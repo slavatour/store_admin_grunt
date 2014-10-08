@@ -12,6 +12,7 @@ requirejs.config({
 //		spin: "libs/spin",
 		chartjs: "libs/js/chartjs/Chart",
 		bootstrap: "libs/js/bootstrap-sass/bootstrap.min",
+		moment: "libs/js/moment/moment-with-locales.min",
 		"bootstrap-switch": "libs/js/bootstrap-switch/bootstrap-switch.min",
 
 
@@ -19,12 +20,17 @@ requirejs.config({
 		Store: "app",
         //Router file
         routes: "routes/routes",
+        //configuration files
+        config: "common/config",
+
 		//models
 		SliderModel: "models/sliderModel",
 		CategoryModel: "models/categoryModel",
 		SubcategoryModel: "models/subcategoryModel",
         ProductModel: "models/productModel",
         BrandModel: "models/brandModel",
+        CurrencyModel: "models/currencyModel",
+        CurrencyHistoryModel: "models/currencyHistoryModel",
 
 		//collections
 		SlidersCollection: "collections/slidersCollection",
@@ -32,6 +38,8 @@ requirejs.config({
 		SubcategoriesCollection: "collections/subcategoriesCollection",
 		ProductsCollection: "collections/productsCollection",
 		BrandsCollection: "collections/brandsCollection",
+		CurrenciesCollection: "collections/currenciesCollection",
+		CurrenciesHistoryCollection: "collections/currenciesHistoryCollection",
 
 		//models views
 		SliderModelView: "views/sliderModelView",
@@ -41,6 +49,8 @@ requirejs.config({
 		ModalCategoryView: "views/modalCategoryView",
 		ProductModelView: "views/productModelView",
 		BrandModelView: "views/brandModelView",
+		CurrencyModelView: "views/currencyModelView",
+		CurrencyHistoryModelView: "views/currencyHistoryModelView",
 
 		//collections views
 		SlidersCollectionView: "views/slidersCollectionView",
@@ -48,13 +58,16 @@ requirejs.config({
 		SubcategoriesCollectionView: "views/subcategoriesCollectionView",
 		ProductsCollectionView: "views/productCollectionView",
 		BrandsCollectionView: "views/brandsCollectionViews",
+		CurrenciesCollectionView: "views/currenciesCollectionView",
+		CurrenciesHistoryCollectionView: "views/currenciesHistoryCollectionView",
 
 		//controllers
 		SliderController: "controllers/slidersController",
 		CategoriesController: "controllers/categoriesController",
 		SubcategoriesController: "controllers/subcategoriesController",
 		ProductsController: "controllers/productsController",
-		BrandsController: "controllers/brandsController"
+		BrandsController: "controllers/brandsController",
+        CurrenciesController: "controllers/currenciesController"
 	},
 	shim: {
 		jquery: {

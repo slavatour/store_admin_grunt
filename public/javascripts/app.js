@@ -8,7 +8,9 @@ define(["marionette"], function (Marionette) {
         sliderRegion: ".sliderContainer",
         warningRegion: ".warningContainer",
         productsRegion: ".productsContainer",
-        brandsRegion: ".brandsContainer"
+        brandsRegion: ".brandsContainer",
+        currenciesRegion: ".currenciesList",
+        currenciesHistoryRegion: ".currenciesHistory"
     });
 
     Store.addInitializer(function () {

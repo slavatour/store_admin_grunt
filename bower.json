@@ -53,8 +53,11 @@
       "js": "underscore.js"
     },
     "chartjs": {
-        "js": "Chart.js"
-    }
+      "js": "Chart.js"
+    },
+      "moment": {
+          "js": "min/moment-with-locales.min.js"
+      }
   },
   "devDependencies": {
     "backbone": "latest",
@@ -66,7 +69,8 @@
     "bootstrap-switch": "latest",
     "bootstrap-sass": "*",
     "chartjs": "~0.2.0",
-    "requirejs": "*"
+    "requirejs": "*",
+    "moment": "~2.8.3"
   },
   "license": "free",
   "ignore": [

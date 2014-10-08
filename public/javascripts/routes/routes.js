@@ -63,10 +63,8 @@ define(["marionette"], function (Marionette) {
                 selectorTab: '#tabCategories',
                 selectorBtn: "a[href='#currencies']"
             });
-            require(["jqueryui/datepicker"], function () {
-                $(".hasDatePicker").datepicker({
-                    dateFormat: "dd.mm.yy"
-                });
+            require(["CurrenciesController"], function (CurrenciesController) {
+                new CurrenciesController().renderView();
             });
         },
         examples: function () {
