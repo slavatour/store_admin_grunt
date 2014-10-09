@@ -55,9 +55,12 @@
     "chartjs": {
       "js": "Chart.js"
     },
-      "moment": {
-          "js": "min/moment-with-locales.min.js"
-      }
+    "moment": {
+      "js": "min/moment-with-locales.min.js"
+    },
+    "backbone-computedfields": {
+       "js": "lib/amd/*.min.js"
+    }
   },
   "devDependencies": {
     "backbone": "latest",
@@ -70,7 +73,8 @@
     "bootstrap-sass": "*",
     "chartjs": "~0.2.0",
     "requirejs": "*",
-    "moment": "~2.8.3"
+    "moment": "~2.8.3",
+    "backbone-computedfields": "~0.0.8"
   },
   "license": "free",
   "ignore": [

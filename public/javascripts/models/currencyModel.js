@@ -1,4 +1,4 @@
-define(["marionette", "Store"], function (Marionette, Store) {
+define(["marionette", "Store", "backbone-computedfields"], function (Marionette, Store, Computedfields) {
 
     Store.module("Currencies.Models", function(Models, Store, Backbone, Marionette, $, _){
         Models.CurrencyModel = Backbone.Model.extend({
@@ -13,6 +13,10 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 currency_last_update: null
             },
             urlRoot: "currency",
+            initialize: function() {
+                //initialize backbone-computedfields lib
+                this.computedFields = new Backbone.ComputedFields(this);
+            },
             validate: function(attr, options) {
                 var invalide = [];
                 if(!/^[A-Za-z]+$/.test(attr.currency_country)) {

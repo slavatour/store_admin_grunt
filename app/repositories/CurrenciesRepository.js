@@ -28,9 +28,18 @@ exports.CurrenciesRepository = function(conString) {
             callbackFunction({data: options.result, status:200});
         });
     };
-    self.saveCurrency = function(model, callbackFunction) {
-        console.log(model.headers["accept-language"]);
-        console.log(moment().locale("en_CA").format("L"));
+    self.saveCurrency = function(req, callbackFunction) {
+//        console.log(moment().locale(locale[0]).format());
+//        var locale = req.headers["accept-language"].split(",");
+        var data = req.body;
+        data.currency_last_update = new Date().toString();
+        var command = "INSERT INTO currencies (currency_country, currency_iso_code, currency_iso_number_code," +
+            "currency_numeric_code, currency_value, currency_last_update) VALUES ('" + data.currency_country +
+            "', '" + data.currency_iso_code + "', '" + data.currency_iso_number_code + "', '" + data.currency_numeric_code +
+            "', " + data.currency_value + ", '" + new Date().toString() + "');";
+        dbRepository.actionData(command, function (options) {
+            options.error ? callbackFunction({status:500, data: options.error}) : callbackFunction({status:200, data: {}});
+        });
     };
 
     return self;

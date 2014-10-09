@@ -3,6 +3,7 @@ requirejs.config({
 	paths: {
 		// vendor libs
 		backbone: "libs/js/backbone/backbone",//
+		"backbone-computedfields": "libs/js/backbone-computedfields/backbone.computedfields.min",//
 		jquery: "libs/js/jquery/jquery.min",//
         jqueryui: "libs/js/jquery-ui",//
 		marionette: "libs/js/backbone.marionette/backbone.marionette.min",//
