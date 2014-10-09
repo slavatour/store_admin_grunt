@@ -44,6 +44,13 @@ define([
                 this.currenciesHistoryCollectionView = new CurrenciesHistoryCollectionView({
                     collection: this.currenciesHistoryCollection
                 });
+                Store.reqres.setHandler("currencies:collection", function() {
+                    return this.currenciesCollection;
+                }, this);
+                Store.reqres.setHandler("currencies:collectionView", function() {
+                    return this.currenciesCollectionView;
+                }, this);
+
             },
             renderView: function() {
                 var that = this;

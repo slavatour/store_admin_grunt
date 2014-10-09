@@ -4,6 +4,7 @@ exports.CurrenciesController = function(conString) {
     var currenciesRepository = new CurrenciesRepository.CurrenciesRepository(conString);
     return {
         fetchCurrencies: currenciesRepository.fetchCurrencies,
+        saveCurrency: currenciesRepository.saveCurrency,
         fetchCurrenciesHistory: currenciesRepository.fetchCurrenciesHistory
     }
 }

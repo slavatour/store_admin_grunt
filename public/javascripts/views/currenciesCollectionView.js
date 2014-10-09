@@ -5,7 +5,18 @@ define(["marionette", "Store", "CurrencyModelView"], function (Marionette, Store
             template: "#currenciesCollectionTemplate",
             childView: CurrencyModelView,
             childViewContainer: ".currencyModelsContainer",
-            className: "panel panel-default subPanel"
+            className: "panel panel-default subPanel",
+            events: {
+                "click .addNewCurrency": "addNewCurrencyBtnClick"
+            },
+            addNewCurrencyBtnClick: function() {
+                require(["ModalCurrencyView"], function(ModalCurrencyView){
+                    var modalCurrencyView = new ModalCurrencyView({
+                        template: "#modalAddCurrency"
+                    });
+                    Store.modalRegionCurrency.show(modalCurrencyView);
+                });
+            }
         });
     });
 

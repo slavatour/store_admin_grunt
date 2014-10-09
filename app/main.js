@@ -104,6 +104,12 @@ app.get("/currencies", function (req, res) {
     });
 });
 
+app.post("/currency", function (req, res) {
+    currenciesController.saveCurrency(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.data));
+    });
+});
 
 app.get("/currenciesHistory", function (req, res) {
     currenciesController.fetchCurrenciesHistory(function(options){

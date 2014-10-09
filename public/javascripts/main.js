@@ -61,6 +61,9 @@ requirejs.config({
 		CurrenciesCollectionView: "views/currenciesCollectionView",
 		CurrenciesHistoryCollectionView: "views/currenciesHistoryCollectionView",
 
+        //modals
+        ModalCurrencyView: "views/modalCurrenciesView",
+
 		//controllers
 		SliderController: "controllers/slidersController",
 		CategoriesController: "controllers/categoriesController",
