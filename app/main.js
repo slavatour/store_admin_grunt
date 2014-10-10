@@ -100,20 +100,27 @@ app.get("/brands", function (req, res) {
 app.get("/currencies", function (req, res) {
     currenciesController.fetchCurrencies(function(options){
         res.header();
-        res.status(options.status).end(JSON.stringify(options.data));
+        res.status(options.status).end(JSON.stringify(options.result));
     });
 });
 
 app.post("/currency", function (req, res) {
     currenciesController.saveCurrency(req, function(options){
         res.header();
-        res.status(options.status).end(JSON.stringify(options.data));
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+app.delete("/currency/:id", function (req, res) {
+    currenciesController.deleteCurrency(req.params, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
     });
 });
 
 app.get("/currenciesHistory", function (req, res) {
     currenciesController.fetchCurrenciesHistory(function(options){
         res.header();
-        res.status(options.status).end(JSON.stringify(options.data));
+        res.status(options.status).end(JSON.stringify(options.result));
     });
 });

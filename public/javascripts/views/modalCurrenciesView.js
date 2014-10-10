@@ -11,7 +11,8 @@ define(["marionette", "Store", "CurrencyModel"], function (Marionette, Store, Cu
             },
             saveNewCurrency: function(event) {
                 event.preventDefault();
-                var currencyModel = new CurrencyModel();
+                var currencyModel = new CurrencyModel(),
+                    that = this;
                 currencyModel.set({
                     currency_country: $.trim($("#countryCurrency").val()),
                     currency_iso_code: $.trim($("#literalCodeCurrency").val()),
@@ -25,12 +26,31 @@ define(["marionette", "Store", "CurrencyModel"], function (Marionette, Store, Cu
                         success: function(data) {
                             Store.request("currencies:collection").fetch();
                             Store.request("currencies:collectionView").render();
+                            $("#currencyModal").modal("hide");
                         },
-                        error: function(data) {
-                            console.log(data);
+                        error: function(model, xhr, options) {
+                            require(["controllers/alertsController"], function(AlertsController) {
+                                var msg = "Server could not save currency, contact with server administrator or try later.";
+                                new AlertsController({
+                                    type: "error",
+                                    container: that.el,
+                                    message: msg
+                                });
+                            });
                         }
                     });
-                };
+                } else {
+                    console.log(currencyModel.validationError);
+                    console.log($.trim($("#valueCurrency").val()));
+                    that.showInvalidInputs(currencyModel.validationError);
+                }
+            },
+            showInvalidInputs: function(array) {
+                var that = this;
+                that.$el.find('input').parent().removeClass("has-error");
+                _.each(array, function(name){
+                    that.$el.find("[name='" + name + "']").parent().addClass("has-error");
+                });
             }
         });
     });

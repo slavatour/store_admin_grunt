@@ -71,7 +71,8 @@ requirejs.config({
 		SubcategoriesController: "controllers/subcategoriesController",
 		ProductsController: "controllers/productsController",
 		BrandsController: "controllers/brandsController",
-        CurrenciesController: "controllers/currenciesController"
+        CurrenciesController: "controllers/currenciesController",
+        AlertsController: "controllers/alertsController"
 	},
 	shim: {
 		jquery: {

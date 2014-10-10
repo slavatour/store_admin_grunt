@@ -1,4 +1,9 @@
-define(["marionette", "Store", "backbone-computedfields"], function (Marionette, Store, Computedfields) {
+define([
+    "marionette",
+    "Store",
+    "backbone-computedfields",
+    "moment"
+], function (Marionette, Store, Computedfields, moment) {
 
     Store.module("Currencies.Models", function(Models, Store, Backbone, Marionette, $, _){
         Models.CurrencyModel = Backbone.Model.extend({
@@ -16,10 +21,11 @@ define(["marionette", "Store", "backbone-computedfields"], function (Marionette,
             initialize: function() {
                 //initialize backbone-computedfields lib
                 this.computedFields = new Backbone.ComputedFields(this);
+                this.id = this.get("id");
             },
             validate: function(attr, options) {
                 var invalide = [];
-                if(!/^[A-Za-z]+$/.test(attr.currency_country)) {
+                if(!/^[\sA-Za-z]+$/.test(attr.currency_country)) {
                     invalide.push("currency_country");
                 }
                 if(!/^[A-Z]+$/.test(attr.currency_iso_code)) {
@@ -31,11 +37,20 @@ define(["marionette", "Store", "backbone-computedfields"], function (Marionette,
                 if(!/^(&[#]*[A-Za-z0-9]*;)$/.test(attr.currency_numeric_code)) {
                     invalide.push("currency_numeric_code");
                 }
-                if(!/^[0-9]*([,.][0-9]*)*$/.test(attr.currency_value)) {
+                if(!/^[0-9]{1,}([,.]*[0-9]{1,})$/.test(attr.currency_value)) {
                     invalide.push("currency_value");
                 }
                 if(invalide.length) {
                     return invalide;
+                }
+            },
+            computed: {
+                local_last_update_date: {
+                    depends: ["currency_last_update"],
+                    toJSON: true,
+                    get: function(fields) {
+                        return moment(fields.currency_last_update).locale(window.navigator.language).format("L");
+                    }
                 }
             }
         });

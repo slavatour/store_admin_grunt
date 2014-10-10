@@ -1,0 +1,31 @@
+script(type="text/template" id="errorAlertsTemplate")
+    div.alert.alert-danger.alert-dismissible(role="alert")
+        button.close(type="button" data-dismiss="alert")
+            span(aria-hidden="true") &times;
+            span.sr-only Close
+        strong Error! 
+        | <%= message %>
+
+script(type="text/template" id="warningAlertsTemplate")
+    div.alert.alert-warning.alert-dismissible(role="alert")
+        button.close(type="button" data-dismiss="alert")
+            span(aria-hidden="true") &times;
+            span.sr-only Close
+        strong Warning! 
+        | <%= message %>
+
+script(type="text/template" id="infoAlertsTemplate")
+    div.alert.alert-info.alert-dismissible(role="alert")
+        button.close(type="button" data-dismiss="alert")
+            span(aria-hidden="true") &times;
+            span.sr-only Close
+        strong Info! 
+        | <%= message %>
+        
+script(type="text/template" id="successAlertsTemplate")
+    div.alert.alert-success.alert-dismissible(role="alert")
+        button.close(type="button" data-dismiss="alert")
+            span(aria-hidden="true") &times;
+            span.sr-only Close
+        strong Success! 
+        | <%= message %>

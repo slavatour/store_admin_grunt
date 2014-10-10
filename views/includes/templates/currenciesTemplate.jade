@@ -5,19 +5,21 @@ script(type="text/template" id="currencyModelTemplate")
     td <%= currency_numeric_code %>
     td.text-center <%= currency_value %>
     td.text-center 0
-    td.text-center <%= currency_last_update %>
+    td.text-center <%= local_last_update_date %>
     td
         a.btn.btn-default.btn-xs.dropdown-toggle.pull-right(title="edit" data-toggle="dropdown")
             i.fa.fa-gears
         ul.dropdown-menu(role="menu")
             li
-                a(href="#") 
+                a 
                     i.fa.fa-wrench   
                     |edit
-            li
-                a(href="#") 
+            <%if(!currency_default) {%>
+            li.deleteCurrency
+                a
                     i.fa.fa-times
                     | delete
+            <%};%>
 
 script(type="text/template" id="currenciesCollectionTemplate")
     div.panel-heading
@@ -80,6 +82,7 @@ script(type="text/template" id="modalAddCurrency")
                         | &times;
                     h4.modal-title#myModalLabel Add new currency:
                 div.modal-body
+                    div.alertContainer
                     form(role="form")
                         div.form-group
                             label(for="countryCurrency") Country:
@@ -102,6 +105,3 @@ script(type="text/template" id="modalAddCurrency")
                             input#valueCurrency.form-control.tooltipHas(type="text" name="currency_value" pattern="[0-9]*([,.][0-9]*)" required data-toggle="tooltip" title="This input has to be literal only" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
                             p.help-block In relation to the base currency
                         button.btn.btn-default.saveNewCurrency(type="submit") Submit
-
-                div.modal-footer
-                    button(type="button" class="btn btn-default btn-xs" data-dismiss="modal") Close

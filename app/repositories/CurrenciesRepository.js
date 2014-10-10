@@ -11,10 +11,10 @@ exports.CurrenciesRepository = function(conString) {
         var command = "SELECT * FROM currencies ORDER BY currency_id";
         dbRepository.actionData(command, function(options){
             if(options.error) {
-                callbackFunction({data: options.error, status:500});
+                callbackFunction({result: options.error, status:500});
                 return;
             }
-            callbackFunction({data: options.result, status:200});
+            callbackFunction({result: options.result, status:200});
         });
     };
     self.fetchCurrenciesHistory = function(callbackFunction) {
@@ -22,15 +22,13 @@ exports.CurrenciesRepository = function(conString) {
             "LEFT JOIN currencies c ON (c.currency_id = ch.currency_parent_id) ORDER BY currency_history_date_update;";
         dbRepository.actionData(command, function(options){
             if(options.error) {
-                callbackFunction({data: options.error, status:500});
+                callbackFunction({result: options.error, status:500});
                 return;
             }
-            callbackFunction({data: options.result, status:200});
+            callbackFunction({result: options.result, status:200});
         });
     };
     self.saveCurrency = function(req, callbackFunction) {
-//        console.log(moment().locale(locale[0]).format());
-//        var locale = req.headers["accept-language"].split(",");
         var data = req.body;
         data.currency_last_update = new Date().toString();
         var command = "INSERT INTO currencies (currency_country, currency_iso_code, currency_iso_number_code," +
@@ -38,7 +36,14 @@ exports.CurrenciesRepository = function(conString) {
             "', '" + data.currency_iso_code + "', '" + data.currency_iso_number_code + "', '" + data.currency_numeric_code +
             "', " + data.currency_value + ", '" + new Date().toString() + "');";
         dbRepository.actionData(command, function (options) {
-            options.error ? callbackFunction({status:500, data: options.error}) : callbackFunction({status:200, data: {}});
+            options.error ? callbackFunction({status:500, result: options.error}) : callbackFunction({status:200, result: {}});
+        });
+    };
+    self.deleteCurrency = function(params, callbackFunction) {
+        var command = "DELETE FROM currencies WHERE id=" + params.id + ";";
+        dbRepository.actionData(command, function(options){
+            console.log(options);
+            options.error ? callbackFunction({status:500, result: options.error}) : callbackFunction({status:200, result: {}});
         });
     };
 
