@@ -8026,13 +8026,26 @@ body .main .contentContainer .productsContainer {
 .currenciesContainer {
   display: none;
 }
-/* line 5, ../sass/imports/_currencyTab.scss */
+/* line 4, ../sass/imports/_currencyTab.scss */
+.currenciesContainer .currenciesHistoryBlock .historyView {
+  margin-left: 10px;
+}
+/* line 6, ../sass/imports/_currencyTab.scss */
+.currenciesContainer .currenciesHistoryBlock .historyView.active {
+  color: inherit;
+  cursor: default;
+}
+/* line 17, ../sass/imports/_currencyTab.scss */
 .currenciesContainer table tr th {
   position: relative;
 }
-/* line 8, ../sass/imports/_currencyTab.scss */
+/* line 20, ../sass/imports/_currencyTab.scss */
 .currenciesContainer table tr td {
   position: relative;
+}
+/* line 22, ../sass/imports/_currencyTab.scss */
+.currenciesContainer table tr td .editableInput {
+  font-size: 80%;
 }
 
 /* line 1, ../sass/widgets/_switch.scss */

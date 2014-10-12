@@ -1,5 +1,17 @@
 .currenciesContainer {
   display: none;
+  .currenciesHistoryBlock {
+    .historyView {
+      margin-left: 10px;
+      &.active {
+        color: inherit;
+        cursor: default;
+      }
+    }
+  }
+  #currenciesHistoryChartsContainer {
+//    display: none;
+  }
   table {
     tr {
       th {
@@ -7,6 +19,9 @@
       }
       td {
         position: relative;
+        .editableInput {
+          font-size: 80%;
+        }
       }
     }
   }

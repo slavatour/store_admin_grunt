@@ -1,16 +1,16 @@
 script(type="text/template" id="currencyModelTemplate")
-    td <%= currency_country %>
-    td <%= currency_iso_code %>
-    td <%= currency_iso_number_code %>
-    td <%= currency_numeric_code %>
-    td.text-center <%= currency_value %>
+    td.text-center.editable(data-model="currency_country") <%= currency_country %>
+    td.text-center.editable(data-model="currency_iso_code") <%= currency_iso_code %>
+    td.text-center.editable(data-model="currency_iso_number_code") <%= currency_iso_number_code %>
+    td.text-center.editable(data-model="currency_numeric_code") <%= currency_numeric_code %>
+    td.text-center.editable(data-model="currency_value") <%= currency_value %>
     td.text-center 0
-    td.text-center <%= local_last_update_date %>
+    td.text-center(data-model="local_last_update_date") <%= local_last_update_date %>
     td
         a.btn.btn-default.btn-xs.dropdown-toggle.pull-right(title="edit" data-toggle="dropdown")
             i.fa.fa-gears
         ul.dropdown-menu(role="menu")
-            li
+            li.editModalCurrency(data-toggle="modal" data-target="#currencyModal")
                 a 
                     i.fa.fa-wrench   
                     |edit
@@ -47,8 +47,12 @@ script(type="text/template" id="currencyHistoryModelTemplate")
     td.text-center <%= currency_history_difference %>
 
 script(type="text/template" id="currenciesHistoryCollectionTemplate")
-    div.panel-heading
+    div.panel-heading.currenciesHistoryBlock
         strong Currencies history
+        a.pull-right.historyView
+            i.fa.fa-bar-chart.fa-lg(title="History in charts")
+        a.pull-right.historyView.active
+            i.fa.fa-list-alt.fa-lg(title="History in table")
     div.panel-body
         table.table.table-condensed.table-hover
             thead
@@ -73,6 +77,7 @@ script(type="text/template" id="currenciesHistoryCollectionTemplate")
                             label.input-group-addon(for="startDate")
                                 i.fa.fa-calendar.fa-lg
             tbody.currencyHistoryModelsContainer
+        canvas#currenciesHistoryChartsContainer.col-lg-12.hide
 
 script(type="text/template" id="modalAddCurrency")
         div.modal-dialog.modal-lg
@@ -83,25 +88,85 @@ script(type="text/template" id="modalAddCurrency")
                     h4.modal-title#myModalLabel Add new currency:
                 div.modal-body
                     div.alertContainer
-                    form(role="form")
+                    form.form-horizontal(role="form")
                         div.form-group
-                            label(for="countryCurrency") Country:
-                            input#countryCurrency.form-control.tooltipHas(type="text" name="currency_country" pattern="^[A-Za-z]+$" required data-toggle="tooltip" title="This input has to be literal only" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
-                            p.help-block Example: United States of America
+                            label.col-sm-4(for="countryCurrency") Country:
+                            div.col-sm-8
+                                input#countryCurrency.form-control.input-sm.tooltipHas(type="text" name="currency_country" pattern="^[A-Za-z]+$" required data-toggle="tooltip" title="This input has to be literal only" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
+                                p.help-block
+                                    small Example: United States of America
                         div.form-group
-                            label(for="literalCodeCurrency") Code ISO 4217:
-                            input#literalCodeCurrency.form-control.tooltipHas(type="text" name="currency_iso_code" pattern="^[A-Z]+$" required data-toggle="tooltip" title="This input has to contain capital letters only (according to ISO 4217)" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
-                            p.help-block Example: USD
+                            label.col-sm-4(for="literalCodeCurrency") Code ISO 4217:
+                            div.col-sm-8
+                                input#literalCodeCurrency.form-control.input-sm.tooltipHas(type="text" name="currency_iso_code" pattern="^[A-Z]+$" required data-toggle="tooltip" title="This input has to contain capital letters only (according to ISO 4217)" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
+                                p.help-block
+                                    small Example: USD
                         div.form-group
-                            label(for="literalCodeNumberCurrency") Code number ISO 4217:
-                            input#literalCodeNumberCurrency.form-control.tooltipHas(type="text" name="currency_iso_number_code" pattern="[0-9]{3}" required data-toggle="tooltip" title="This input has to contain number only (according to ISO 4217)" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
-                            p.help-block Example: 840
+                            label.col-sm-4(for="literalCodeNumberCurrency") Code number ISO 4217:
+                            div.col-sm-8
+                                input#literalCodeNumberCurrency.form-control.input-sm.tooltipHas(type="text" name="currency_iso_number_code" pattern="[0-9]{3}" required data-toggle="tooltip" title="This input has to contain number only (according to ISO 4217)" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
+                                p.help-block
+                                    small Example: 840
                         div.form-group
-                            label(for="numericCodeCurrency") Currency HTML code:
-                            input#numericCodeCurrency.form-control(type="text" name="currency_numeric_code" pattern="&[A-Za-z0-9]*;" required)
-                            p.help-block Example: &amp;#36; for $
+                            label.col-sm-4(for="numericCodeCurrency") Currency HTML code:
+                            div.col-sm-8
+                                input#numericCodeCurrency.form-control.input-sm(type="text" name="currency_numeric_code" pattern="&[A-Za-z0-9]*;" required)
+                                p.help-block
+                                 small Example: &amp;#36; for $
                         div.form-group
-                            label(for="valueCurrency") Currency value:
-                            input#valueCurrency.form-control.tooltipHas(type="text" name="currency_value" pattern="[0-9]*([,.][0-9]*)" required data-toggle="tooltip" title="This input has to be literal only" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
-                            p.help-block In relation to the base currency
-                        button.btn.btn-default.saveNewCurrency(type="submit") Submit
+                            label.col-sm-4(for="valueCurrency") Currency value:
+                            div.col-sm-8
+                                input#valueCurrency.form-control.input-sm.tooltipHas(type="text" name="currency_value" pattern="[0-9]*([,.][0-9]*)" required data-toggle="tooltip" title="This input has to be literal only" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
+                                p.help-block
+                                    small In relation to the base currency
+                        div.form-group
+                            div.col-sm-2.col-sm-offset-10
+                                button.btn.btn-default.btn-sm.saveNewCurrency(type="submit") Submit
+
+script(type="text/template" id="modalEditCurrency")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Edit currency:
+            div.modal-body
+                div.alertContainer
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-4(for="countryCurrency") Country:
+                        div.col-sm-8
+                            input#countryCurrency.form-control.input-sm.tooltipHas(type="text" value!="<%= currency_country %>" name="currency_country" pattern="^[A-Za-z]+$" required data-toggle="tooltip" title="This input has to be literal only" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
+                            p.help-block
+                                small Example: United States of America
+                    div.form-group
+                        label.col-sm-4(for="literalCodeCurrency") Code ISO 4217:
+                        div.col-sm-8
+                            input#literalCodeCurrency.form-control.input-sm.tooltipHas(type="text" value!="<%= currency_iso_code %>" name="currency_iso_code" pattern="^[A-Z]+$" required data-toggle="tooltip" title="This input has to contain capital letters only (according to ISO 4217)" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
+                            p.help-block
+                                small Example: USD
+                    div.form-group
+                        label.col-sm-4(for="literalCodeNumberCurrency") Code number ISO 4217:
+                        div.col-sm-8
+                            input#literalCodeNumberCurrency.form-control.tooltipHas(type="text" value!="<%= currency_iso_number_code %>" name="currency_iso_number_code" pattern="[0-9]{3}" required data-toggle="tooltip" title="This input has to contain number only (according to ISO 4217)" data-placement="top" data-container=".modal-body" data-trigger="hover focus")
+                            p.help-block
+                                small Example: 840
+                    div.form-group
+                        label.col-sm-4(for="numericCodeCurrency") Currency HTML code:
+                        div.col-sm-8
+                            input#numericCodeCurrency.form-control(type="text" value!="<%= currency_numeric_code_for_html %>" name="currency_numeric_code" pattern="&[A-Za-z0-9]*;" required)
+                            p.help-block
+                                small Example: &amp;#36; for $
+                    div.form-group
+                        label.col-sm-4(for="valueCurrency") Currency value:
+                        div.col-sm-8
+                            <% if(currency_default) {%>
+                            input#valueCurrency.form-control.tooltipHas(type="text" value!="<%= currency_value %>" name="currency_value" disabled required)
+                            <% }else{ %>
+                            input#valueCurrency.form-control.tooltipHas(type="text" value!="<%= currency_value %>" name="currency_value" required)
+                            <% };%>
+                            p.help-block
+                                small In relation to the base currency
+                    div.form-group
+                        div.col-sm-2.col-sm-offset-10
+                            button.btn.btn-default.btn-sm.saveEditCurrency(type="submit") Submit

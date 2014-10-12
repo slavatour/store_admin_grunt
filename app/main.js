@@ -111,6 +111,13 @@ app.post("/currency", function (req, res) {
     });
 });
 
+app.put("/currency/:id", function (req, res) {
+    currenciesController.putCurrency(req.params.id, req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
 app.delete("/currency/:id", function (req, res) {
     currenciesController.deleteCurrency(req.params, function(options){
         res.header();

@@ -1,13 +1,16 @@
 div.row.currenciesContainer
-    div.col-lg-6
-        div.currenciesList
-        div.alert.alert-info(role="alert")
-            button.close(type="button" data-dismiss="alert")
-                span(aria-hidden="true") &times;
-                span.sr-only Close
-            strong Currencies info!
-            p You can not delete default currency.
-    div.col-lg-6.currenciesHistory
+    ol.breadcrumb
+        li
+            a(href="#") Home
+        li.active Currencies
+    div.currenciesList.col-lg-8
+    div.alert.alert-info.col-lg-4(role="alert")
+        button.close(type="button" data-dismiss="alert")
+            span(aria-hidden="true") &times;
+            span.sr-only Close
+        strong Currencies info!
+        p You can not delete default currency.
+    div.col-lg-12.currenciesHistory
 div#currencyModal.modal.fade.bs-example-modal-lg(tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true")
                 
                     

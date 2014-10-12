@@ -5,7 +5,9 @@ define(["marionette", "Store"], function (Marionette, Store) {
             template: "#currencyModelTemplate",
             tagName: "tr",
             events: {
-                "click .deleteCurrency": "deleteCurrency"
+                "click .deleteCurrency": "deleteCurrency",
+                "dblclick .editable": "editParameter",
+                "click .editModalCurrency": "openModalEditCurrency"
             },
             deleteCurrency: function() {
                 var that = this;
@@ -22,6 +24,16 @@ define(["marionette", "Store"], function (Marionette, Store) {
                         });
 
                     }
+                });
+            },
+            openModalEditCurrency: function() {
+                var that = this;
+                require(["ModalCurrencyView"], function(ModalCurrencyView) {
+                    var modalCurrencyView = new ModalCurrencyView({
+                        template: "#modalEditCurrency",
+                        model: that.model
+                    });
+                    Store.modalRegionCurrency.show(modalCurrencyView);
                 });
             }
         });

@@ -6,6 +6,7 @@ exports.CurrenciesController = function(conString) {
         fetchCurrencies: currenciesRepository.fetchCurrencies,
         saveCurrency: currenciesRepository.saveCurrency,
         deleteCurrency: currenciesRepository.deleteCurrency,
+        putCurrency: currenciesRepository.putCurrency,
         fetchCurrenciesHistory: currenciesRepository.fetchCurrenciesHistory
     }
-}
+};

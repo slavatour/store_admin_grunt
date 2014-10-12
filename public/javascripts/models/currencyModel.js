@@ -37,7 +37,7 @@ define([
                 if(!/^(&[#]*[A-Za-z0-9]*;)$/.test(attr.currency_numeric_code)) {
                     invalide.push("currency_numeric_code");
                 }
-                if(!/^[0-9]{1,}([,.]*[0-9]{1,})$/.test(attr.currency_value)) {
+                if(!/^[1-9]{1,}$|^[0-9]{1,}[,.]([0-9]{1,})$/.test(attr.currency_value)) {
                     invalide.push("currency_value");
                 }
                 if(invalide.length) {
@@ -50,6 +50,15 @@ define([
                     toJSON: true,
                     get: function(fields) {
                         return moment(fields.currency_last_update).locale(window.navigator.language).format("L");
+                    }
+                },
+                currency_numeric_code_for_html: {
+                    depends: ["currency_numeric_code"],
+                    toJSON: true,
+                    get: function(fields) {
+                        var code;
+                        fields.currency_numeric_code ? code = fields.currency_numeric_code.replace(/^&/, "&amp;") : code = null;
+                        return code;
                     }
                 }
             }
