@@ -58,12 +58,14 @@ define(["marionette", "Store", "CurrencyModel"], function (Marionette, Store, Cu
                 if (!that.model.validationError) {
                     that.model.save({}, {
                         wait: true,
-                        success: function() {
+                        success: function(model, response, options) {
+                            console.log(response);
                             Store.request("currencies:collection").fetch();
                             Store.request("currencies:collectionView").render();
                             $("#currencyModal").modal("hide");
                         },
-                        error: function() {
+                        error: function(model, xhr, options) {
+                            console.log(xhr);
                             require(["controllers/alertsController"], function(AlertsController) {
                                 var msg = "Server could not save currency's changes, contact with server administrator or try later.";
                                 new AlertsController({

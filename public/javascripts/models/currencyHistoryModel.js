@@ -9,7 +9,21 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 currency_history_difference: null,
                 currency_literal_code: null
             },
-            urlRoot: "currencyHistory"
+            urlRoot: "currencyHistory",
+            initialize: function() {
+                //initialize backbone-computedfields lib
+                this.computedFields = new Backbone.ComputedFields(this);
+                this.id = this.get("id");
+            },
+            computed: {
+                local_history_last_update_date: {
+                    depends: ["currency_history_date_update"],
+                    toJSON: true,
+                    get: function(fields) {
+                        return moment(fields.currency_history_date_update).locale(window.navigator.language).format("L");
+                    }
+                }
+            }
         });
     });
 

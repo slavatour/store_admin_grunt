@@ -32,13 +32,13 @@ exports.CurrenciesRepository = function(conString) {
     self.saveCurrency = function(req, callbackFunction) {
         var data = req.body;
         data.currency_last_update = new Date().toString();
-        var command = "BEGIN; INSERT INTO currencies (currency_country, currency_iso_code, currency_iso_number_code," +
-            "currency_numeric_code, currency_value, currency_last_update) VALUES ('" + data.currency_country +
+        var currencyCommand = "INSERT INTO currencies (currency_country, currency_iso_code, currency_iso_number_code," +
+        "currency_numeric_code, currency_value, currency_last_update) VALUES ('" + data.currency_country +
             "', '" + data.currency_iso_code + "', '" + data.currency_iso_number_code + "', '" + data.currency_numeric_code +
-            "', " + data.currency_value + ", '" + new Date().toString() + "');" +
-            "INSERT INTO currencieshistory (currency_parent_id, currency_history_date_update," +
-            "currency_history_value, currency_history_difference) VALUES (" + data.currency_id +
-            ", '" + new Date().toString() + "', " + data.currency_value + ", 0);";
+            "', " + data.currency_value + ", '" + new Date().toString() + "') RETURNING id;"
+        var command = "BEGIN; INSERT INTO currencieshistory (currency_parent_id, currency_history_date_update," +
+            "currency_history_value, currency_history_difference) VALUES ((" + currencyCommand + "), " +
+            ", '" + new Date().toString() + "', " + data.currency_value + ", 0); COMMIT;";
         dbRepository.actionData(command, function (options) {
             options.error ? callbackFunction({status:500, result: options.error}) : callbackFunction({status:200, result: {}});
         });
@@ -57,8 +57,12 @@ exports.CurrenciesRepository = function(conString) {
         dbRepository.actionData(command, function(options){
             if(options.error) {
                 callbackFunction({result: options.error, status: 500});
+                return;
             }
-            options.result.length ? isValueNew = !(1*options.result.currency_value === 1*data.currency_value) : isValueNew = true;
+            console.log(options.result);
+            console.log(!(1*options.result.currency_value === 1*data.currency_value));
+            console.log(data);
+            options.result.length ? isValueNew = !(1*options.result[0].currency_history_value === 1*data.currency_value) : isValueNew = true;
             command = "BEGIN;";
             if(isValueNew) {
                 command += "INSERT INTO currencieshistory (currency_parent_id, currency_history_date_update," +
@@ -66,14 +70,15 @@ exports.CurrenciesRepository = function(conString) {
                     ", '" + new Date().toString() + "', " + data.currency_value + ", " +
                     (options.result.currency_history_value ? data.currency_value - options.result.currency_history_value : 0) + ");";
             }
-            command += "INSERT INTO currencies (currency_country, currency_iso_code, currency_iso_number_code, " +
-                "currency_numeric_code, currency_value, currency_last_update) VALUES ('" + data.currency_country +
-                "', '" + data.currency_iso_code + "', " + data.currency_iso_number_code + ", '" +
-                data.currency_numeric_code + "', " + data.currency_value + ", '" + new Date().toString() + "');";
+            command += "UPDATE currencies SET currency_country = '" + data.currency_country + "', currency_iso_code = '" +
+                data.currency_iso_code + "', currency_iso_number_code = " + data.currency_iso_number_code +
+                ",currency_numeric_code = '" + data.currency_numeric_code + "', currency_value = " + data.currency_value +
+                ", currency_last_update = '" + new Date().toString() + "' WHERE currency_id = " + id + ";";
             command += "COMMIT;";
             dbRepository.actionData(command, function(options){
                 if(options.error) {
                     callbackFunction({result: options.error, status: 500});
+                    return;
                 }
                 callbackFunction({result: {}, status: 200});
             });
