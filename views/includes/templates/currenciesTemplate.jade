@@ -42,6 +42,8 @@ script(type="text/template" id="currenciesCollectionTemplate")
 
 script(type="text/template" id="currencyHistoryModelTemplate")
     td.text-center <%= currency_iso_code %>
+    td.text-center <%= currency_iso_number_code %>
+    td.text-center <%= currency_numeric_code %>
     td.text-center <%= local_history_last_update_date %>
     td.text-center <%= currency_history_value %>
     td.text-center <%= currency_history_difference %>
@@ -57,16 +59,13 @@ script(type="text/template" id="currenciesHistoryCollectionTemplate")
         table.table.table-condensed.table-hover
             thead
                 tr.text-muted
-                    th.text-center Currency
-                    th.text-center Date
-                    th.text-center Value
-                    th.text-center Difference
-                tr.text-muted
                     th
                         select.form-control.input-sm.col-xs-2
                             option USD
                             option EUR
                             option UAH
+                    th
+                    th
                     th(colspan="3")
                         div.input-group.input-group-sm.pull-right.col-xs-3
                             input.form-control.hasDatePicker#andDate(tepe="text" value="31.01.2014")
@@ -76,6 +75,13 @@ script(type="text/template" id="currenciesHistoryCollectionTemplate")
                             input.form-control.hasDatePicker#startDate(tepe="text" value="01.01.2014")
                             label.input-group-addon(for="startDate")
                                 i.fa.fa-calendar.fa-lg
+                tr.text-muted
+                    th.text-center Currency
+                    th.text-center Code
+                    th.text-center Symbol
+                    th.text-center Date
+                    th.text-center Value
+                    th.text-center Difference
             tbody.currencyHistoryModelsContainer
         canvas#currenciesHistoryChartsContainer.col-lg-12.hide
 

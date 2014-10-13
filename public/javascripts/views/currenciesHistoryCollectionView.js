@@ -8,6 +8,10 @@ define(["marionette", "Store", "config", "CurrencyHistoryModelView", "moment"], 
             className: "panel panel-default subPanel",
             onShow: function() {
                 this.initializeDatepicker();
+                require(["jqueryui/datepicker"], function() {
+                    console.log($("#startDate").datepicker("getDate"));
+                    console.log($("#andDate").datepicker("getDate"));
+                });
             },
             onRender: function() {
                 this.initCharts();

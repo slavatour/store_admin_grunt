@@ -26,7 +26,9 @@ define(["marionette", "Store", "CurrencyModel"], function (Marionette, Store, Cu
                         wait: true,
                         success: function(data) {
                             Store.request("currencies:collection").fetch();
+                            Store.request("categoryHistory:collection").fetch();
                             Store.request("currencies:collectionView").render();
+                            Store.request("currenciesHistory:collectionView").render();
                             $("#currencyModal").modal("hide");
                         },
                         error: function(model, xhr, options) {
@@ -61,7 +63,9 @@ define(["marionette", "Store", "CurrencyModel"], function (Marionette, Store, Cu
                         success: function(model, response, options) {
                             console.log(response);
                             Store.request("currencies:collection").fetch();
+                            Store.request("categoryHistory:collection").fetch();
                             Store.request("currencies:collectionView").render();
+                            Store.request("currenciesHistory:collectionView").render();
                             $("#currencyModal").modal("hide");
                         },
                         error: function(model, xhr, options) {

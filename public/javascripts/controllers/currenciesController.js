@@ -47,10 +47,15 @@ define([
                 Store.reqres.setHandler("currencies:collection", function() {
                     return this.currenciesCollection;
                 }, this);
+                Store.reqres.setHandler("categoryHistory:collection", function() {
+                    return this.currenciesHistoryCollection;
+                }, this);
                 Store.reqres.setHandler("currencies:collectionView", function() {
                     return this.currenciesCollectionView;
                 }, this);
-
+                Store.reqres.setHandler("currenciesHistory:collectionView", function() {
+                    return this.currenciesHistoryCollectionView;
+                }, this);
             },
             renderView: function() {
                 var that = this;

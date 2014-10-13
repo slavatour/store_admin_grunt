@@ -13,6 +13,10 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 var that = this;
                 this.model.destroy({
                     wait: true,
+                    success: function() {
+                        Store.request("categoryHistory:collection").fetch();
+                        Store.request("currenciesHistory:collectionView").render();
+                    },
                     error: function(model, xhr, options) {
                         require(["AlertsController"], function(AlertsController){
                             var msg = "Could't delete currency, contact with server administrator or try later.";
