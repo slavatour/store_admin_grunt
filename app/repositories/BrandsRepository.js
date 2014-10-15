@@ -7,21 +7,35 @@ exports.BrandsRepository = function(conString) {
         dbRepository = new DbRepository.DatabaseRepository(conString);
 
     self.fetchBrands = function(callbackFunction) {
-        var folder = path.resolve(__dirname, "../../", "public/images/temp/");
-        var command = "SELECT" +
+        var command = "SELECT " +
             "id, " +
             "brand_id, " +
             "brand_name, " +
             "brand_description, " +
-            "brand_url, " +
-            "lo_export(brand_photo, " + folder + ") "+
+            "brand_url " +
             "FROM brands;";
         dbRepository.actionData(command, function(options){
             if (options.error) {
-                callbackFunction({error:options.error, status: 500});
-            } else {
-                callbackFunction({data: options.result, status: 200});
+                callbackFunction({error: options.error, status: 500});
+                return;
             }
+            for(var i= 0; i < options.result.length; i++) {
+                var model = options.result[i],
+                    random = Math.random().toString(16).slice(2),
+                    folder = path.resolve(__dirname, "../../", "public/images/temp/", random + ".png"),
+                    command = "SELECT lo_export(brand_photo, '" + folder + "') FROM brands WHERE brand_id = " + model.brand_id;
+
+                dbRepository.actionData(command, function(options){
+                    if(options.error) {
+                        callbackFunction({error: options.error, status: 500});
+                        return;
+                    }
+                    model.brand_photo = random + ".png";
+                    console.log(model);
+                });
+            }
+            console.log(options);
+            callbackFunction({data: options.result, status: 200});
         });
     };
     self.saveBrands = function(req, callbackFunction) {

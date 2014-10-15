@@ -11,6 +11,9 @@ define(["marionette", "Store", "BrandModelView", "views/spinnerView"], function 
             initialize: function() {
                 Spinner.initialize(".brandsTable");
             },
+            onShow: function() {
+                console.log(this.collection.toJSON())
+            },
             openNewBrandModal: function(event) {
                 require(["BrandModel", "ModalBrandsView"], function(BrandModel, ModalBrandsView){
                     var modalBrandsView = new ModalBrandsView({
