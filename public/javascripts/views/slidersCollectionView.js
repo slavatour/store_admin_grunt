@@ -19,10 +19,10 @@ define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable
                 $(".tooltipHas").tooltip();
             },
             initialize: function () {
-                Spinner.initialize(".sliderContainer");
+                Spinner.initialize(".sliderTable");
             },
             changeCollection: function () {
-//                this.render();
+
             },
 			addNewSlider: function (e) {
 				var modal = new Store.Common.Views.ModalView({

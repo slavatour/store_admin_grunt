@@ -125,9 +125,20 @@ app.delete("/currency/:id", function (req, res) {
     });
 });
 
-app.get("/currenciesHistory", function (req, res) {
-    currenciesController.fetchCurrenciesHistory(function(options){
+app.get("/currenciesHistory/:from/:to/:id", function (req, res) {
+    currenciesController.fetchCurrenciesHistory(req.params, function(options){
         res.header();
         res.status(options.status).end(JSON.stringify(options.result));
     });
+});
+
+
+app.post("/upload", function (req, res) {
+    var status = 500,
+        response = {};
+    if (req.files.file) {
+        status = 200;
+        response = {path: req.files.file.path};
+    }
+    res.status(status).end(JSON.stringify(response));
 });

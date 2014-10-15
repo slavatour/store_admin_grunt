@@ -44,10 +44,8 @@ requirejs.config({
 
 		//models views
 		SliderModelView: "views/sliderModelView",
-		ModalSliderView: "views/modalSliderView",
 		CategoryModelView: "views/categoryModelView",
 		SubcategoryModelView: "views/subcategoryModelView",
-		ModalCategoryView: "views/modalCategoryView",
 		ProductModelView: "views/productModelView",
 		BrandModelView: "views/brandModelView",
 		CurrencyModelView: "views/currencyModelView",
@@ -63,6 +61,9 @@ requirejs.config({
 		CurrenciesHistoryCollectionView: "views/currenciesHistoryCollectionView",
 
         //modals
+        ModalCategoryView: "views/modalCategoryView",
+        ModalBrandsView: "views/modalBrandsView",
+        ModalSliderView: "views/modalSliderView",
         ModalCurrencyView: "views/modalCurrenciesView",
 
 		//controllers

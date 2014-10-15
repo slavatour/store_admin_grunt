@@ -7872,152 +7872,178 @@ body .main .contentContainer .productsContainer {
   }
 }
 
-/* line 3, ../sass/imports/_categoriesTab.scss */
+/* line 1, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer {
+  display: none;
+}
+/* line 4, ../sass/imports/_categoriesTab.scss */
 #categoriesContainer .categoriesPanelHeader .addNewCategory {
   margin: 10px;
 }
-/* line 6, ../sass/imports/_categoriesTab.scss */
+/* line 7, ../sass/imports/_categoriesTab.scss */
 #categoriesContainer .categoriesPanelHeader .categoriesPanelTitle {
   display: inline-block;
 }
-/* line 11, ../sass/imports/_categoriesTab.scss */
+/* line 12, ../sass/imports/_categoriesTab.scss */
 #categoriesContainer .categoriesContainerView table {
   font-size: 16px;
 }
-/* line 14, ../sass/imports/_categoriesTab.scss */
+/* line 15, ../sass/imports/_categoriesTab.scss */
 #categoriesContainer .categoriesContainerView table thead tr {
   height: 40px;
 }
-/* line 17, ../sass/imports/_categoriesTab.scss */
+/* line 18, ../sass/imports/_categoriesTab.scss */
 #categoriesContainer .categoriesContainerView table thead a {
   color: #656565;
 }
-/* line 24, ../sass/imports/_categoriesTab.scss */
+/* line 25, ../sass/imports/_categoriesTab.scss */
 #categoriesContainer .categoriesContainerView table tbody {
   display: none;
   background: rgba(244, 244, 244, 0.3);
 }
-/* line 30, ../sass/imports/_categoriesTab.scss */
+/* line 31, ../sass/imports/_categoriesTab.scss */
 #categoriesContainer .categoriesContainerView table .level .categoryName a {
   color: #656565;
   text-decoration: none;
 }
-/* line 33, ../sass/imports/_categoriesTab.scss */
+/* line 34, ../sass/imports/_categoriesTab.scss */
 #categoriesContainer .categoriesContainerView table .level .categoryName a i {
   margin-right: 7px;
 }
 
-/* line 42, ../sass/imports/_categoriesTab.scss */
+/* line 43, ../sass/imports/_categoriesTab.scss */
 .level1 .categoryName {
   padding-left: 10px;
 }
 
-/* line 45, ../sass/imports/_categoriesTab.scss */
+/* line 46, ../sass/imports/_categoriesTab.scss */
 .level2 .categoryName {
   padding-left: 30px;
 }
 
-/* line 48, ../sass/imports/_categoriesTab.scss */
+/* line 49, ../sass/imports/_categoriesTab.scss */
 .level3 .categoryName {
   padding-left: 50px;
 }
 
-/* line 51, ../sass/imports/_categoriesTab.scss */
+/* line 52, ../sass/imports/_categoriesTab.scss */
 .level4 .categoryName {
   padding-left: 70px;
 }
 
-/* line 54, ../sass/imports/_categoriesTab.scss */
+/* line 55, ../sass/imports/_categoriesTab.scss */
 .level5 .categoryName {
   padding-left: 90px;
 }
 
-/* line 57, ../sass/imports/_categoriesTab.scss */
+/* line 58, ../sass/imports/_categoriesTab.scss */
 .level6 .categoryName {
   padding-left: 110px;
 }
 
-/* line 60, ../sass/imports/_categoriesTab.scss */
+/* line 61, ../sass/imports/_categoriesTab.scss */
 .level7 .categoryName {
   padding-left: 130px;
 }
 
-/* line 63, ../sass/imports/_categoriesTab.scss */
+/* line 64, ../sass/imports/_categoriesTab.scss */
 .level8 .categoryName {
   padding-left: 150px;
 }
 
-/* line 66, ../sass/imports/_categoriesTab.scss */
+/* line 67, ../sass/imports/_categoriesTab.scss */
 .level9 .categoryName {
   padding-left: 170px;
 }
 
-/* line 69, ../sass/imports/_categoriesTab.scss */
+/* line 70, ../sass/imports/_categoriesTab.scss */
 .level10 .categoryName {
   padding-left: 190px;
 }
 
-/* line 8, ../sass/imports/_productsTab.scss */
+/* line 1, ../sass/imports/_productsTab.scss */
+.productsContainer {
+  display: none;
+}
+/* line 9, ../sass/imports/_productsTab.scss */
 .productsContainer .productsTable .headerFilter th input, .productsContainer .productsTable .headerFilter th select {
   height: 30px;
 }
-/* line 15, ../sass/imports/_productsTab.scss */
+/* line 16, ../sass/imports/_productsTab.scss */
 .productsContainer .productsTable .productsContainerView tr td {
   vertical-align: middle;
 }
-/* line 17, ../sass/imports/_productsTab.scss */
+/* line 18, ../sass/imports/_productsTab.scss */
 .productsContainer .productsTable .productsContainerView tr td a.sortableSelector {
   width: 12px;
   height: 50px;
   margin: -5px;
   background-image: url("../../images/dotte.png");
 }
-/* line 22, ../sass/imports/_productsTab.scss */
+/* line 23, ../sass/imports/_productsTab.scss */
 .productsContainer .productsTable .productsContainerView tr td a.sortableSelector:hover {
   cursor: all-scroll;
 }
-/* line 28, ../sass/imports/_productsTab.scss */
+/* line 29, ../sass/imports/_productsTab.scss */
 .productsContainer .productsTable .productsContainerView tr td.productImage img {
   max-height: 50px;
 }
 
-/* line 37, ../sass/imports/_productsTab.scss */
+/* line 38, ../sass/imports/_productsTab.scss */
 .ui-state-highlight {
   height: 1.5em;
   line-height: 1.2em;
 }
 
-/* line 5, ../sass/imports/_brandsTab.scss */
+/* line 1, ../sass/imports/_brandsTab.scss */
+.brandsContainer {
+  display: none;
+}
+/* line 6, ../sass/imports/_brandsTab.scss */
 .brandsContainer .brandsTable .brandsContainerView tr td {
   vertical-align: middle;
 }
 
-/* line 6, ../sass/imports/_sliderTab.scss */
+/* line 15, ../sass/imports/_brandsTab.scss */
+#brandsModal .progressBrandUploadPhoto {
+  height: 5px;
+}
+/* line 17, ../sass/imports/_brandsTab.scss */
+#brandsModal .progressBrandUploadPhoto .progress-bar {
+  width: 1%;
+  transition: width 1s ease-in-out;
+}
+
+/* line 1, ../sass/imports/_sliderTab.scss */
+.sliderContainer {
+  display: none;
+}
+/* line 7, ../sass/imports/_sliderTab.scss */
 .sliderContainer #sliderLists table thead tr th {
   text-align: center;
   border: none;
 }
-/* line 11, ../sass/imports/_sliderTab.scss */
+/* line 12, ../sass/imports/_sliderTab.scss */
 .sliderContainer #sliderLists table thead a {
   text-decoration: none;
   color: #656565;
 }
-/* line 17, ../sass/imports/_sliderTab.scss */
+/* line 18, ../sass/imports/_sliderTab.scss */
 .sliderContainer #sliderLists table #sortableSlider tr {
   text-align: center;
 }
-/* line 19, ../sass/imports/_sliderTab.scss */
+/* line 20, ../sass/imports/_sliderTab.scss */
 .sliderContainer #sliderLists table #sortableSlider tr td {
   max-width: 200px;
   vertical-align: middle;
 }
-/* line 22, ../sass/imports/_sliderTab.scss */
+/* line 23, ../sass/imports/_sliderTab.scss */
 .sliderContainer #sliderLists table #sortableSlider tr td .numberEdit {
   height: 38px;
   width: 12px;
   background: url("../../images/dotte.png");
 }
-/* line 26, ../sass/imports/_sliderTab.scss */
+/* line 27, ../sass/imports/_sliderTab.scss */
 .sliderContainer #sliderLists table #sortableSlider tr td .numberEdit:hover {
   cursor: move;
 }
@@ -8035,6 +8061,10 @@ body .main .contentContainer .productsContainer {
   color: inherit;
   cursor: default;
 }
+/* line 12, ../sass/imports/_currencyTab.scss */
+.currenciesContainer #currenciesHistoryChartsContainer {
+  display: none;
+}
 /* line 17, ../sass/imports/_currencyTab.scss */
 .currenciesContainer table tr th {
   position: relative;
@@ -8046,6 +8076,11 @@ body .main .contentContainer .productsContainer {
 /* line 22, ../sass/imports/_currencyTab.scss */
 .currenciesContainer table tr td .editableInput {
   font-size: 80%;
+}
+
+/* line 1, ../sass/imports/_discountTab.scss */
+.discountsContainer {
+  display: none;
 }
 
 /* line 1, ../sass/widgets/_switch.scss */

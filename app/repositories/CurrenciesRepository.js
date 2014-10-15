@@ -18,7 +18,20 @@ exports.CurrenciesRepository = function(conString) {
             callbackFunction({result: options.result, status:200});
         });
     };
-    self.fetchCurrenciesHistory = function(callbackFunction) {
+    self.fetchCurrenciesHistory = function(dates, callbackFunction) {
+        var from, to, selectById;
+        if(dates.from != 'undefined' && dates.to != 'undefined') {
+            from = dates.from;
+            to = dates.to
+        } else {
+            from = moment().add(-1, 'month').startOf('day').format("X");
+            to = moment().endOf('day').format("X");
+        }
+        if(dates.id == 'All') {
+            selectById = "";
+        } else {
+            selectById = "currency_iso_code ='" + dates.id + "' AND ";
+        }
         var command = "SELECT " +
             "ch.*, " +
             "c.currency_iso_code, " +
@@ -27,9 +40,10 @@ exports.CurrenciesRepository = function(conString) {
             "FROM currenciesHistory ch " +
             "LEFT JOIN currencies c ON " +
             "(c.currency_id = ch.currency_parent_id) " +
-//            "WHERE currency_history_date_update > " + dates.from +
-//            " AND currency_history_date_update <" + dates.to +
-            "ORDER BY currency_history_date_update DESC;";
+            "WHERE " + selectById +
+            "currency_history_date_update > " + from +
+            " AND currency_history_date_update < " + to +
+            " ORDER BY currency_history_date_update DESC;";
         dbRepository.actionData(command, function(options){
             if(options.error) {
                 callbackFunction({result: options.error, status:500});
@@ -41,7 +55,7 @@ exports.CurrenciesRepository = function(conString) {
 
     self.saveCurrency = function(req, callbackFunction) {
         var data = req.body,
-            today = new Date().toString();
+            today = moment().format("X");
         var command = "BEGIN; " +
             "WITH rows AS (" +
             "INSERT INTO currencies (" +
@@ -57,7 +71,7 @@ exports.CurrenciesRepository = function(conString) {
             data.currency_iso_number_code +" , " +
             "'" + data.currency_numeric_code + "', " +
             data.currency_value + ", " +
-            "'" + today + "'" +
+            today +
             ") RETURNING id) " +
             "INSERT INTO currencieshistory (" +
             "currency_parent_id, " +
@@ -66,7 +80,7 @@ exports.CurrenciesRepository = function(conString) {
             "currency_history_difference" +
             ") VALUES ( " +
             "(SELECT id FROM rows), " +
-            "'" + today + "', " +
+            today + ", " +
             data.currency_value + ", " +
             "0" +
             "); COMMIT;";
@@ -83,6 +97,7 @@ exports.CurrenciesRepository = function(conString) {
     self.putCurrency = function(id, req, callbackFunction) {
         var data = req.body,
             isValueNew,
+            today = moment().format("X"),
             command = "SELECT * FROM currencieshistory WHERE currency_parent_id = '" + id +
             "' AND id = (SELECT max(id) FROM currencieshistory WHERE currency_parent_id = '" + id + "');";
         dbRepository.actionData(command, function(options){
@@ -100,7 +115,7 @@ exports.CurrenciesRepository = function(conString) {
                     "currency_history_difference" +
                     ") VALUES ( " +
                     data.currency_id +", " +
-                    "'" + new Date().toString() + "'," +
+                    "'" + today + "'," +
                     data.currency_value + ", " +
                     (data.currency_value - options.result[0].currency_history_value) +
                     ");";
@@ -111,7 +126,7 @@ exports.CurrenciesRepository = function(conString) {
                 "currency_iso_number_code = " + data.currency_iso_number_code +"," +
                 "currency_numeric_code = '" + data.currency_numeric_code + "'," +
                 "currency_value = " + data.currency_value +"," +
-                "currency_last_update = '" + new Date().toString() + "' " +
+                "currency_last_update = '" + today + "' " +
                 "WHERE currency_id = " + id + ";";
             command += "COMMIT;";
             dbRepository.actionData(command, function(options){

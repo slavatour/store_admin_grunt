@@ -10,12 +10,15 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 "click .editModalCurrency": "openModalEditCurrency"
             },
             deleteCurrency: function() {
+                if(!confirm("You want delete currency with history. Are you sure?")) {
+                    return;
+                }
                 var that = this;
                 this.model.destroy({
                     wait: true,
                     success: function() {
                         Store.request("categoryHistory:collection").fetch();
-                        Store.request("currenciesHistory:collectionView").render();
+//                        Store.request("currenciesHistory:collectionView").render();
                     },
                     error: function(model, xhr, options) {
                         require(["AlertsController"], function(AlertsController){

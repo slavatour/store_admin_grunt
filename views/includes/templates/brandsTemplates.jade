@@ -1,26 +1,119 @@
 script(type="text/template" id="brandsCollectionTemplate")
     div.panel.panel-default
         div.panel-heading
-            | Brands list
+            h4 Brands list
+                    a.btn.btn-default.btn-xs.pull-right.addNewCurrency(data-toggle="modal" data-target="#brandsModal") + add new
         div.panel-body
             table.table.table-condensed.table-hover.brandsTable
                 thead
-                    tr.headerTable
-                        th.col-sm-1.text-center Id
+                    tr.headerTable.text-muted
+                        th.col-sm-1.text-center №
                         th.col-sm-1.text-center Photo
                         th Name
                         th Description
-                        th.col-md-1.text-center Url
-                        th.col-md-2
+                        th.col-sm-1.text-center Url
+                        th.col-sm-2
                 tbody.brandsContainerView
 script(type="text/template" id="brandtModelTemplate")
     td.col-sm-1.text-center <%= brand_id %>
     td.col-sm-1.text-center.productImage
         img.img-thumbnail(src="/images/temp/slider2.png")
-    td.col-md-4 <%= brand_name %>
-    td.col-md-2 <%= brand_description %>
+    td.col-sm-4 <%= brand_name %>
+    td.col-sm-2 <%= brand_description %>
     td.text-center.col-md-1
         a(href!="<%= brand_url %>")
             | path
-    td.col-md-1
-        button.btn.btn-default.btn-xs.pull-right edit
+    td.col-sm-1
+        div.col-xs-2.col-xs-offset-6
+            a.btn.btn-default.dropdown-toggle(title="edit" data-toggle="dropdown")
+                i.fa.fa-gears
+            ul.dropdown-menu(role="menu")
+                li.editModalBrands(data-toggle="modal" data-target="#brandsModal")
+                    a.editBrand
+                        i.fa.fa-wrench
+                        |edit
+                li.deleteBrand
+                    a
+                        i.fa.fa-times
+                        | delete
+
+script(type="text/template" id="modalAddBrand")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Add new brand:
+            div.modal-body
+                div.alertContainer
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-4(for="newBrandName") Brand name:
+                        div.col-sm-8.controls
+                            input#newBrandName.form-control.input-sm(type="text" name="brand_name" required data-toggle="tooltip")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="newBrandUrl") Brand url:
+                        div.col-sm-8.controls
+                            input#newBrandUrl.form-control.input-sm(type="text" name="brand_url")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="newBrandDescription") Description:
+                        div.col-sm-8.controls
+                            textarea#newBrandDescription.form-control.input-sm(type="text" name="brand_description" rows="7")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="newBrandPhoto") Brand logo:
+                        div.col-sm-8.controls
+                            input#newBrandPhoto(type="file" name="brand_photo")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required.
+                                    |  Only JMG or PNG
+                            div.progress.progressBrandUploadPhoto
+                                div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100")
+                    div.form-group
+                        div.col-sm-2.col-sm-offset-10
+                            button.btn.btn-default.btn-sm.saveNewBrand(type="submit") Submit
+
+script(type="text/template" id="modalEditBrand")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Edit currency:
+            div.modal-body
+                div.alertContainer
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-4(for="newBrandName") Brand name:
+                        div.col-sm-8
+                            input#newBrandName.form-control.input-sm(type="text" name="brand_name" required data-toggle="tooltip" value!="<%= brand_name %>")
+                    div.form-group
+                        label.col-sm-4(for="newBrandUrl") Brand url:
+                        div.col-sm-8
+                            input#newBrandUrl.form-control.input-sm(type="text" name="brand_url" required value!="<%= brand_url %>")
+                    div.form-group
+                        label.col-sm-4(for="newBrandDescription") Description:
+                        div.col-sm-8
+                            textarea#newBrandDescription.form-control.input-sm(type="text" name="brand_description" rows="7" required) <%= brand_description %>
+                    div.form-group
+                        label.col-sm-4(for="newBrandPhoto") Brand logo:
+                        div.col-sm-8
+                            input#newBrandPhoto(type="file" name="brand_photo" required)
+                            p.help-block
+                                small IMG or PNG recomended
+                    div.form-group
+                        div.col-sm-2.col-sm-offset-10
+                            button.btn.btn-default.btn-sm.saveEditBrand(type="submit") Submit

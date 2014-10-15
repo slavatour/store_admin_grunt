@@ -1,7 +1,8 @@
 script(type="text/template" id="templateSliderCompositeView")
     div.panel.panel-default
         div.panel-heading
-            | Sliders list.
+            h4 Sliders list.
+                button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
         div.panel-body
             div.col-lg-12#sliderLists
                 table.table.table-striped.table-condensed
@@ -19,10 +20,8 @@ script(type="text/template" id="templateSliderCompositeView")
                                 a(data-toggle="tooltip" title="Photo of slide." data-placement="top" data-container="body").tooltipHas photo
                             th.th-container.col-sm-1  
                                 a(data-toggle="tooltip" title="Select display slider on client side or not." data-placement="top" data-container="body").tooltipHas display
-                            th.col-sm-2 
-                            button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
+                            th.col-sm-1
                     tbody#sortableSlider
-                button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
 
 script(type="text/template" id="templateSliderItemView")
     td.text-center.col-sm-1 <%= slider_position_in_list %>
@@ -43,6 +42,15 @@ script(type="text/template" id="templateSliderItemView")
             input.switchInput.switchInputRound.btn-toggle(type="checkbox" id!="<%= slider_id %>")
             label(for!="<%= slider_id %>")
         <%};%>
-    td
-        button.btn.btn-default.btn-xs.pull-right.editSliderBtn(data-toggle="modal" data-target="#editModal") edit
-        button.btn.btn-default.btn-xs.pull-right.deleteSliderBtn delete
+    td.col-sm-1
+        a.btn.btn-default.dropdown-toggle.pull-right(title="edit" data-toggle="dropdown")
+            i.fa.fa-gears
+        ul.dropdown-menu(role="menu")
+            li.editSliderBtn(data-toggle="modal" data-target="#editModal")
+                a
+                    i.fa.fa-wrench
+                    |edit
+            li.deleteSliderBtn
+                a
+                    i.fa.fa-times
+                    | delete

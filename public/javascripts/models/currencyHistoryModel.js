@@ -20,7 +20,7 @@ define(["marionette", "Store"], function (Marionette, Store) {
                     depends: ["currency_history_date_update"],
                     toJSON: true,
                     get: function(fields) {
-                        return moment(fields.currency_history_date_update).locale(window.navigator.language).format("L");
+                        return moment.unix(fields.currency_history_date_update).locale(window.navigator.language).format("L");
                     }
                 }
             }

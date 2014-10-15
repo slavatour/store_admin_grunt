@@ -1,4 +1,4 @@
-define(["marionette", "Store", "CurrencyModel"], function (Marionette, Store, CurrencyModel) {
+define(["marionette", "Store", "CurrencyModel", "moment"], function (Marionette, Store, CurrencyModel, moment) {
 
     Store.module("Currencies.Views", function(Views, Store, Backbone, Marionette, $, _){
         Views.ModalCurrenciesView = Backbone.Marionette.ItemView.extend({
@@ -54,22 +54,25 @@ define(["marionette", "Store", "CurrencyModel"], function (Marionette, Store, Cu
                     currency_iso_code: $.trim($("#literalCodeCurrency").val()),
                     currency_iso_number_code: $.trim($("#literalCodeNumberCurrency").val()),
                     currency_numeric_code: $.trim($("#numericCodeCurrency").val()),
-                    currency_value: $.trim($("#valueCurrency").val().replace(/[,]/, ".")),
-                    currency_last_update: new Date().toString()
+                    currency_value: $.trim($("#valueCurrency").val().replace(/[,]/, "."))
                 }, {validate: true});
                 if (!that.model.validationError) {
                     that.model.save({}, {
                         wait: true,
                         success: function(model, response, options) {
-                            console.log(response);
-                            Store.request("currencies:collection").fetch();
-                            Store.request("categoryHistory:collection").fetch();
-                            Store.request("currencies:collectionView").render();
-                            Store.request("currenciesHistory:collectionView").render();
+                            Store.request("currencies:collection").fetch({
+                                success: function() {
+                                    Store.request("currencies:collectionView").render();
+                                }
+                            });
+                            Store.request("categoryHistory:collection").fetch({
+                                success: function() {
+                                    Store.request("currenciesHistory:collectionView").render();
+                                }
+                            });
                             $("#currencyModal").modal("hide");
                         },
                         error: function(model, xhr, options) {
-                            console.log(xhr);
                             require(["controllers/alertsController"], function(AlertsController) {
                                 var msg = "Server could not save currency's changes, contact with server administrator or try later.";
                                 new AlertsController({

@@ -2,14 +2,15 @@ define(["marionette"], function (Marionette) {
     window.Store = new Backbone.Marionette.Application();
 
     Store.addRegions({
-        categoriesRegion: "#categoriesContainer",
+        categoriesRegion: ".categoriesTable",
         modalRegion: "#editModal",
         modalRegionCategory: "#categoryModal",
         modalRegionCurrency: "#currencyModal",
-        sliderRegion: ".sliderContainer",
+        modalRegionBrands: "#brandsModal",
+        sliderRegion: ".sliderTable",
         warningRegion: ".warningContainer",
-        productsRegion: ".productsContainer",
-        brandsRegion: ".brandsContainer",
+        productsRegion: ".productsTable",
+        brandsRegion: ".brandsTable",
         currenciesRegion: ".currenciesList",
         currenciesHistoryRegion: ".currenciesHistory"
     });
