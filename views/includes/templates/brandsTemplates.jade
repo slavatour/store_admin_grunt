@@ -18,11 +18,11 @@ script(type="text/template" id="brandtModelTemplate")
     td.col-sm-1.text-center <%= brand_id %>
     td.col-sm-1.text-center.productImage
         img.img-thumbnail(src="/images/temp/slider2.png")
-    td.col-sm-4 <%= brand_name %>
-    td.col-sm-2 <%= brand_description %>
-    td.text-center.col-md-1
-        a(href!="<%= brand_url %>")
-            | path
+    td.col-sm-2 <%= brand_name %>
+    td.col-sm-4 <%= brand_description %>
+    td.text-center.col-sm-1
+        a(href!="<%= brand_url %>" target="_blank")
+            | <%= brand_url %>
     td.col-sm-1
         div.col-xs-2.col-xs-offset-6
             a.btn.btn-default.dropdown-toggle(title="edit" data-toggle="dropdown")

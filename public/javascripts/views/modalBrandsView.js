@@ -16,12 +16,26 @@ define(["marionette", "Store", "BrandModel", "moment"], function (Marionette, St
                     brand_url: $.trim($("#newBrandUrl").val())
                 },{validate: true});
                 if (!that.model.validationError) {
-
+                    that.model.save({}, {
+                        wait: true,
+                        success: function(model, response) {
+                            Store.request("brands:collection").fetch();
+                            $("#brandsModal").modal("hide");
+                        },
+                        error: function(model, xhr, options) {
+                            require(["controllers/alertsController"], function(AlertsController) {
+                                var msg = "Server could not save new brand, contact with server administrator or try later.";
+                                new AlertsController({
+                                    type: "error",
+                                    container: that.el,
+                                    message: msg
+                                });
+                            });
+                        }
+                    });
                 } else {
                     that.showInvalidInputs(that.model.validationError);
                 }
-                console.log(that.model);
-                console.log(that.model.validationError);
 
             },
             uploadPhoto: function(event) {
@@ -65,7 +79,7 @@ define(["marionette", "Store", "BrandModel", "moment"], function (Marionette, St
                 this.$el.find(".controls").removeClass("has-error");
                 _.each(inputs, function(input){
                     var elem = $("[name='" + input + "'");
-                    elem.parents("").addClass("has-error");
+                    elem.parents(".controls").addClass("has-error");
                     elem.parent().find(".progress-bar").toggleClass("progress-bar-success").toggleClass("progress-bar-danger");
                 });
             }

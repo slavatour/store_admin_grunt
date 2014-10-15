@@ -20,6 +20,9 @@ define([
                 this.brandsCollectionView = new BrandsCollectionView({
                     collection: this.brandsCollection
                 });
+                Store.reqres.setHandler("brands:collection", function(){
+                    return this.brandsCollection;
+                }, this);
             },
             renderView: function () {
                 var that = this;

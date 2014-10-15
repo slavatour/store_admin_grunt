@@ -97,6 +97,13 @@ app.get("/brands", function (req, res) {
     });
 });
 
+app.post("/brand", function (req, res) {
+    brandsController.saveBrands(req, function (options) {
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
 app.get("/currencies", function (req, res) {
     currenciesController.fetchCurrencies(function(options){
         res.header();
