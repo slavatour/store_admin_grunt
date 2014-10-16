@@ -90,15 +90,20 @@ app.delete("/slider/:id", function (req, res) {
 
 app.get("/brands", function (req, res) {
     brandsController.fetchBrands(function (options) {
-        var response;
-        options.error ? response = {error:options.error} : response = options.data;
         res.header();
-        res.status(options.status).end(JSON.stringify(response));
+        res.status(options.status).end(JSON.stringify(options.result));
     });
 });
 
 app.post("/brand", function (req, res) {
     brandsController.saveBrands(req, function (options) {
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+app.put("/brand/:id", function (req, res) {
+    brandsController.putBrands(req, function (options) {
         res.header();
         res.status(options.status).end(JSON.stringify(options.result));
     });

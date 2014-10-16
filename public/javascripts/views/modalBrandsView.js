@@ -1,11 +1,18 @@
-define(["marionette", "Store", "BrandModel", "moment"], function (Marionette, Store, BrandModel, moment) {
+define([
+    "marionette",
+    "Store",
+    "BrandModel",
+    "moment",
+    "views/spinnerView"
+    ], function (Marionette, Store, BrandModel, moment, Spinner) {
 
     Store.module("Brands.Views", function(Views, Store, Backbone, Marionette, $, _){
         Views.ModalBrandsView = Backbone.Marionette.ItemView.extend({
             template: null,
             events: {
                 "click .saveNewBrand": "saveNewBrand",
-                "change #newBrandPhoto": "uploadPhoto"
+                "change #newBrandPhoto": "uploadPhoto",
+                "click  .saveEditBrand": "editBrand"
             },
             saveNewBrand: function(event) {
                 event.preventDefault();
@@ -36,7 +43,42 @@ define(["marionette", "Store", "BrandModel", "moment"], function (Marionette, St
                 } else {
                     that.showInvalidInputs(that.model.validationError);
                 }
-
+            },
+            editBrand: function(event) {
+                event.preventDefault();
+                var that = this;
+                that.model.set({
+                    brand_description: $.trim($("#newBrandDescription").val()),
+                    brand_name: $.trim($("#newBrandName").val()),
+                    brand_url: $.trim($("#newBrandUrl").val())
+                },{validate: true});
+                if (!that.model.validationError) {
+                    that.model.save({}, {
+                        wait: true,
+                        success: function(model, response) {
+                            Spinner.initialize(".brandsTableContainer");
+                            Store.request("brands:collection").fetch({
+                                success: function() {
+                                    Store.request("brands:collectionView").render();
+                                    Spinner.destroy({timeout: 200});
+                                }
+                            });
+                            $("#brandsModal").modal("hide");
+                        },
+                        error: function(model, xhr, options) {
+                            require(["controllers/alertsController"], function(AlertsController) {
+                                var msg = "Server could not save new brand, contact with server administrator or try later.";
+                                new AlertsController({
+                                    type: "error",
+                                    container: that.el,
+                                    message: msg
+                                });
+                            });
+                        }
+                    });
+                } else {
+                    that.showInvalidInputs(that.model.validationError);
+                }
             },
             uploadPhoto: function(event) {
                 var that = this,
@@ -47,7 +89,6 @@ define(["marionette", "Store", "BrandModel", "moment"], function (Marionette, St
                 if(!this.photoValidation(file)) {
                     return;
                 }
-
                 fd.append('file', file);
                 $.ajax({
                     type: "POST",

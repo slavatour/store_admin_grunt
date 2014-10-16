@@ -17,14 +17,14 @@ script(type="text/template" id="brandsCollectionTemplate")
 script(type="text/template" id="brandtModelTemplate")
     td.col-sm-1.text-center <%= brand_id %>
     td.col-sm-1.text-center.productImage
-        img.img-thumbnail(src="/images/temp/slider2.png")
+        img.img-thumbnail.brandLogo(src!="/images/temp/<%= brand_photo %>")
     td.col-sm-2 <%= brand_name %>
     td.col-sm-4 <%= brand_description %>
     td.text-center.col-sm-1
         a(href!="<%= brand_url %>" target="_blank")
             | <%= brand_url %>
     td.col-sm-1
-        div.col-xs-2.col-xs-offset-6
+        div.col-xs-3
             a.btn.btn-default.dropdown-toggle(title="edit" data-toggle="dropdown")
                 i.fa.fa-gears
             ul.dropdown-menu(role="menu")
@@ -92,7 +92,7 @@ script(type="text/template" id="modalEditBrand")
             div.modal-header
                 button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
                     | &times;
-                h4.modal-title#myModalLabel Edit currency:
+                h4.modal-title#myModalLabel Edit brand:
             div.modal-body
                 div.alertContainer
                 form.form-horizontal(role="form")
@@ -114,6 +114,8 @@ script(type="text/template" id="modalEditBrand")
                             input#newBrandPhoto(type="file" name="brand_photo" required)
                             p.help-block
                                 small IMG or PNG recomended
+                    div.form-group
+                        img.col-sm-offset-3.col-sm-6.img-thumbnail.brandLogo(src!="/images/temp/<%= brand_photo %>")
                     div.form-group
                         div.col-sm-2.col-sm-offset-10
                             button.btn.btn-default.btn-sm.saveEditBrand(type="submit") Submit

@@ -9,7 +9,7 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 brand_name: null,
                 brand_photo: null
             },
-            url: "/brand",
+            urlRoot: "/brand",
             validate: function(attr) {
                 var invalid = [];
                 if(!attr.brand_url) {

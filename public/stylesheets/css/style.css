@@ -8003,12 +8003,16 @@ body .main .contentContainer .productsContainer {
 .brandsContainer .brandsTable .brandsContainerView tr td {
   vertical-align: middle;
 }
+/* line 9, ../sass/imports/_brandsTab.scss */
+.brandsContainer .brandsTable .brandsContainerView tr .brandLogo {
+  max-height: 70px;
+}
 
-/* line 15, ../sass/imports/_brandsTab.scss */
+/* line 18, ../sass/imports/_brandsTab.scss */
 #brandsModal .progressBrandUploadPhoto {
   height: 5px;
 }
-/* line 17, ../sass/imports/_brandsTab.scss */
+/* line 20, ../sass/imports/_brandsTab.scss */
 #brandsModal .progressBrandUploadPhoto .progress-bar {
   width: 1%;
   transition: width 1s ease-in-out;

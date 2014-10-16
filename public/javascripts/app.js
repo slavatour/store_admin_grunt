@@ -10,7 +10,7 @@ define(["marionette"], function (Marionette) {
         sliderRegion: ".sliderTable",
         warningRegion: ".warningContainer",
         productsRegion: ".productsTable",
-        brandsRegion: ".brandsTable",
+        brandsRegion: ".brandsTableContainer",
         currenciesRegion: ".currenciesList",
         currenciesHistoryRegion: ".currenciesHistory"
     });

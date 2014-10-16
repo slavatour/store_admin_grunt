@@ -9,10 +9,10 @@ define(["marionette", "Store", "BrandModelView", "views/spinnerView"], function 
                 "click .addNewCurrency": "openNewBrandModal"
             },
             initialize: function() {
-                Spinner.initialize(".brandsTable");
+                Spinner.initialize(".brandsTableContainer");
             },
             onShow: function() {
-                console.log(this.collection.toJSON())
+
             },
             openNewBrandModal: function(event) {
                 require(["BrandModel", "ModalBrandsView"], function(BrandModel, ModalBrandsView){

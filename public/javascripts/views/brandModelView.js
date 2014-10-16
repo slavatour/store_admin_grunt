@@ -5,7 +5,8 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
             template: "#brandtModelTemplate",
             tagName: "tr",
             events: {
-                "click .editBrand": "openEditModal"
+                "click .editBrand": "openEditModal",
+                "click .deleteBrand": "deleteBrand"
             },
             openEditModal: function(event) {
                 var that = this;
@@ -15,6 +16,29 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                         model: that.model
                     });
                     Store.modalRegionBrands.show(modalBrandsView);
+                });
+            },
+            deleteBrand: function(event) {
+                if(!confirm("Do you want delete brand?")) {
+                    return;
+                }
+                var that = this;
+                that.model.destroy({
+                    wait: true,
+                    success: function() {
+
+                    },
+                    error: function() {
+                        require(["controllers/alertsController"], function(AlertsController) {
+                            var msg = "Server could not delete brand, contact with server administrator or try later.";
+                            new AlertsController({
+                                type: "error",
+                                container: ".brandsTableContainer",
+                                message: msg,
+                                temporary: true
+                            });
+                        });
+                    }
                 });
             }
         });

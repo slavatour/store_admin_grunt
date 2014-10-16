@@ -23,6 +23,9 @@ define([
                 Store.reqres.setHandler("brands:collection", function(){
                     return this.brandsCollection;
                 }, this);
+                Store.reqres.setHandler("brands:collectionView", function(){
+                    return this.brandsCollectionView;
+                }, this);
             },
             renderView: function () {
                 var that = this;
