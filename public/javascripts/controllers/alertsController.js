@@ -9,28 +9,42 @@ define([
         Controllers.AlertsController = Marionette.Controller.extend({
             initialize: function (options) {
                 $.extend(this.options, options);
+                this.setContainer();
                 this.alertModel = new AlertModel();
                 this.alertView = new AlertView({
                     model: this.alertModel,
-                    temporary: this.options.temporary,
-                    type: this.options.type,
-                    container: this.options.container
+                    type: this.options.type
                 });
                 this.renderView();
             },
             renderView: function () {
                 this.alertModel.set("message", this.options.message);
                 this.alertView.setTemplate();
-//                this.alertView.render();
-                console.log(this.options.container);
                 Store.addRegions({
-                    alertRegion: ".alertContainer"
+                    alertRegion: this.options.alertContainer
                 });
                 Store.alertRegion.show(this.alertView);
-                this.foo();
+                if (this.options.temporary) {
+                    this.temporaryView();
+                }
             },
-            foo: function() {
-                console.log(this);
+            temporaryView: function() {
+                var that = this,
+                    alertContainer = this.options.alertContainer;
+                setTimeout(function(){
+                    alertContainer.animate({
+                        opacity: "0"
+                    }, 2000, function() {
+                        alertContainer.empty().css("opacity", "1");
+                    });
+                }, 4000);
+            },
+            setContainer: function() {
+                var initContainer = this.options.container;
+                if(!$(initContainer).find(".alertContainer").length) {
+                    $(initContainer).prepend("<div class='alertContainer'></div>");
+                }
+                this.options.alertContainer = $(initContainer).find(".alertContainer");
             }
         });
     });

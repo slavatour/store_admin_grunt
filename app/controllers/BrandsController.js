@@ -4,6 +4,7 @@ exports.BrandsController = function(conString) {
     return {
         fetchBrands: new BrandsRepository.BrandsRepository(conString).fetchBrands,
         saveBrands: new BrandsRepository.BrandsRepository(conString).saveBrands,
-        putBrands: new BrandsRepository.BrandsRepository(conString).putBrands
+        putBrands: new BrandsRepository.BrandsRepository(conString).putBrands,
+        deleteBrand: new BrandsRepository.BrandsRepository(conString).deleteBrand
     }
 };

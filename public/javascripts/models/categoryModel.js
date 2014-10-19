@@ -6,16 +6,34 @@ define(["marionette", "Store"], function (Marionette, Store) {
 			defaults: {
 				id: null,
                 category_id: null,
-				category_name: "noname",
+				category_name: null,
 				category_position_in_list: null,
                 category_description: null,
                 category_image_name: null,
+                category_parent_id: null,
                 level: null,
 				subcategories: []
 			},
+            urlRoot: "/category",
 			initialize: function () {
 				this.id = this.get('id');
 			},
+            validate: function (attr) {
+                var invalid = [];
+                if(!attr.category_name) {
+                    invalid.push("category_name");
+                }
+                if(!attr.category_description) {
+                    invalid.push("category_description");
+                }
+                if(!attr.category_image_name) {
+                    invalid.push("category_image_name");
+                }
+
+                if(invalid.length) {
+                    return invalid;
+                }
+            },
             setCategoryId: function(new_id) {
                 this.set({"category_id": new_id});
             },

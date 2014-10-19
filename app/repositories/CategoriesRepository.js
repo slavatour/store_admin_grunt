@@ -1,5 +1,6 @@
 var pg = require('pg'),
     path = require('path'),
+    moment = require('moment'),
     DbRepository = require('./dbRepository');
 
 exports.CategoriesRepository = function (conString) {
@@ -37,31 +38,43 @@ exports.CategoriesRepository = function (conString) {
             callbackFunction({result: options.result});
         });
     };
-    self.saveCategory = function (model, file, callbackFunction) {
-        var command = "SELECT max(category_position_in_list) FROM categories;";
+    self.saveCategory = function (req, callbackFunction) {
+        var model = req.body,
+            command = "SELECT max(category_position_in_list) FROM categories WHERE category_parent_id ";
+        model.category_parent_id ? command += "= " + model.category_parent_id + ";"  : command += "IS NULL;";
         dbRepository.actionData(command, function (options) {
             if(options.error) {
-                callbackFunction({error: options.error, status: 500});
+                callbackFunction({result: options.error, status: 500});
             }
             if(!options.result[0]) {
                 model.category_position_in_list = 1;
             } else {
                 model.category_position_in_list = 1*options.result[0].max+1;
             }
-            //MYTODO set valaibility to write data without photo
-            var filePath = "../public/images/no_photo.jpg";
-            if (file.file && file.file.path) {
-                filePath = file.file.path;
+//            //MYTODO set valaibility to write data without photo
+            command = "INSERT INTO categories (" +
+                "category_name, " +
+                "category_position_in_list, " +
+                "category_description, " +
+                "category_start_date, ";
+            if(model.category_parent_id) {
+                command += "category_parent_id, ";
             }
-            command = "INSERT INTO categories (category_name, category_position_in_list, category_description, " +
-                "category_start_date, category_image) VALUES ('"+ model.category_name +
-                "', "+ model.category_position_in_list +", '"+ model.category_description +"', "+
-                getCurrentDate() +", lo_import('"+ filePath +"'));";
+            command += "category_image" +
+                ") VALUES ('"+
+                model.category_name + "', "+
+                model.category_position_in_list +", '"+
+                model.category_description +"', " +
+                moment().format('X') +", ";
+            if(model.category_parent_id) {
+                command += model.category_parent_id +", ";
+            }
+            command += "lo_import('"+ model.category_image_name +"'));";
             dbRepository.actionData(command, function(options){
                 if(options.error) {
-                    callbackFunction({error: options.error, status: 500});
+                    callbackFunction({result: options.error, status: 500});
                 } else {
-                    callbackFunction({status: 200});
+                    callbackFunction({status: 200, result:{}});
                 }
             });
         });

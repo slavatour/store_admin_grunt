@@ -76,7 +76,13 @@ exports.BrandsRepository = function(conString) {
             });
         });
     };
-
+    self.deleteBrand = function(req, callbackFunction) {
+        var id = req.params.id,
+            command = "DELETE FROM brands WHERE brand_id = " + id + ";";
+        dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({status: 500, result: options.error}) : callbackFunction({status: 200, result: {}});
+        });
+    };
 
     return self;
 };

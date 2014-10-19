@@ -6,7 +6,8 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
             tagName: "tr",
             events: {
                 "click .editBrand": "openEditModal",
-                "click .deleteBrand": "deleteBrand"
+                "click .deleteBrand": "deleteBrand",
+                "click .brandLogo": "openPhotoModal"
             },
             openEditModal: function(event) {
                 var that = this;
@@ -39,6 +40,16 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                             });
                         });
                     }
+                });
+            },
+            openPhotoModal: function(event) {
+                var that = this;
+                require(["ModalBrandsView"], function(ModalBrandsView){
+                    var modalBrandsView = new ModalBrandsView({
+                        template: "#modalPhotoView",
+                        model: that.model
+                    });
+                    Store.modalRegionBrands.show(modalBrandsView);
                 });
             }
         });

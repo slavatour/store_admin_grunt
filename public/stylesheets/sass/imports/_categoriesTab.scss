@@ -9,64 +9,74 @@
     }
   }
   .categoriesContainerView {
-      table {
-        font-size: 16px;
-        thead {
-          tr {
-            height: 40px;
+    ul {
+      li {
+        a {
+          i.fa-caret-right,
+          i.fa-caret-down {
+            margin-right: 10px;
           }
-          a {
-            color: rgb(101, 101, 101);
-            &:hover {
-
-            }
+          &:hover {
+            cursor: pointer;
+            background: rgba(0,0,0,.1);
+          }
+          &.categoryName {
+            text-decoration: none;
+            color: rgb(101,101,101);
+            border-bottom: solid 1px rgba(0,0,0,.1);
+            display: block;
+            line-height: 40px;
           }
         }
-        tbody {
+        .serviceBtns {
+          margin: -30px 20px 0 0;
+        }
+        ul.child {
           display: none;
-          background: rgba(244,244,244,.3);
-        }
-        .level {
-          .categoryName {
-            a{
-              color: rgb(101, 101, 101);
-              text-decoration: none;
-              i {
-                margin-right: 7px;
-              }
-            }
-          }
         }
       }
+    }
   }
 }
+
+#categoryModal {
+  .progressBrandUploadPhoto {
+    height: 5px;
+    .progress-bar {
+      width: 1%;
+      transition: width 1s ease-in-out;
+    }
+  }
+}
+
+
 .level1 .categoryName {
   padding-left: 10px;
 }
 .level2 .categoryName {
-  padding-left: 30px;
+  padding-left: 40px;
 }
 .level3 .categoryName {
-  padding-left: 50px;
+  padding-left: 60px;
 }
 .level4 .categoryName {
-  padding-left: 70px;
+  padding-left: 80px;
 }
 .level5 .categoryName {
-  padding-left: 90px;
+  padding-left: 100px;
 }
 .level6 .categoryName {
-  padding-left: 110px;
+  padding-left: 120px;
 }
 .level7 .categoryName {
-  padding-left: 130px;
+  padding-left: 140px;
 }
 .level8 .categoryName {
-  padding-left: 150px;
+  padding-left: 160px;
 }
 .level9 .categoryName {
-  padding-left: 170px;
+  padding-left: 180px;
 }
 .level10 .categoryName {
-  padding-left: 190px;
+  padding-left: 200px;
 }

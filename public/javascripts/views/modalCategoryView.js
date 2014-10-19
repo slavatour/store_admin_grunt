@@ -4,95 +4,92 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 		Views.ModalView = Marionette.ItemView.extend ({
 			template: null,
             events: {
-                "click .close": "closeModal",
-                "click .deleteCategory": "deleteCategory",
+                "change #categoryImgEdit": "uploadPhoto",
                 "click .saveCategory": "saveCategory",
-                "click .saveEditCategory": "editCategory",
-                "click .saveSubcategory": "saveSubcategory"
+                "click .saveSubcategory": "saveCategory"
             },
-            closeModal: function(e) {
-                $("#categoryModal").modal("hide");
-            },
-            deleteCategory: function() {
-
-            },
-            saveCategory: function() {
-                var fd = new FormData();
-                fd.append('category_name', this.$el.find('#nameInput').val());
-                fd.append('category_description', this.$el.find('#descriptionInput').val());
-                if (this.$el.find('#categoryImgEdit')[0].files[0]) {
-                    fd.append('file', this.$el.find('#categoryImgEdit')[0].files[0]);
+            saveCategory: function(event) {
+                event.preventDefault();
+                var that = this;
+                that.model.set({
+                    category_name: $.trim($("#nameInput").val()),
+                    category_position_in_list: $.trim($("#").val()),
+                    category_description: $.trim($("#descriptionInput").val())
+                }, {validate: true});
+                if(that.options.parent_id) {
+                    that.model.set({
+                        category_parent_id: that.options.parent_id
+                    });
                 }
-                Spinner.initialize("#categoriesContainer");
-                $.ajax({
-                    type: "POST",
-                    url: '/category',
-                    data: fd,
-                    processData: false,
-                    contentType: false,
-                    success: function() {
-                        Spinner.destroy({timeout: 700});
-                        $("#categoryModal").modal("hide");
-                        Store.request("category:collection").fetch();
-                    },
-                    error: function(xhr) {
-                        Spinner.destroy({timeout: 700});
-                        require(["views/warningMessageView"], function(WarningView){
-                            Spinner.destroy();
-                            Store.warningRegion.show(new WarningView({message: xhr.statusText}));
-                        });
-                    }
-                });
-            },
-            editCategory: function() {
-                var fd = new FormData();
-                fd.append('category_name', this.$el.find('#nameInput').val());
-                fd.append('category_description', this.$el.find('#descriptionInput').val());
-                if (this.$el.find('#categoryImgEdit')[0].files[0]) {
-                    fd.append('file', this.$el.find('#categoryImgEdit')[0].files[0]);
-                }
-                Spinner.initialize("#categoriesContainer");
-                $.ajax({
-                    type: "PUT",
-                    url: '/category/'+this.model.getCategoryId(),
-                    data: fd,
-                    processData: false,
-                    contentType: false,
-                    success: function() {
-                        Spinner.destroy({timeout: 700});
-                        Store.request("category:collection").fetch({
-                            success: function(){
-                                Store.request("category:collectionView").render();
-                            }
-                        });
-                        $("#categoryModal").modal("hide");
-                    },
-                    error: function(xhr) {
-                        Spinner.destroy({timeout: 700});
-                        require(["views/warningMessageView"], function(WarningView){
-                            Spinner.destroy();
+                if (!that.model.validationError) {
+                    that.model.save({}, {
+                        wait: true,
+                        success: function () {
                             $("#categoryModal").modal("hide");
-                            Store.warningRegion.show(new WarningView({message: xhr.statusText}));
-                        });
-                    }
-                });
+                            Spinner.initialize("#categoriesContainer");
+                            Store.request("category:collection").fetch({
+                                success: function(){
+                                    Spinner.destroy();
+                                }
+                            });
+                        },
+                        error: function () {
+                            require(["controllers/alertsController"], function (AlertsController) {
+                                var msg = "Server could not save new category, contact with server administrator or try later.";
+                                new AlertsController({
+                                    type: "error",
+                                    container: that.el,
+                                    message: msg
+                                });
+                            });
+                        }
+                    });
+                } else {
+                    that.showInvalidInputs(that.model.validationError);
+                }
             },
-            saveSubcategory: function() {
-                var fd = new FormData();
-                fd.append('parent_id', this.options.parent_id);
-                fd.append('subcategory_name', this.$el.find('#nameInput').val());
-                fd.append('subcategory_description', this.$el.find('#descriptionInput').val());
-                fd.append('file', this.$el.find('#categoryImgEdit')[0].files[0]);
+            uploadPhoto: function(event) {
+                var that = this,
+                    progressBar = $(that.$el).find(".progressBrandUploadPhoto .progress-bar"),
+                    fd = new FormData(),
+                    file = this.$el.find('#categoryImgEdit')[0].files[0];
+                if(!this.photoValidation(file)) {
+                    return;
+                }
+                fd.append('file', file);
                 $.ajax({
                     type: "POST",
-                    url: '/subcategory',
+                    url: "/upload",
                     data: fd,
                     processData: false,
                     contentType: false,
-                    success: function() {
-                        $("#categoryModal").modal("hide");
-
+                    success: function(data) {
+                        $(event.target).parent().removeClass("has-error");
+                        progressBar.css("width", "100%").addClass("progress-bar-success").removeClass("progress-bar-danger");
+                        that.model.set({category_image_name: JSON.parse(data).path});
+                    },
+                    error: function() {
+                        that.showInvalidInputs([$(event.target).attr("name")]);
                     }
+                });
+            },
+            photoValidation: function(file) {
+                var acceptableTypes = ["image/png", "image/jpeg"],
+                    result = false;
+                _.each(acceptableTypes, function(type){
+                    if(file.type === type) {
+                        result = true;
+                    }
+                });
+                return result;
+            },
+            showInvalidInputs: function(inputs) {
+                console.log(inputs);
+                this.$el.find(".controls").removeClass("has-error");
+                _.each(inputs, function(input){
+                    var elem = $("[name='" + input + "'");
+                    elem.parents(".controls").addClass("has-error");
+                    elem.parent().find(".progress-bar").toggleClass("progress-bar-success").toggleClass("progress-bar-danger");
                 });
             }
 		});

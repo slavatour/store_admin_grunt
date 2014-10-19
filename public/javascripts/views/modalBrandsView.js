@@ -26,7 +26,6 @@ define([
                     that.model.save({}, {
                         wait: true,
                         success: function(model, response) {
-                            Store.request("brands:collection").fetch();
                             $("#brandsModal").modal("hide");
                         },
                         error: function(model, xhr, options) {

@@ -25,9 +25,9 @@ app.get("/categories", function (req, res) {
 });
 
 app.post("/category", function (req, res) {
-    categoriesController.saveCategory(req.body, req.files, function(options){
+    categoriesController.saveCategory(req, function(options){
         res.header();
-        res.status(options.status).end(options.error);
+        res.status(options.status).end(JSON.stringify(options.result));
     });
 });
 
@@ -97,6 +97,13 @@ app.get("/brands", function (req, res) {
 
 app.post("/brand", function (req, res) {
     brandsController.saveBrands(req, function (options) {
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+app.delete("/brand/:id", function (req, res) {
+    brandsController.deleteBrand(req, function (options) {
         res.header();
         res.status(options.status).end(JSON.stringify(options.result));
     });

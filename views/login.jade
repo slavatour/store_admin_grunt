@@ -1,26 +1,20 @@
 doctype 5
 html
-	head
-		title= title
-		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-		link(rel='stylesheet', href='/stylesheets/reset.css')
-		script(type='text/javascript' src='/javascripts/vendor/jquery.js')
-		script(type='text/javascript' src='/javascripts/vendor/bootstrap.min.js')
-		script(type='text/javascript' src='/javascripts/menuEffects.js')
-	body
-		div.conteiner
-			div.row
-				div.span6.login-block
-					div.login-form
-						form.form-horizontal#admin-login
-							div.control-group
-								label.control-label(for="inputLogin") Login
-								div.controls
-								input#inputLogin(type="text" placeholder="Login")
-							div.control-group
-								label.control-label(for="inputPassword") Password
-								div.controls
-								input#inputPassword(type="password" placeholder="Password")
-							div.control-group
-								div.controls
-									button(type="submit").btn Enter
+    head
+        title= title
+        include includes/headerScc
+    body
+        div.container
+            div.row
+                div.col-lg-offset-4.col-lg-4.panel.panel-default#loginForm
+                    div.panel-body
+                        form(role="form")
+                            div.form-group
+                                label(for="userName") User name
+                                input.form-control#userName(type="text" name="user" placeholder="Enter user name")
+                            div.form-group
+                                label(for="userPass") Password
+                                input.form-control#userPass(type="password" name="password" placeholder="Enter password")
+                            div.form-group
+                                button(type="submit").btn.btn-default.pull-right Enter
+    script(data-main="./javascripts/main.js" src="./javascripts/libs/js/requirejs/require.js")
