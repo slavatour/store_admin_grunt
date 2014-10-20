@@ -2,6 +2,7 @@ script(type="text/template" id="productsCollectionTemplate")
     div.panel.panel-default
         div.panel-heading
             h4 Products list
+                button.addNewProduct.btn.btn-default.btn-xs.pull-right(data-toggle="modal" data-target="#productssModal") + add new
         div.panel-body
             table.table.table-condensed.table-hover.productsTable
                 thead
@@ -71,3 +72,45 @@ script(type="text/template" id="productModelTemplate")
         <%};%>
     td.col-md-1
         button.btn.btn-default.btn-xs.pull-right edit
+
+
+script(type="text/template" id="modalProductNew")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Add new category:
+            div.modal-body
+                div.alertContainer
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-4(for="nameInput") Input name:
+                        div.col-sm-8.controls
+                            input#nameInput.form-control.input-sm(type="text" name="category_name")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="descriptionInput") Input description:
+                        div.col-sm-8.controls
+                            textarea#descriptionInput.form-control.input-sm(name="category_description")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="categoryImgEdit") Select photo:
+                        div.col-sm-8.controls
+                            input#categoryImgEdit(type="file" name="category_image_name")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required.
+                                    |  Only JMG or PNG
+                            div.progress.progressBrandUploadPhoto
+                                div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100")
+                    div.form-group
+                        div.col-sm-2.col-sm-offset-10
+                            button.btn.btn-default.btn-sm.saveProduct(type="submit") Submit

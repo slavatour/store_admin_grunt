@@ -7,12 +7,15 @@ define(["marionette"], function (Marionette) {
         modalRegionCategory: "#categoryModal",
         modalRegionCurrency: "#currencyModal",
         modalRegionBrands: "#brandsModal",
+        modalRegionProducts: "#productssModal",
+        modalRegionPrices: "#pricesModal",
         sliderRegion: ".sliderTable",
         warningRegion: ".warningContainer",
         productsRegion: ".productsTable",
         brandsRegion: ".brandsTableContainer",
         currenciesRegion: ".currenciesList",
-        currenciesHistoryRegion: ".currenciesHistory"
+        currenciesHistoryRegion: ".currenciesHistory",
+        pricesRegion: ".pricesTable"
     });
 
     Store.addInitializer(function () {

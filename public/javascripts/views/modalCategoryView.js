@@ -29,6 +29,7 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                             Spinner.initialize("#categoriesContainer");
                             Store.request("category:collection").fetch({
                                 success: function(){
+                                    Store.request("category:collectionView").render();
                                     Spinner.destroy();
                                 }
                             });
@@ -84,7 +85,6 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 return result;
             },
             showInvalidInputs: function(inputs) {
-                console.log(inputs);
                 this.$el.find(".controls").removeClass("has-error");
                 _.each(inputs, function(input){
                     var elem = $("[name='" + input + "'");

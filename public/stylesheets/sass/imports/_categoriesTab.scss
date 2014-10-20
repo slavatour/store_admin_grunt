@@ -34,6 +34,17 @@
         ul.child {
           display: none;
         }
+        .serviceBtns {
+          ul {
+            li {
+              a {
+                i {
+                  margin-right: 7px;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

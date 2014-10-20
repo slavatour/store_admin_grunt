@@ -5,6 +5,9 @@ define(["Store", "marionette", "views/spinnerView", "jquery", "jqueryui/sortable
 			template: "#productsCollectionTemplate",
             childView: Store.Products.Views.ProductModelView,
             childViewContainer: ".productsContainerView",
+            events: {
+                "click .addNewProduct": "openModalNewProduct"
+            },
             onShow: function(){
                 //initialize jquery UI sortable for products table
                 this.initSortableCells();
@@ -19,6 +22,15 @@ define(["Store", "marionette", "views/spinnerView", "jquery", "jqueryui/sortable
                     handle: ".sortableSelector"
                 });
                 $("#sortable").disableSelection();
+            },
+            openModalNewProduct: function() {
+                require(["ProductModel", "modalPricesView"], function(ProductModel, ModalProductsView){
+                    var modalProductsView = new ModalProductsView({
+                        template: "#modalProductNew",
+                        model: new ProductModel()
+                    });
+                    Store.modalRegionProducts.show(modalProductsView);
+                });
             }
 		});
 	});

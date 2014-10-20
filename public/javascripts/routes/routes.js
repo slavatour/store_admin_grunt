@@ -82,6 +82,9 @@ define(["marionette"], function (Marionette) {
                 selectorTab: '#tabCategories',
                 selectorBtn: "a[href='#prices']"
             });
+            require(["PricesController"], function (PricesController) {
+                new PricesController().renderView();
+            });
         },
         examples: function () {
             this.routeView({

@@ -1,3 +1,21 @@
 .pricesContainer {
   display: none;
+  .pricesTable {
+    .priceModelsContainer {
+      tr {
+        td {
+          vertical-align: middle;
+          .serviceBtns {
+            li {
+              a {
+                i {
+                  margin-right: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

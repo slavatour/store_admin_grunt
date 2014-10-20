@@ -1,19 +1,30 @@
 var app = require('./app_config'),
     postgresConfig = require('./postgresql_config'),
     CategoriesController = require('./controllers/CategoriesController'),
-    SubcategoriesController = require('./controllers/SubcategoriesController'),
     SliderController = require('./controllers/SliderController'),
     ProductsController = require('./controllers/ProductsController'),
     BrandsController = require('./controllers/BrandsController'),
     CurrenciesController = require('./controllers/CurrenciesController'),
+    PricesController = require('./controllers/PricesController'),
     conString = 'postgres://' + postgresConfig.role.role_name + ':' + postgresConfig.role.role_password +
                 '@localhost/' + postgresConfig.database.database_name,
     categoriesController = new CategoriesController.CategoriesController(conString),
-    subcategoriesController = new SubcategoriesController.SubcategoriesController(conString),
     sliderController = new SliderController.SliderController(conString),
     productsController = new ProductsController.ProductsController(conString),
     brandsController = new BrandsController.BrandsController(conString),
-    currenciesController = new CurrenciesController.CurrenciesController(conString);
+    currenciesController = new CurrenciesController.CurrenciesController(conString),
+    pricesController = new PricesController.PricesController(conString);
+
+
+
+
+
+
+
+
+
+
+
 //MYTODO add error handler
 app.get("/categories", function (req, res) {
     categoriesController.fetchCategories(function (options) {
@@ -34,7 +45,7 @@ app.post("/category", function (req, res) {
 app.delete("/category/:id", function (req, res) {
     categoriesController.deleteCategory(req.params.id, function(options){
         res.header();
-        res.status(options.status).end(JSON.stringify({error:options.error}));
+        res.status(options.status).end(JSON.stringify({result:options.error}));
     });
 });
 
@@ -45,11 +56,15 @@ app.put("/category/:id", function (req, res) {
     });
 });
 
-app.post("/subcategory", function (req, res) {
-    subcategoriesController.saveSubcategory(req.body, req.files);
-    res.header();
-    res.end();
-});
+
+
+
+
+
+
+
+
+
 //MYTODO add error handler
 app.get("/products", function (req, res) {
     productsController.fetchProducts(function(options){
@@ -59,6 +74,13 @@ app.get("/products", function (req, res) {
         res.status(options.status).end(JSON.stringify(response));
     });
 });
+
+
+
+
+
+
+
 //MYTODO add error handler
 app.get("/slider", function (req, res) {
     sliderController.fetchSliders(function (data) {
@@ -88,6 +110,13 @@ app.delete("/slider/:id", function (req, res) {
     });
 });
 
+
+
+
+
+
+
+
 app.get("/brands", function (req, res) {
     brandsController.fetchBrands(function (options) {
         res.header();
@@ -115,6 +144,13 @@ app.put("/brand/:id", function (req, res) {
         res.status(options.status).end(JSON.stringify(options.result));
     });
 });
+
+
+
+
+
+
+
 
 app.get("/currencies", function (req, res) {
     currenciesController.fetchCurrencies(function(options){
@@ -150,6 +186,27 @@ app.get("/currenciesHistory/:from/:to/:id", function (req, res) {
         res.status(options.status).end(JSON.stringify(options.result));
     });
 });
+
+
+
+
+
+app.get("/prices", function (req, res) {
+    pricesController.fetchPrices(function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+app.post("/price", function (req, res) {
+    pricesController.savePrices(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+
+
 
 
 app.post("/upload", function (req, res) {

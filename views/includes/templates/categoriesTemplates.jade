@@ -16,20 +16,20 @@ script(type="text/template" id="categoriesModelTemplate")
                 i.fa.fa-gears
             ul.dropdown-menu(role="menu")
                 li
-                    a(href="#")
+                    a
                         i.fa.fa-wrench
                         |edit
                 li
-                    a(href="#")
+                    a
                         i.fa.fa-exchange
                         | replace
                 li
-                    a(href="#")
+                    a
                         i.fa.fa-warning
                         | smth else
                 li.divider
-                li
-                    a(href="#")
+                li.deleteCategory
+                    a
                         i.fa.fa-times
                         | delete
         <%if(subcategories.length){%>
@@ -42,20 +42,20 @@ script(type="text/template" id="categoriesServiceBtnsTemplate")
         i.fa.fa-gears
     ul.dropdown-menu(role="menu")
         li
-            a(href="#")
+            a
                 i.fa.fa-wrench
                 |edit
         li
-            a(href="#")
+            a
                 i.fa.fa-exchange
                 | replace
         li
-            a(href="#")
+            a
                 i.fa.fa-warning
                 | smth else
         li.divider
-        li
-            a(href="#")
+        li.deleteCategory
+            a
                 i.fa.fa-times
                 | delete
 
@@ -88,7 +88,7 @@ script(type="text/template" id="modalCategoryView")
                     div.form-group
                         label.col-sm-4(for="categoryImgEdit") Select photo:
                         div.col-sm-8.controls
-                            input#categoryImgEdit(type="file" name="categoryImg" name="category_image_name")
+                            input#categoryImgEdit(type="file" name="category_image_name")
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk

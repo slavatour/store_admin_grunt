@@ -1,0 +1,126 @@
+script(type="text/template" id="pricesCollectionTemplate")
+    div.panel-heading
+        h4 Prices list
+    div.panel-body
+        table.table.table-condensed.table-hover
+            thead
+                tr.text-muted
+                    th.text-center Name
+                    th.text-center Description
+                    th.text-center Calculation method
+                    th.text-center Profit percent
+                    th.text-center Value example
+                    th.text-center Include taxes
+                    th.text-center Default
+                    th.col-sm-1
+                        a.btn.btn-default.btn-xs.pull-right.addNewPrice(data-toggle="modal" data-target="#pricesModal") +add new
+            tbody.priceModelsContainer
+
+
+script(type="text/template" id="pricesModelTemplate")
+    td.text-center <%= price_name %>
+    td.text-center <%= price_description %>
+    td.text-center <%= price_calculation_method %>
+    td.text-center
+        <%if(price_calculation_percent) {%>
+        <%= price_calculation_percent %> %
+        <%} else {%>
+        | -
+        <%};%>
+    td.text-center <%= price_value %>
+    td.text-center
+        <%if(price_include_tax){%>
+        div.switchYesNo.text-center
+            input.switchInput.switchInputRound.btn-toggle(type="checkbox" checked id!="tax<%= price_id %>")
+            label(for!="tax<%= price_id %>")
+        <%}else{%>
+        div.switchYesNo.text-center
+            input.switchInput.switchInputRound.btn-toggle(type="checkbox" id!="tax<%= price_id %>")
+            label(for!="tax<%= price_id %>")
+        <%};%>
+    td.text-center
+        <%if(price_default){%>
+        div.switchYesNo.text-center
+            input.switchInput.switchInputRound.btn-toggle(type="checkbox" checked id!="default<%= price_id %>")
+            label(for!="default<%= price_id %>")
+        <%}else{%>
+        div.switchYesNo.text-center
+            input.switchInput.switchInputRound.btn-toggle(type="checkbox" id!="default<%= price_id %>")
+            label(for!="default<%= price_id %>")
+        <%};%>
+    td.col-sm-1
+        div.pull-right
+            a.btn.btn-default.btn-sm.dropdown-toggle.pull-right(title="edit" data-toggle="dropdown")
+                i.fa.fa-gears.fa-lg
+            ul.dropdown-menu.serviceBtns(role="menu")
+                li.editModalPrice(data-toggle="modal" data-target="#pricesModal")
+                    a
+                        i.fa.fa-wrench
+                        |edit
+                <%if(!price_base) {%>
+                li.deletePrice
+                    a
+                        i.fa.fa-copy
+                        | copy
+                li.divider
+                li.deletePrice
+                    a
+                        i.fa.fa-times
+                        | delete
+                <%};%>
+
+
+script(type="text/template" id="pricesModalTemplate")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Add new price:
+            div.modal-body
+                div.alertContainer
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-4(for="priceName") Price name:
+                        div.col-sm-8.controls
+                            input#priceName.form-control.input-sm(type="text" name="price_name" required)
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="priceDescription") Description:
+                        div.col-sm-8.controls
+                            textarea#priceDescription.form-control.input-sm(name="price_description")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="calculationMethod") Calculation methods:
+                        div.col-sm-8.controls
+                            select#calculationMethod.form-control.input-sm(name="price_calculation_method")
+                                option.manually manually
+                                option.automaticly automatically
+                    div.form-group
+                        label.col-sm-4(for="percentPrice")
+                        div.col-sm-8.controls
+                            input#percentPrice.form-control.input-sm(type="text" name="price_calculation_percent" required disabled)
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="includeTaxes") Include taxes:
+                        div.col-sm-8.controls
+                            div.switchYesNo.text-center
+                                input.switchInput.switchInputRound.btn-toggle(type="checkbox" checked id="taxes")
+                                label(for="taxes")
+                    div.form-group
+                        label.col-sm-4(for="countriesPrice") Country:
+                        div.col-sm-8.controls
+                            select#countriesPrice.form-control.input-sm(name="price_country")
+                                option all
+                    div.form-group
+                        div.col-sm-2.col-sm-offset-10
+                            button.btn.btn-default.btn-sm.saveNewPrice(type="submit") Submit

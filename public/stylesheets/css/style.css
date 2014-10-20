@@ -7910,63 +7910,67 @@ body .main .contentContainer .productsContainer {
 #categoriesContainer .categoriesContainerView ul li ul.child {
   display: none;
 }
+/* line 41, ../sass/imports/_categoriesTab.scss */
+#categoriesContainer .categoriesContainerView ul li .serviceBtns ul li a i {
+  margin-right: 7px;
+}
 
-/* line 43, ../sass/imports/_categoriesTab.scss */
+/* line 54, ../sass/imports/_categoriesTab.scss */
 #categoryModal .progressBrandUploadPhoto {
   height: 5px;
 }
-/* line 45, ../sass/imports/_categoriesTab.scss */
+/* line 56, ../sass/imports/_categoriesTab.scss */
 #categoryModal .progressBrandUploadPhoto .progress-bar {
   width: 1%;
   transition: width 1s ease-in-out;
 }
 
-/* line 53, ../sass/imports/_categoriesTab.scss */
+/* line 64, ../sass/imports/_categoriesTab.scss */
 .level1 .categoryName {
   padding-left: 10px;
 }
 
-/* line 56, ../sass/imports/_categoriesTab.scss */
+/* line 67, ../sass/imports/_categoriesTab.scss */
 .level2 .categoryName {
   padding-left: 40px;
 }
 
-/* line 59, ../sass/imports/_categoriesTab.scss */
+/* line 70, ../sass/imports/_categoriesTab.scss */
 .level3 .categoryName {
   padding-left: 60px;
 }
 
-/* line 62, ../sass/imports/_categoriesTab.scss */
+/* line 73, ../sass/imports/_categoriesTab.scss */
 .level4 .categoryName {
   padding-left: 80px;
 }
 
-/* line 65, ../sass/imports/_categoriesTab.scss */
+/* line 76, ../sass/imports/_categoriesTab.scss */
 .level5 .categoryName {
   padding-left: 100px;
 }
 
-/* line 68, ../sass/imports/_categoriesTab.scss */
+/* line 79, ../sass/imports/_categoriesTab.scss */
 .level6 .categoryName {
   padding-left: 120px;
 }
 
-/* line 71, ../sass/imports/_categoriesTab.scss */
+/* line 82, ../sass/imports/_categoriesTab.scss */
 .level7 .categoryName {
   padding-left: 140px;
 }
 
-/* line 74, ../sass/imports/_categoriesTab.scss */
+/* line 85, ../sass/imports/_categoriesTab.scss */
 .level8 .categoryName {
   padding-left: 160px;
 }
 
-/* line 77, ../sass/imports/_categoriesTab.scss */
+/* line 88, ../sass/imports/_categoriesTab.scss */
 .level9 .categoryName {
   padding-left: 180px;
 }
 
-/* line 80, ../sass/imports/_categoriesTab.scss */
+/* line 91, ../sass/imports/_categoriesTab.scss */
 .level10 .categoryName {
   padding-left: 200px;
 }
@@ -7999,7 +8003,16 @@ body .main .contentContainer .productsContainer {
   max-height: 50px;
 }
 
-/* line 38, ../sass/imports/_productsTab.scss */
+/* line 39, ../sass/imports/_productsTab.scss */
+#productssModal .progressBrandUploadPhoto {
+  height: 5px;
+}
+/* line 41, ../sass/imports/_productsTab.scss */
+#productssModal .progressBrandUploadPhoto .progress-bar {
+  width: 1%;
+}
+
+/* line 46, ../sass/imports/_productsTab.scss */
 .ui-state-highlight {
   height: 1.5em;
   line-height: 1.2em;
@@ -8103,36 +8116,55 @@ body .main .contentContainer .productsContainer {
   margin-top: 200px;
 }
 
-/* line 1, ../sass/widgets/_switch.scss */
-.switch {
+/* line 1, ../sass/imports/_pricesTab.scss */
+.pricesContainer {
+  display: none;
+}
+/* line 6, ../sass/imports/_pricesTab.scss */
+.pricesContainer .pricesTable .priceModelsContainer tr td {
+  vertical-align: middle;
+}
+/* line 11, ../sass/imports/_pricesTab.scss */
+.pricesContainer .pricesTable .priceModelsContainer tr td .serviceBtns li a i {
+  margin-right: 5px;
+}
+
+/* line 2, ../sass/widgets/_switch.scss */
+.switch,
+.switchYesNo {
   display: inline-block;
   text-align: center;
 }
-/* line 4, ../sass/widgets/_switch.scss */
-.switch .switchInput {
+/* line 5, ../sass/widgets/_switch.scss */
+.switch .switchInput,
+.switchYesNo .switchInput {
   position: absolute;
   margin-left: -9999px;
   visibility: hidden;
 }
-/* line 9, ../sass/widgets/_switch.scss */
-.switch .switchInput + label {
+/* line 10, ../sass/widgets/_switch.scss */
+.switch .switchInput + label,
+.switchYesNo .switchInput + label {
   display: block;
   position: relative;
   cursor: pointer;
   outline: none;
   user-select: none;
 }
-/* line 16, ../sass/widgets/_switch.scss */
-.switch input.switchInputRound + label {
+/* line 17, ../sass/widgets/_switch.scss */
+.switch input.switchInputRound + label,
+.switchYesNo input.switchInputRound + label {
   padding: 2px;
   width: 60px;
   height: 22px;
   background-color: #dddddd;
   border-radius: 60px;
 }
-/* line 24, ../sass/widgets/_switch.scss */
+/* line 25, ../sass/widgets/_switch.scss */
 .switch input.switchInputRound + label:before,
-.switch input.switchInputRound + label:after {
+.switch input.switchInputRound + label:after,
+.switchYesNo input.switchInputRound + label:before,
+.switchYesNo input.switchInputRound + label:after {
   display: block;
   position: absolute;
   top: 1px;
@@ -8140,21 +8172,23 @@ body .main .contentContainer .productsContainer {
   bottom: 1px;
   content: "";
 }
-/* line 32, ../sass/widgets/_switch.scss */
-.switch input.switchInputRound + label:before {
+/* line 33, ../sass/widgets/_switch.scss */
+.switch input.switchInputRound + label:before,
+.switchYesNo input.switchInputRound + label:before {
   right: 1px;
   background-color: #f1f1f1;
   border-radius: 60px;
   transition: background 0.4s;
-  content: "off";
   color: rgba(0, 0, 0, 0.5);
 }
 /* line 40, ../sass/widgets/_switch.scss */
-.switch input.switchInputRound:not(:checked) + label:before {
+.switch input.switchInputRound:not(:checked) + label:before,
+.switchYesNo input.switchInputRound:not(:checked) + label:before {
   padding-left: 20px;
 }
 /* line 43, ../sass/widgets/_switch.scss */
-.switch input.switchInputRound + label:after {
+.switch input.switchInputRound + label:after,
+.switchYesNo input.switchInputRound + label:after {
   width: 22px;
   background-color: #fff;
   border-radius: 10px;
@@ -8162,25 +8196,45 @@ body .main .contentContainer .productsContainer {
   transition: margin 0.4s;
 }
 /* line 50, ../sass/widgets/_switch.scss */
-.switch input.switchInputRound:checked + label:before {
+.switch input.switchInputRound:checked + label:before,
+.switchYesNo input.switchInputRound:checked + label:before {
   background-color: #26ca28;
-  content: "on";
   padding-right: 20px;
 }
-/* line 55, ../sass/widgets/_switch.scss */
-.switch input.switchInputRound:checked + label:after {
+/* line 54, ../sass/widgets/_switch.scss */
+.switch input.switchInputRound:checked + label:after,
+.switchYesNo input.switchInputRound:checked + label:after {
   margin-left: 36px;
+}
+
+/* line 60, ../sass/widgets/_switch.scss */
+.switch input.switchInputRound + label:before {
+  content: "off";
+}
+/* line 63, ../sass/widgets/_switch.scss */
+.switch input.switchInputRound:checked + label:before {
+  content: "on";
+}
+
+/* line 69, ../sass/widgets/_switch.scss */
+.switchYesNo input.switchInputRound + label:before {
+  content: "no";
+}
+/* line 72, ../sass/widgets/_switch.scss */
+.switchYesNo input.switchInputRound:checked + label:before {
+  content: "yes";
+  font-size: 95%;
 }
 
 /**
  * Checkbox Four
  */
-/* line 65, ../sass/widgets/_switch.scss */
+/* line 82, ../sass/widgets/_switch.scss */
 #checkboxFourInput {
   visibility: hidden;
 }
 
-/* line 68, ../sass/widgets/_switch.scss */
+/* line 85, ../sass/widgets/_switch.scss */
 .checkboxFour {
   width: 22px;
   height: 22px;

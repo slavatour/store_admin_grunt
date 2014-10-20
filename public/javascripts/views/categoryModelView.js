@@ -15,8 +15,7 @@ define(["marionette",
                 "click .addNewSubcategory": "addNewSubcategoryModal",
                 "click .editCategory": "editCategory",
                 "click .deleteCategory": "deleteCategory",
-                "click .categoryName": "collapseChildren",
-
+                "click .categoryName": "collapseChildren"
             },
             templateHelpers: {
                 renderCategoriesTre: function() {
@@ -62,20 +61,36 @@ define(["marionette",
                 });
                 Store.modalRegionCategory.show(modal);
             },
-            deleteCategory: function() {
-                Spinner.initialize("#categoriesContainer");
-                this.model.destroy({
-                    wait: true,
-                    success: function() {
-                        Spinner.destroy({timeout: 700});
-                    },
-                    error: function(xhr) {
-                        require(["views/warningMessageView"], function(WarningView){
-                            Spinner.destroy();
-                            Store.warningRegion.show(new WarningView({message: xhr.statusText}));
-                        });
-                    }
-                });
+            deleteCategory: function(event) {
+                var id = $(event.target).parents(".serviceBtns").attr("data-id"),
+                    model = new CategoryModel({id: id}),
+                    that = this;
+                if(confirm("You want delete category with all subcategories! Are you sure?")) {
+                    Spinner.initialize("#categoriesContainer");
+                    model.destroy({
+                        wait: true,
+                        success: function () {
+                            Store.request("category:collection").fetch({
+                                success: function () {
+                                    Store.request("category:collectionView").render();
+                                    Spinner.destroy({timeout: 700});
+                                }
+                            });
+                        },
+                        error: function (xhr) {
+                            require(["controllers/alertsController"], function (AlertsController) {
+                                var msg = "Server could not delete this category, contact with server administrator or try later.";
+                                new AlertsController({
+                                    type: "error",
+                                    container: ".categoriesTable",
+                                    message: msg,
+                                    temporary: true
+                                });
+                                Spinner.destroy();
+                            });
+                        }
+                    });
+                }
             },
             collapseChildren: function(event) {
                 $(event.target).parent("li").children("ul").toggle("display");

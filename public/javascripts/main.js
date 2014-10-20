@@ -32,6 +32,7 @@ requirejs.config({
         BrandModel: "models/brandModel",
         CurrencyModel: "models/currencyModel",
         CurrencyHistoryModel: "models/currencyHistoryModel",
+        PriceModel: "models/priceModel",
 
 		//collections
 		SlidersCollection: "collections/slidersCollection",
@@ -41,6 +42,7 @@ requirejs.config({
 		BrandsCollection: "collections/brandsCollection",
 		CurrenciesCollection: "collections/currenciesCollection",
 		CurrenciesHistoryCollection: "collections/currenciesHistoryCollection",
+		PricesCollection: "collections/pricesCollection",
 
 		//models views
 		SliderModelView: "views/sliderModelView",
@@ -50,6 +52,7 @@ requirejs.config({
 		BrandModelView: "views/brandModelView",
 		CurrencyModelView: "views/currencyModelView",
 		CurrencyHistoryModelView: "views/currencyHistoryModelView",
+		PriceModelView: "views/priceModelView",
 
 		//collections views
 		SlidersCollectionView: "views/slidersCollectionView",
@@ -59,12 +62,14 @@ requirejs.config({
 		BrandsCollectionView: "views/brandsCollectionViews",
 		CurrenciesCollectionView: "views/currenciesCollectionView",
 		CurrenciesHistoryCollectionView: "views/currenciesHistoryCollectionView",
+		PricesCollectionView: "views/pricesCollectionView",
 
         //modals
         ModalCategoryView: "views/modalCategoryView",
         ModalBrandsView: "views/modalBrandsView",
         ModalSliderView: "views/modalSliderView",
         ModalCurrencyView: "views/modalCurrenciesView",
+        ModalPricesView: "views/modalPricesView",
 
 		//controllers
 		SliderController: "controllers/slidersController",
@@ -73,7 +78,8 @@ requirejs.config({
 		ProductsController: "controllers/productsController",
 		BrandsController: "controllers/brandsController",
         CurrenciesController: "controllers/currenciesController",
-        AlertsController: "controllers/alertsController"
+        AlertsController: "controllers/alertsController",
+        PricesController: "controllers/pricesController"
 	},
 	shim: {
 		jquery: {

@@ -111,21 +111,9 @@ exports.CategoriesRepository = function (conString) {
     self.deleteCategory = function (id, callbackFunction) {
         var command = "DELETE FROM categories WHERE id = "+ id +";";
         dbRepository.actionData(command, function(options){
-            options.error ? callbackFunction({error: options.error, status: 500}) : callbackFunction({status: 200});
+            options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: {}, status: 200});
         });
     };
-    function getCurrentDate() {
-        var today = new Date(),
-            currentDate = "'";
-        currentDate += today.getFullYear();
-        currentDate += "-" + today.getMonth();
-        currentDate += "-" + today.getDay();
-        currentDate += " " + today.getHours();
-        currentDate += ":" + today.getMinutes();
-        currentDate += ":" + today.getSeconds();
-        currentDate += " " + today.getTimezoneOffset()/60;
-        return currentDate + "'";
-    }
 
 	return self;
 };
