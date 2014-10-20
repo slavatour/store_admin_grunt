@@ -15,7 +15,8 @@ define(["marionette"], function (Marionette) {
         brandsRegion: ".brandsTableContainer",
         currenciesRegion: ".currenciesList",
         currenciesHistoryRegion: ".currenciesHistory",
-        pricesRegion: ".pricesTable"
+        pricesRegion: ".pricesTable",
+        pricesChartRegion: ".pricesChart .panel-body"
     });
 
     Store.addInitializer(function () {

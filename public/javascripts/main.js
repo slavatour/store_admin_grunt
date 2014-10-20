@@ -53,6 +53,7 @@ requirejs.config({
 		CurrencyModelView: "views/currencyModelView",
 		CurrencyHistoryModelView: "views/currencyHistoryModelView",
 		PriceModelView: "views/priceModelView",
+        PricesChartModelView: "views/pricesChartModelView",
 
 		//collections views
 		SlidersCollectionView: "views/slidersCollectionView",

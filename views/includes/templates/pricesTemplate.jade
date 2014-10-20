@@ -124,3 +124,78 @@ script(type="text/template" id="pricesModalTemplate")
                     div.form-group
                         div.col-sm-2.col-sm-offset-10
                             button.btn.btn-default.btn-sm.saveNewPrice(type="submit") Submit
+
+
+script(type="text/template" id="pricesEditModalTemplate")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Edit price:
+            div.modal-body
+                div.alertContainer
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-4(for="priceName") Price name:
+                        div.col-sm-8.controls
+                            input#priceName.form-control.input-sm(type="text" name="price_name" value!="<%= price_name %>" required)
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="priceDescription") Description:
+                        div.col-sm-8.controls
+                            textarea#priceDescription.form-control.input-sm(name="price_description") <%= price_description %>
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="calculationMethod") Calculation methods:
+                        div.col-sm-8.controls
+                            select#calculationMethod.form-control.input-sm(name="price_calculation_method")
+                                <%if(price_calculation_method == "manually") {%>
+                                option.manually(selected) manually
+                                option.automaticly automatically
+                                <%} else {%>
+                                option.manually manually
+                                option.automaticly(selected) automatically
+                                <%};%>
+                    div.form-group
+                        label.col-sm-4(for="percentPrice")
+                        div.col-sm-8.controls
+                            <%if(price_calculation_method == "manually") {%>
+                            input#percentPrice.form-control.input-sm(type="text" name="price_calculation_percent" required disabled)
+                            <%} else {%>
+                            input#percentPrice.form-control.input-sm(type="text" name="price_calculation_percent" value!="<%= price_calculation_percent %>" required)
+                            <%};%>
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="includeTaxes") Include taxes:
+                        div.col-sm-8.controls
+                            <%if(price_include_tax) {%>
+                            div.switchYesNo.text-center
+                                input.switchInput.switchInputRound.btn-toggle(type="checkbox" checked id="taxes")
+                                label(for="taxes")
+                            <%}else{%>
+                            div.switchYesNo.text-center
+                                input.switchInput.switchInputRound.btn-toggle(type="checkbox" id="taxes")
+                                label(for="taxes")
+                            <%};%>
+                    div.form-group
+                        label.col-sm-4(for="countriesPrice") Country:
+                        div.col-sm-8.controls
+                            select#countriesPrice.form-control.input-sm(name="price_country")
+                                option all
+                    div.form-group
+                        div.col-sm-2.col-sm-offset-10
+                            button.btn.btn-default.btn-sm.saveEditPrice(type="submit") Submit
+
+script(type="text/template" id="pricesChartTemplate")
+    canvas#pricesChartContainer.col-lg-12(style="padding: 0px")
+
