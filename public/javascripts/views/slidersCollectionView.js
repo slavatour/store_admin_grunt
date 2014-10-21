@@ -12,7 +12,6 @@ define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable
 			collectionEvents: {
                 "change": "changeCollection"
 			},
-            //MYTODO make in photoshop dotted area for
             onShow: function(){
                 //initialize jquery UI sortable for slider table
                 this.initSortableCells();

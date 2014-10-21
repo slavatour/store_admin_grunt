@@ -5,7 +5,8 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
             template: null,
             events: {
                 "change #calculationMethod": "changeCalculationMethods",
-                "click .saveNewPrice": "saveNewPrice"
+                "click .saveNewPrice": "saveNewPrice",
+                "click .saveEditPrice": "saveEditPrice"
             },
             changeCalculationMethods: function(event) {
                 var select = $(event.target).find("option:selected"),
@@ -18,6 +19,13 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
             },
             saveNewPrice: function(event) {
                 event.preventDefault();
+                this.saveModel();
+            },
+            saveEditPrice: function(event) {
+                event.preventDefault();
+                this.saveModel();
+            },
+            saveModel: function() {
                 var that = this;
                 this.model.set({
                     price_name: $.trim($("#priceName").val()),
@@ -34,7 +42,7 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                             Spinner.initialize(".pricesContainer");
                             Store.request("prices:collection").fetch({
                                 success: function() {
-                                    Store.request("prices:collectionView").render();
+                                    Store.request("prices:controller").rerenderView();
                                     $("#pricesModal").modal("hide");
                                     Spinner.destroy({timeout: 700});
                                 }
@@ -42,7 +50,7 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                         },
                         error: function(model, xhr, options) {
                             require(["controllers/alertsController"], function (AlertsController) {
-                                var msg = "Server could not save new price, contact with server administrator or try later.";
+                                var msg = "Server could not save price, contact with server administrator or try later.";
                                 new AlertsController({
                                     type: "error",
                                     container: that.$el.find(".modal-body"),

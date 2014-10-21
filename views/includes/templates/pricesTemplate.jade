@@ -1,6 +1,7 @@
 script(type="text/template" id="pricesCollectionTemplate")
     div.panel-heading
         h4 Prices list
+            a.btn.btn-default.btn-xs.pull-right.addNewPrice(data-toggle="modal" data-target="#pricesModal") +add new
     div.panel-body
         table.table.table-condensed.table-hover
             thead
@@ -13,7 +14,6 @@ script(type="text/template" id="pricesCollectionTemplate")
                     th.text-center Include taxes
                     th.text-center Default
                     th.col-sm-1
-                        a.btn.btn-default.btn-xs.pull-right.addNewPrice(data-toggle="modal" data-target="#pricesModal") +add new
             tbody.priceModelsContainer
 
 
@@ -58,7 +58,8 @@ script(type="text/template" id="pricesModelTemplate")
                         i.fa.fa-wrench
                         |edit
                 <%if(!price_base) {%>
-                li.deletePrice
+                <%if(!price_default) {%>
+                li.copyPrice
                     a
                         i.fa.fa-copy
                         | copy
@@ -68,6 +69,7 @@ script(type="text/template" id="pricesModelTemplate")
                         i.fa.fa-times
                         | delete
                 <%};%>
+                <%};%>
 
 
 script(type="text/template" id="pricesModalTemplate")
@@ -76,7 +78,7 @@ script(type="text/template" id="pricesModalTemplate")
             div.modal-header
                 button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
                     | &times;
-                h4.modal-title#myModalLabel Add new price:
+                h4.modal-title#myModalLabel Add new price
             div.modal-body
                 div.alertContainer
                 form.form-horizontal(role="form")
@@ -132,7 +134,7 @@ script(type="text/template" id="pricesEditModalTemplate")
             div.modal-header
                 button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
                     | &times;
-                h4.modal-title#myModalLabel Edit price:
+                h4.modal-title#myModalLabel Edit price
             div.modal-body
                 div.alertContainer
                 form.form-horizontal(role="form")
@@ -197,5 +199,111 @@ script(type="text/template" id="pricesEditModalTemplate")
                             button.btn.btn-default.btn-sm.saveEditPrice(type="submit") Submit
 
 script(type="text/template" id="pricesChartTemplate")
-    canvas#pricesChartContainer.col-lg-12(style="padding: 0px")
+    div.panel.panel-default
+            div.panel-heading
+                h4 Prices difference
+            div.panel-body
+                canvas#pricesChartContainer.col-lg-12(style="padding: 0px")
 
+
+//mixins
+mixin optionsYesCoins()
+    <%switch(price_rules_round_to) { case 0.5:%>
+    option(data-value="-1") don't round
+    option(data-value="0.5" selected) round (0.1 - 0.4) to 0.5, (0.6 - 0.9) to 1
+    option(data-value="1") round (0.1 - 0.9) to 1
+    option(data-value="0") round (0.1 - 0.9) to 0
+    <%break; case 0:%>
+    option(data-value="-1") don't round
+    option(data-value="0.5") round (0.1 - 0.4) to 0.5, (0.6 - 0.9) to 1
+    option(data-value="1") round (0.1 - 0.9) to 1
+    option(data-value="0" selected) round (0.1 - 0.9) to 0
+    <%break; case 1:%>
+    option(data-value="-1") don't round
+    option(data-value="0.5") round (0.1 - 0.4) to 0.5, (0.6 - 0.9) to 1
+    option(data-value="1" selected) round (0.1 - 0.9) to 1
+    option(data-value="0") round (0.1 - 0.9) to 0
+    <%break; case -1:%>
+    option(data-value="-1" selected) don't round
+    option(data-value="0.5") round (0.1 - 0.4) to 0.5, (0.6 - 0.9) to 1
+    option(data-value="1") round (0.1 - 0.9) to 1
+    option(data-value="0") round (0.1 - 0.9) to 0
+    <%break; default:%>
+    option(data-value="-1") don't round
+    option(data-value="0.5") round (0.1 - 0.4) to 0.5, (0.6 - 0.9) to 1
+    option(data-value="1") round (0.1 - 0.9) to 1
+    option(data-value="0") round (0.1 - 0.9) to 0
+    <%break; };%>
+mixin optionsNoCoins()
+    <%switch(price_rules_round_to) { case 0:%>
+    option(data-value="0" selected) rount to 0
+    option(data-value="1") rount to 1
+    <%break; case 1:%>
+    option(data-value="0") rount to 0
+    option(data-value="1" selected) rount to 1
+    <%break; default:%>
+    option(data-value="0") rount to 0
+    option(data-value="1") rount to 1
+    <%break; };%>
+
+script(type="text/template" id="pricesRulesTemplate")
+    div.panel-heading
+        h4 Price rules
+    div.panel-body
+        form.form-horizontal(role="form")
+            div.form-group(data-toggle="tooltip" title="Base price is the main. All automatically prices calculated due to base it" data-placement="top" data-container="body").tooltipHas
+                label.control-label.col-sm-3
+                    | Counting (base) price:
+                div.input-group.col-sm-8
+                    p.form-control-static
+                        | <%= price_rules_base_name %>
+                        <% if(price_rules_base_tax){ %>
+                        small (with taxes)
+                        <% }else{ %>
+                        small (without taxes)
+                        <% }; %>
+            div.form-group(data-toggle="tooltip" title="This price used for unsighned or unauthorized users" data-placement="top" data-container="body").tooltipHas
+                label.control-label.col-sm-3
+                    | Default price:
+                div.input-group.col-sm-8
+                    p.form-control-static
+                        | <%= price_rules_default_name %>
+                        | -
+                        | <%= price_rules_default_value %> % profit
+                        <% if(price_rules_default_tax){ %>
+                        small (with taxes)
+                        <% }else{ %>
+                        small (without taxes)
+                        <% }; %>
+            div.form-group(data-toggle="tooltip" title="Set price without coins. Price wil be rounded due to rules" data-placement="top" data-container="body").tooltipHas
+                label.control-label.col-sm-3
+                    | Without coins:
+                div.input-group.col-sm-8
+                    <% if( price_rules_integer ){ %>
+                    span.input-group-addon
+                        input.radioRules(type="radio" name="rules" data-targer-input="noCoinsRound" checked)
+                    select.form-control.noCoinsRound.coinsRound(data-integer="true")
+                        +optionsNoCoins()
+                    <% }else{ %>
+                    span.input-group-addon
+                        input.radioRules(type="radio" name="rules" data-targer-input="noCoinsRound")
+                    select.form-control.noCoinsRound.coinsRound(data-integer="true" disabled)
+                        +optionsNoCoins()
+                    <%};%>
+            div.form-group(data-toggle="tooltip" title="Set price with coins. Price wil be rounded due to rules" data-placement="top" data-container="body").tooltipHas
+                label.control-label.col-sm-3
+                    | With coins:
+                div.input-group.col-sm-8
+                    <%if(price_rules_integer){%>
+                    span.input-group-addon
+                        input.radioRules(type="radio" name="rules" data-targer-input="yesCoinsRound")
+                    select.form-control.yesCoinsRound.coinsRound(data-integer="false" disabled)
+                        +optionsYesCoins()
+                    <%}else{%>
+                    span.input-group-addon
+                        input.radioRules(type="radio" name="rules" data-targer-input="yesCoinsRound" checked)
+                    select.form-control.yesCoinsRound.coinsRound(data-integer="false")
+                        +optionsYesCoins()
+                    <%};%>
+            div.pull-right
+                button.btn.btn-link.disabled.savePricesRules(type="submit") save

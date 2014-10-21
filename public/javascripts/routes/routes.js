@@ -83,7 +83,11 @@ define(["marionette"], function (Marionette) {
                 selectorBtn: "a[href='#prices']"
             });
             require(["PricesController"], function (PricesController) {
-                new PricesController().renderView();
+                var pricesController =  new PricesController();
+                pricesController.renderView();
+                Store.reqres.setHandler("prices:controller", function(){
+                    return this;
+                }, pricesController);
             });
         },
         examples: function () {

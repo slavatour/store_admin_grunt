@@ -205,7 +205,26 @@ app.post("/price", function (req, res) {
     });
 });
 
+app.put("/price/:id", function (req, res) {
+    pricesController.putPrices(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
 
+app.get("/priceRules", function (req, res) {
+    pricesController.fetchPricesRules(function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result[0]));
+    });
+});
+
+app.put("/priceRules", function (req, res) {
+    pricesController.putPricesRules(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
 
 
 

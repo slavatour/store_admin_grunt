@@ -71,7 +71,7 @@
     "i18next": "~1.7.2",
     "bootstrap-switch": "latest",
     "bootstrap-sass": "*",
-    "chartjs": "~0.2.0",
+    "chartjs": "~1.0.1",
     "requirejs": "*",
     "moment": "~2.8.3",
     "backbone-computedfields": "~0.0.8"

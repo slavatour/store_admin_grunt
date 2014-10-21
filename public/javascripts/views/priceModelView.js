@@ -5,7 +5,9 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
             template: "#pricesModelTemplate",
             tagName: "tr",
             events: {
-                "click .editModalPrice": "openModalEditPrice"
+                "click .editModalPrice": "openModalEditPrice",
+                "click .copyPrice": "copyPrice",
+                "click .deletePrice": "deletePrice"
             },
             openModalEditPrice: function(event) {
                 var that = this;
@@ -15,6 +17,65 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                         model: that.model
                     });
                     Store.modalRegionPrices.show(modalPricesView);
+                });
+            },
+            copyPrice: function() {
+                var newModel = this.model.clone();
+                newModel.set("id", null);
+                newModel.set("parent_id", null);
+                newModel.id = null;
+                newModel.save({},{
+                    wait: true,
+                    success: function(model) {
+                        Spinner.initialize(".pricesContainer");
+                        Store.request("prices:collection").fetch({
+                            success: function() {
+                                Store.request("prices:controller").rerenderView();
+                                $("#pricesModal").modal("hide");
+                                Spinner.destroy({timeout: 700});
+                            }
+                        });
+                    },
+                    error: function(model, xhr, options) {
+                        require(["controllers/alertsController"], function (AlertsController) {
+                            var msg = "Server could not save price, contact with server administrator or try later.";
+                            new AlertsController({
+                                type: "error",
+                                container: ".pricesTable",
+                                message: msg
+                            });
+                        });
+                    }
+                });
+            },
+            deletePrice: function() {
+                if(!confirm("You want delete price. Are you sure?")) {
+                    return;
+                }
+                var that = this;
+                this.model.destroy({
+                    wait: true,
+                    success: function() {
+                        Spinner.initialize(".pricesContainer");
+                        Store.request("prices:collection").fetch({
+                            success: function() {
+                                Store.request("prices:controller").rerenderView();
+                                $("#pricesModal").modal("hide");
+                                Spinner.destroy({timeout: 700});
+                            }
+                        });
+                    },
+                    error: function(model, xhr, options) {
+                        require(["controllers/alertsController"], function (AlertsController) {
+                            var msg = "Server could not save price, contact with server administrator or try later.";
+                            new AlertsController({
+                                type: "error",
+                                container: ".pricesTable",
+                                message: msg,
+                                temporary: true
+                            });
+                        });
+                    }
                 });
             }
         });

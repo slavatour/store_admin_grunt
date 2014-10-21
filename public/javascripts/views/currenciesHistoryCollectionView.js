@@ -1,4 +1,4 @@
-define(["marionette", "Store", "config", "CurrencyHistoryModelView", "moment", "jqueryui/datepicker"], function (Marionette, Store, Config, CurrencyHistoryModelView, moment) {
+define(["marionette", "Store", "CurrencyHistoryModelView", "moment", "jqueryui/datepicker"], function (Marionette, Store, CurrencyHistoryModelView, moment) {
 
     Store.module("Currencies.Views", function(Views, Store, Backbone, Marionette, $, _){
         Views.CurrenciesHistoryCollectionView = Backbone.Marionette.CompositeView.extend({

@@ -33,6 +33,7 @@ requirejs.config({
         CurrencyModel: "models/currencyModel",
         CurrencyHistoryModel: "models/currencyHistoryModel",
         PriceModel: "models/priceModel",
+        PriceRulesModel: "models/priceRulesModel",
 
 		//collections
 		SlidersCollection: "collections/slidersCollection",
@@ -53,6 +54,7 @@ requirejs.config({
 		CurrencyModelView: "views/currencyModelView",
 		CurrencyHistoryModelView: "views/currencyHistoryModelView",
 		PriceModelView: "views/priceModelView",
+		PriceRulesModelView: "views/priceRulesModelView",
         PricesChartModelView: "views/pricesChartModelView",
 
 		//collections views
