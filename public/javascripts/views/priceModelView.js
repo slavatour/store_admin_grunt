@@ -7,7 +7,9 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
             events: {
                 "click .editModalPrice": "openModalEditPrice",
                 "click .copyPrice": "copyPrice",
-                "click .deletePrice": "deletePrice"
+                "click .deletePrice": "deletePrice",
+                "change .priceDefault": "saveChanges",
+                "click .includeTaxes": "saveChanges"
             },
             openModalEditPrice: function(event) {
                 var that = this;
@@ -24,29 +26,15 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                 newModel.set("id", null);
                 newModel.set("parent_id", null);
                 newModel.id = null;
-                newModel.save({},{
-                    wait: true,
-                    success: function(model) {
-                        Spinner.initialize(".pricesContainer");
-                        Store.request("prices:collection").fetch({
-                            success: function() {
-                                Store.request("prices:controller").rerenderView();
-                                $("#pricesModal").modal("hide");
-                                Spinner.destroy({timeout: 700});
-                            }
-                        });
-                    },
-                    error: function(model, xhr, options) {
-                        require(["controllers/alertsController"], function (AlertsController) {
-                            var msg = "Server could not save price, contact with server administrator or try later.";
-                            new AlertsController({
-                                type: "error",
-                                container: ".pricesTable",
-                                message: msg
-                            });
-                        });
-                    }
-                });
+                this.saveModel(newModel);
+            },
+            saveChanges: function(event) {
+                event.preventDefault();
+                var element = $(event.target),
+                    attr = element.attr("name"),
+                    value = element.prop("checked");
+                console.log(attr, value);
+                element.prop("checked", true);
             },
             deletePrice: function() {
                 if(!confirm("You want delete price. Are you sure?")) {
@@ -67,12 +55,37 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                     },
                     error: function(model, xhr, options) {
                         require(["controllers/alertsController"], function (AlertsController) {
-                            var msg = "Server could not save price, contact with server administrator or try later.";
+                            var msg = "Server could not delete price, contact with server administrator or try later.";
                             new AlertsController({
                                 type: "error",
                                 container: ".pricesTable",
                                 message: msg,
                                 temporary: true
+                            });
+                        });
+                    }
+                });
+            },
+            saveModel: function(model) {
+                model.save({},{
+                    wait: true,
+                    success: function(model) {
+                        Spinner.initialize(".pricesContainer");
+                        Store.request("prices:collection").fetch({
+                            success: function() {
+                                Store.request("prices:controller").rerenderView();
+                                $("#pricesModal").modal("hide");
+                                Spinner.destroy({timeout: 700});
+                            }
+                        });
+                    },
+                    error: function(model, xhr, options) {
+                        require(["controllers/alertsController"], function (AlertsController) {
+                            var msg = "Server could not save price, contact with server administrator or try later.";
+                            new AlertsController({
+                                type: "error",
+                                container: ".pricesTable",
+                                message: msg
                             });
                         });
                     }

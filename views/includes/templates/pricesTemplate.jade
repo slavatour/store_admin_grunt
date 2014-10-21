@@ -31,21 +31,21 @@ script(type="text/template" id="pricesModelTemplate")
     td.text-center
         <%if(price_include_tax){%>
         div.switchYesNo.text-center
-            input.switchInput.switchInputRound.btn-toggle(type="checkbox" checked id!="tax<%= price_id %>")
+            input.switchInput.switchInputRound.btn-toggle.includeTaxes(name="price_include_tax" type="checkbox" checked id!="tax<%= price_id %>")
             label(for!="tax<%= price_id %>")
         <%}else{%>
         div.switchYesNo.text-center
-            input.switchInput.switchInputRound.btn-toggle(type="checkbox" id!="tax<%= price_id %>")
+            input.switchInput.switchInputRound.btn-toggle.includeTaxes(name="price_include_tax" type="checkbox" id!="tax<%= price_id %>")
             label(for!="tax<%= price_id %>")
         <%};%>
     td.text-center
         <%if(price_default){%>
         div.switchYesNo.text-center
-            input.switchInput.switchInputRound.btn-toggle(type="checkbox" checked id!="default<%= price_id %>")
+            input.switchInput.switchInputRound.btn-toggle.priceDefault(name="price_default" type="checkbox" checked id!="default<%= price_id %>")
             label(for!="default<%= price_id %>")
         <%}else{%>
         div.switchYesNo.text-center
-            input.switchInput.switchInputRound.btn-toggle(type="checkbox" id!="default<%= price_id %>")
+            input.switchInput.switchInputRound.btn-toggle.priceDefault(name="price_default" type="checkbox" id!="default<%= price_id %>")
             label(for!="default<%= price_id %>")
         <%};%>
     td.col-sm-1
