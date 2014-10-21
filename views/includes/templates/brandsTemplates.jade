@@ -25,7 +25,7 @@ script(type="text/template" id="brandtModelTemplate")
         a(href!="<%= brand_url %>" target="_blank")
             | <%= brand_url %>
     td.col-sm-1
-        div.col-xs-3.pull-right
+        div.pull-right
             a.btn.btn-default.dropdown-toggle(title="edit" data-toggle="dropdown")
                 i.fa.fa-gears
             ul.dropdown-menu(role="menu")
@@ -124,10 +124,6 @@ script(type="text/template" id="modalEditBrand")
 
 script(type="text/template" id="modalPhotoView")
     div.modal-dialog.modal-lg
-        div.modal-content
-            div.modal-body
-                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
-                    | &times;
-                form.form-horizontal(role="form")
-                    div.form-group
-                        img.col-sm-12(src!="/images/temp/<%= brand_photo %>")
+        button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+            | &times;
+        img.col-sm-10(src!="/images/temp/<%= brand_photo %>")

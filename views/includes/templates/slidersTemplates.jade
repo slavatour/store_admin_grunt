@@ -5,7 +5,7 @@ script(type="text/template" id="templateSliderCompositeView")
                 button.btn.btn-default.btn-xs.pull-right.addSliderBtn(data-toggle="modal" data-target="#editModal") +add new
         div.panel-body
             div.col-lg-12#sliderLists
-                table.table.table-striped.table-condensed
+                table.table.table-hover.table-condensed
                     thead
                         tr
                             th.col-sm-1 
@@ -43,14 +43,76 @@ script(type="text/template" id="templateSliderItemView")
             label(for!="<%= slider_id %>")
         <%};%>
     td.col-sm-1
-        a.btn.btn-default.dropdown-toggle.pull-right(title="edit" data-toggle="dropdown")
-            i.fa.fa-gears
-        ul.dropdown-menu(role="menu")
-            li.editSliderBtn(data-toggle="modal" data-target="#editModal")
-                a
-                    i.fa.fa-wrench
-                    |edit
-            li.deleteSliderBtn
-                a
-                    i.fa.fa-times
-                    | delete
+        div.pull-right
+            a.btn.btn-default.dropdown-toggle.pull-right(title="edit" data-toggle="dropdown")
+                i.fa.fa-gears
+            ul.dropdown-menu(role="menu")
+                li.editSliderBtn(data-toggle="modal" data-target="#editModal")
+                    a
+                        i.fa.fa-wrench
+                        |edit
+                li.deleteSliderBtn
+                    a
+                        i.fa.fa-times
+                        | delete
+
+script(type="text/template" id="modalEditSlider")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Edit: <%= slider_name %>
+            div.modal-body
+                form.well(role="form")
+                    div.form-group
+                        label(for="sliderNameEdit") Slider name:
+                        input#sliderNameEdit.form-control(type="text" name="sliderName" placeholder="enter name..." value!="<%= slider_name %>" required)
+                    div.form-group
+                        label(for="sliderDescEdit") Slider description:
+                        input#sliderDescEdit.form-control(type="text" name="sliderDesk" value!="<%= slider_description %>" placeholder="enter desckription..." required)
+                    div.form-group
+                        label(for="sliderURLEdit") Slider link:
+                        input#sliderURLEdit.form-control(type="text" name="sliderURL" value!="<%= slider_url %>" placeholder="enter url..." required)
+                    div.form-group
+                        label(for="sliderImgEdit") Input file
+                        input#sliderImgEdit(type="file" name="sliderImg" required)
+                        p.help-block
+                            | IMG or PNG recomended
+                    button.btn.btn-default.saveSliderChangesBtn(type="submit") Submit
+
+            div.modal-footer
+                button(type="button" class="btn btn-default btn-xs" data-dismiss="modal") Close
+
+script(type="text/template" id="modalPhoto")
+    div.modal-dialog.modal-lg
+        button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+            | &times;
+        img.img-responsive.img-rounded(src!="/images/temp/<%= slider_image_name %>" alt!="<%= slider_name %>")
+
+script(type="text/template" id="modalNewSlider")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Create new slider:
+            div.modal-body
+                form.well(role="form")
+                    div.form-group
+                        label(for="sliderName") Slider name:
+                        input#sliderName.form-control(type="text" name="slider_name" placeholder="enter name..." required)
+                    div.form-group
+                        label(for="sliderDesk") Slider description:
+                        input#sliderDesc.form-control(type="text" name="slider_description" placeholder="enter desckription..." required)
+                    div.form-group
+                        label(for="sliderURL") Slider link:
+                        input#sliderURL.form-control(type="text" name="slider_url" placeholder="enter url..." required)
+                    div.form-group
+                        label(for="sliderImg") Input file
+                        input#sliderImg(type="file" name="slider_image" required)
+                        p.help-block
+                            | IMG or PNG recomended
+                    button.btn.btn-default.saveNewSliderBtn(type="submit") Submit
+            div.modal-footer
+                button(type="button" class="btn btn-default btn-xs" data-dismiss="modal") Close
