@@ -212,6 +212,13 @@ app.put("/price/:id", function (req, res) {
     });
 });
 
+app.delete("/price/:id", function (req, res) {
+    pricesController.deletePrices(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
 app.get("/priceRules", function (req, res) {
     pricesController.fetchPricesRules(function(options){
         res.header();

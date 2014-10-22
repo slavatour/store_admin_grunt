@@ -7,6 +7,7 @@ exports.PricesController = function(conString) {
         savePrices: pricesRepository.savePrices,
         putPrices: pricesRepository.putPrices,
         fetchPricesRules: pricesRepository.fetchPricesRules,
-        putPricesRules: pricesRepository.putPricesRules
+        putPricesRules: pricesRepository.putPricesRules,
+        deletePrices: pricesRepository.deletePrices
     }
 };

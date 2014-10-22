@@ -79,5 +79,13 @@ exports.PricesRepository = function(conString) {
         });
     };
 
+    self.deletePrices = function(req, callbackFunction) {
+        var id = req.params.id,
+            command = "DELETE FROM prices WHERE price_id = " + id + ";";
+        dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result:{}, status:200});
+        });
+    };
+
     return self;
 };
