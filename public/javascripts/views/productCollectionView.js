@@ -24,7 +24,7 @@ define(["Store", "marionette", "views/spinnerView", "jquery", "jqueryui/sortable
                 $("#sortable").disableSelection();
             },
             openModalNewProduct: function() {
-                require(["ProductModel", "modalPricesView"], function(ProductModel, ModalProductsView){
+                require(["ProductModel", "ModalProductsView"], function(ProductModel, ModalProductsView){
                     var modalProductsView = new ModalProductsView({
                         template: "#modalProductNew",
                         model: new ProductModel()

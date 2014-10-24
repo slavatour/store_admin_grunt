@@ -17,9 +17,6 @@ define(["marionette", "SliderModelView", "views/spinnerView", "jqueryui/sortable
                 this.initSortableCells();
                 $(".tooltipHas").tooltip();
             },
-            initialize: function () {
-                Spinner.initialize(".sliderTable");
-            },
             changeCollection: function () {
 
             },

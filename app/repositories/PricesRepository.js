@@ -69,6 +69,29 @@ exports.PricesRepository = function(conString) {
             options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result:{}, status:200});
         });
     };
+    self.patchPrices = function(req, callbackFunction) {
+        var model = req.body,
+            id = req.params.id,
+            command = "BEGIN;";
+        if(model.price_default === true) {
+            command = " UPDATE prices SET price_default = false WHERE price_default = true;" +
+                " UPDATE pricesrules SET price_rules_default_id = " + id + ";";
+        } else if (model.price_default === false) {
+            var msg = "Default price have to be defined!";
+            callbackFunction({result: msg, status:501});
+            return;
+        }
+        command +=" UPDATE prices SET";
+        for(key in model) {
+                command += " " + key + " = " + model[key] + ",";
+        }
+        command = command.slice(0, command.length -1);
+        command += " WHERE price_id = " + id + ";";
+        command += "COMMIT;";
+        dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result:{}, status:200});
+        });
+    };
     self.putPricesRules = function(req, callbackFunction) {
         var model = req.body,
             command = "UPDATE pricesRules SET " +

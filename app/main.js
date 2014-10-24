@@ -212,6 +212,13 @@ app.put("/price/:id", function (req, res) {
     });
 });
 
+app.patch("/price/:id", function (req, res) {
+    pricesController.patchPrices(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
 app.delete("/price/:id", function (req, res) {
     pricesController.deletePrices(req, function(options){
         res.header();

@@ -57,6 +57,7 @@ define([
             },
             rerenderView: function() {
                 var that = this;
+                that.rerenderPriceRules();
                 this.pricesCollection.fetch({
                     success: function(data) {
                         that.pricesCollectionView.render();
@@ -69,6 +70,10 @@ define([
                 this.pricesChartModelView.model = this.setChartModel(data);
                 Store.pricesChartRegion.show(this.pricesChartModelView);
             },
+
+
+
+
             renderPriceRules: function() {
                 var that = this;
                 that.priceRulesModel.fetch({
@@ -85,6 +90,11 @@ define([
                     }
                 });
             },
+
+
+
+
+
             setChartModel: function(collection) {
                 var labels = _.pluck(collection.toJSON(), "price_name");
                 var prices = _.map(_.pluck(collection.toJSON(), "price_value"), function(num){

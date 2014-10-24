@@ -2,7 +2,7 @@ script(type="text/template" id="productsCollectionTemplate")
     div.panel.panel-default
         div.panel-heading
             h4 Products list
-                button.addNewProduct.btn.btn-default.btn-xs.pull-right(data-toggle="modal" data-target="#productssModal") + add new
+                a.addNewProduct.btn.btn-default.btn-xs.pull-right(href="#new_product") + add new
         div.panel-body
             table.table.table-condensed.table-hover.productsTable
                 thead
@@ -71,7 +71,28 @@ script(type="text/template" id="productModelTemplate")
             label(for!="<%= product_id %>")
         <%};%>
     td.col-md-1
-        button.btn.btn-default.btn-xs.pull-right edit
+        div.btn-group.pull-right
+            a.btn.btn-default.btn-xs(data-toggle="modal" data-target="#categoryModal") edit
+            a.btn.btn-default.btn-xs.dropdown-toggle(data-toggle="dropdown")
+                i.fa.fa-gears
+            ul.dropdown-menu(role="menu")
+                li
+                    a
+                        i.fa.fa-calculator
+                        | discounts
+                li
+                    a
+                        i.fa.fa-dropbox
+                        | replace
+                li
+                    a
+                        i.fa.fa-bar-chart
+                        | statistic
+                li.divider
+                li.deleteCategory
+                    a
+                        i.fa.fa-times
+                        | delete
 
 
 script(type="text/template" id="modalProductNew")

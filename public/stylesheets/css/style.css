@@ -8018,6 +8018,11 @@ body .main .contentContainer .productsContainer {
   line-height: 1.2em;
 }
 
+/* line 1, ../sass/imports/_newProductTab.scss */
+.newProductsContainer {
+  display: none;
+}
+
 /* line 1, ../sass/imports/_brandsTab.scss */
 .brandsContainer {
   display: none;

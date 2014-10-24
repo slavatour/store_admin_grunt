@@ -8,8 +8,8 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                 "click .editModalPrice": "openModalEditPrice",
                 "click .copyPrice": "copyPrice",
                 "click .deletePrice": "deletePrice",
-                "change .priceDefault": "saveChanges",
-                "click .includeTaxes": "saveChanges"
+                "click .priceDefault": "saveNewPriceDefault",
+                "click .includeTaxes": "saveIncludeTaxesStatus"
             },
             openModalEditPrice: function(event) {
                 var that = this;
@@ -28,13 +28,68 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
                 newModel.id = null;
                 this.saveModel(newModel);
             },
-            saveChanges: function(event) {
+            saveNewPriceDefault: function(event) {
                 event.preventDefault();
+                Spinner.initialize(".pricesTable");
                 var element = $(event.target),
                     attr = element.attr("name"),
                     value = element.prop("checked");
-                console.log(attr, value);
-                element.prop("checked", true);
+                this.model.save({
+                    "price_default": value
+                }, {
+                    patch: true,
+                    wait: true,
+                    success: function(model) {
+                        Store.request("prices:controller").rerenderView();
+                        Spinner.destroy({timeout: 700});
+                    },
+                    error: function(model, xhr, options) {
+                        require(["controllers/alertsController"], function(AlertsController){
+                            var msg = "Server could not save changes, contact with server administrator or try later.",
+                                type = "error";
+                            if(xhr.status == 501) {
+                                msg = xhr.responseText;
+                                type = "warning";
+                            }
+                            new AlertsController({
+                                type: type,
+                                message: msg,
+                                container: ".pricesTable",
+                                temporary: true
+                            });
+                            Spinner.destroy({timeout: 700});
+                        });
+                    }
+                });
+            },
+            saveIncludeTaxesStatus: function() {
+                event.preventDefault();
+                Spinner.initialize(".pricesTable");
+                var element = $(event.target),
+                    value = element.prop("checked");
+                this.model.save({
+                    "price_include_tax": value
+                }, {
+                    patch: true,
+                    wait: true,
+                    success: function(model) {
+                        element.prop("checked", value);
+                        Spinner.destroy({timeout: 700});
+                    },
+                    error: function(model, xhr, options) {
+                        require(["controllers/alertsController"], function(AlertsController){
+                            var msg = "Server could not save changes, contact with server administrator or try later.",
+                                type = "error";
+                            new AlertsController({
+                                type: type,
+                                message: msg,
+                                container: ".pricesTable",
+                                temporary: true
+                            });
+                            Spinner.destroy({timeout: 700});
+                        });
+                    }
+                });
             },
             deletePrice: function() {
                 if(!confirm("You want delete price. Are you sure?")) {

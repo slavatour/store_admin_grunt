@@ -7,7 +7,7 @@ define(["marionette"], function (Marionette) {
         modalRegionCategory: "#categoryModal",
         modalRegionCurrency: "#currencyModal",
         modalRegionBrands: "#brandsModal",
-        modalRegionProducts: "#productssModal",
+        modalRegionProducts: "#productsModal",
         modalRegionPrices: "#pricesModal",
         sliderRegion: ".sliderTable",
         warningRegion: ".warningContainer",
