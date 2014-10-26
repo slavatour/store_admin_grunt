@@ -241,6 +241,14 @@ app.put("/priceRules", function (req, res) {
 });
 
 
+app.get("/specifications", function (req, res) {
+//    pricesController.fetchPrices(function(options){
+//        res.header();
+//        res.status(options.status).end(JSON.stringify(options.result));
+//    });
+    res.status(200).end(JSON.stringify({}));
+});
+
 
 app.post("/upload", function (req, res) {
     var status = 500,

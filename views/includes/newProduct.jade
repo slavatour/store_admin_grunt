@@ -6,255 +6,179 @@ div.row.newProductsContainer
             a(href="#products") Products
         li.active New
     div.productForm
-        div.parentsInfo.col-lg-3
+        div.parentsInfo.col-lg-2
             div.list-group
-                a().list-group-item.active Information
-                a().list-group-item Prices
-                a().list-group-item Photos
-                a().list-group-item Discounts
-                a().list-group-item Stock
-                a().list-group-item Suppliers
-                a().list-group-item CEO
-        div.col-lg-9
+                a(href="#new_product/infoSubTab").list-group-item.newProductNav Information
+                a(href="#new_product/spacificationSubTab").list-group-item.newProductNav Spacification
+                a(href="#new_product/pricesSubTab").list-group-item.newProductNav Prices
+                a(href="#new_product/photosSubTab").list-group-item.newProductNav Photos
+                a(href="#new_product/discountsSubTab").list-group-item.newProductNav Discounts
+                a(href="#new_product/stockSubTab").list-group-item.newProductNav Stock
+                a(href="#new_product/suppliersSubTab").list-group-item.newProductNav Suppliers
+                a(href="#new_product/ceoSubTab").list-group-item.newProductNav CEO
+        div.col-lg-10
             div.infoSubTab.subTab
                 div.panel.panel-default
                     div.panel-heading
-                        h4 Information
+                        strong Information
+                    div.panel-body
+                        form.form-horizontal(role="form")
+                            div.form-group
+                                label.control-label.col-lg-2(for="startDateProduct")
+                                    a Start date:
+                                div.col-lg-3
+                                    div.input-group.input-group-sm
+                                        input.form-control.hasDatePicker#startDateProduct(tepe="text")
+                                        label.input-group-addon(for="startDateProduct")
+                                            i.fa.fa-calendar.fa-lg
+                            div.form-group
+                                label.control-label.col-lg-2(for="endDateProduct")
+                                    a End date:
+                                div.col-lg-3
+                                    div.input-group.input-group-sm
+                                        input.form-control.hasDatePicker#endDateProduct(tepe="text")
+                                        label.input-group-addon(for="endDateProduct")
+                                            i.fa.fa-calendar.fa-lg
+                            legend
+                            div.form-group
+                                label.control-label.col-lg-2(for="categoryProduct")
+                                    a Category:
+                                div.col-lg-9
+                                    select#categoryProduct.form-control.input-sm(type="text")
+                                p.help-block.text-muted
+                                    small
+                                        i.fa.fa-asterisk
+                                        |  required
+                            div.form-group
+                                label.control-label.col-lg-2(for="brandProduct")
+                                    a Brand:
+                                div.col-lg-9
+                                    select#brandProduct.form-control.input-sm(type="text")
+                                p.help-block.text-muted
+                                    small
+                                        i.fa.fa-asterisk
+                                        |  required
+                            legend
+                            div.form-group
+                                label.control-label.col-lg-2(for="shortNameProduct")
+                                    img.pull-left(src="images/ua.png" style="width:30px; margin-right: 5px")
+                                    a Short name:
+                                div.col-lg-9
+                                    input#shortNameProduct.form-control.input-sm(type="text")
+                                p.help-block.text-muted
+                                    small
+                                        i.fa.fa-asterisk
+                                        |  required
+                            div.form-group
+                                label.control-label.col-lg-2(for="shortNameProduct")
+                                    img.pull-left(src="images/en.jpg" style="width:30px; margin-right: 5px")
+                                    a Short name:
+                                div.col-lg-9
+                                    input#shortNameProduct.form-control.input-sm(type="text")
+                                p.help-block.text-muted
+                                    small
+                                        i.fa.fa-asterisk
+                                        |  required
+                            div.form-group
+                                label.control-label.col-lg-2(for="shortNameProduct")
+                                    img.pull-left(src="images/canada.png" style="width:30px; margin-right: 5px")
+                                    a Short name:
+                                div.col-lg-9
+                                    input#shortNameProduct.form-control.input-sm(type="text")
+                                p.help-block.text-muted
+                                    small
+                                        i.fa.fa-asterisk
+                                        |  required
+                            legend
+                            div.form-group
+                                label.control-label.col-lg-2(for="fullNameProduct")
+                                    img.pull-left(src="images/ua.png" style="width:30px; margin-right: 5px")
+                                    a Full name:
+                                div.col-lg-9
+                                    input#fullNameProduct.form-control.input-sm(type="text")
+                                p.help-block.text-muted
+                                    small
+                                        i.fa.fa-asterisk
+                                        |  required
+                            legend
+                            div.form-group
+                                label.control-label.col-lg-2(for="shortSprsificationProduct")
+                                    img.pull-left(src="images/ua.png" style="width:30px; margin-right: 5px")
+                                    a Short description:
+                                div.col-lg-9
+                                    textarea#shortSprsificationProduct.form-control.input-sm
+                                p.help-block.text-muted
+                                    small
+                                        i.fa.fa-asterisk
+                                        |  required
+                            div.form-group
+                                label.control-label.col-lg-2(for="fullSprsificationProduct")
+                                    img.pull-left(src="images/ua.png" style="width:30px; margin-right: 5px")
+                                    a Full description:
+                                div.col-lg-9
+                                    textarea#fullSprsificationProduct.form-control.input-sm
+                                p.help-block.text-muted
+                                    small
+                                        i.fa.fa-asterisk
+                                        |  required
+                            legend
+                            div.form-group
+                                label.control-label.col-lg-2(for="europeBarcodeProduct")
+                                    a Barcode EAN-13(JAN):
+                                div.col-lg-9
+                                    input#europeBarcodeProduct.form-control.input-sm
+                            div.form-group
+                                label.control-label.col-lg-2(for="usaBarcodeProduct")
+                                    a Barcode UPC:
+                                div.col-lg-9
+                                    input#usaBarcodeProduct.form-control.input-sm
+                            div.form-group
+                                button.btn.btn-default.pull-right(type="submit") save
+            div.spacificationSubTab.subTab
+                div.panel.panel-default
+                    div.panel-heading
+                        strong Specification
                     div.panel-body
                         form(role="form")
-                            div.col-lg-12
-                                div.parentsInfo.col-lg-9
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Select category:
-                                        select(class="form-control" id="exampleInputEmail1")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Select brand:
-                                        select(class="form-control" id="exampleInputPassword1")
-                                legend
-                            div.col-lg-12
-                                div.generalInfo.col-lg-6
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Email address
-                                        input(type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Password
-                                        input(type="password" class="form-control" id="exampleInputPassword1" placeholder="Password")
-                                    div.form-group
-                                        label(for="exampleInputFile") File input
-                                        input(type="file" id="exampleInputFile")
-                                        p.help-block Example block-level help text here.
-                                    div.checkbox
-                                        label
-                                            input(type="checkbox")
-                                            | Check me out
-                                legend
-                            div.form-group
-                                button.btn.btn-default.pull-right(type="submit") Submit
+
             div.pricesSubTab.subTab
                 div.panel.panel-default
                     div.panel-heading
-                        h4 Prices
+                        strong Prices
                     div.panel-body
                         form(role="form")
-                            div.col-lg-12
-                                div.parentsInfo.col-lg-9
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Select category:
-                                        select(class="form-control" id="exampleInputEmail1")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Select brand:
-                                        select(class="form-control" id="exampleInputPassword1")
-                                legend
-                            div.col-lg-12
-                                div.generalInfo.col-lg-6
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Email address
-                                        input(type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Password
-                                        input(type="password" class="form-control" id="exampleInputPassword1" placeholder="Password")
-                                    div.form-group
-                                        label(for="exampleInputFile") File input
-                                        input(type="file" id="exampleInputFile")
-                                        p.help-block Example block-level help text here.
-                                    div.checkbox
-                                        label
-                                            input(type="checkbox")
-                                            | Check me out
-                                legend
-                            div.form-group
-                                button.btn.btn-default.pull-right(type="submit") Submit
 
             div.photosSubTab.subTab
                 div.panel.panel-default
                     div.panel-heading
-                        h4 Photos
+                        strong Photos
                     div.panel-body
                         form(role="form")
-                            div.col-lg-12
-                                div.parentsInfo.col-lg-9
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Select category:
-                                        select(class="form-control" id="exampleInputEmail1")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Select brand:
-                                        select(class="form-control" id="exampleInputPassword1")
-                                legend
-                            div.col-lg-12
-                                div.generalInfo.col-lg-6
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Email address
-                                        input(type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Password
-                                        input(type="password" class="form-control" id="exampleInputPassword1" placeholder="Password")
-                                    div.form-group
-                                        label(for="exampleInputFile") File input
-                                        input(type="file" id="exampleInputFile")
-                                        p.help-block Example block-level help text here.
-                                    div.checkbox
-                                        label
-                                            input(type="checkbox")
-                                            | Check me out
-                                legend
-                            div.form-group
-                                button.btn.btn-default.pull-right(type="submit") Submit
+
             div.discountsSubTab.subTab
                 div.panel.panel-default
                     div.panel-heading
-                        h4 Discounts
+                        strong Discounts
                     div.panel-body
                         form(role="form")
-                            div.col-lg-12
-                                div.parentsInfo.col-lg-9
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Select category:
-                                        select(class="form-control" id="exampleInputEmail1")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Select brand:
-                                        select(class="form-control" id="exampleInputPassword1")
-                                legend
-                            div.col-lg-12
-                                div.generalInfo.col-lg-6
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Email address
-                                        input(type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Password
-                                        input(type="password" class="form-control" id="exampleInputPassword1" placeholder="Password")
-                                    div.form-group
-                                        label(for="exampleInputFile") File input
-                                        input(type="file" id="exampleInputFile")
-                                        p.help-block Example block-level help text here.
-                                    div.checkbox
-                                        label
-                                            input(type="checkbox")
-                                            | Check me out
-                                legend
-                            div.form-group
-                                button.btn.btn-default.pull-right(type="submit") Submit
             div.stockSubTab.subTab
                 div.panel.panel-default
                     div.panel-heading
-                        h4 Stock
+                        strong Stock
                     div.panel-body
                         form(role="form")
-                            div.col-lg-12
-                                div.parentsInfo.col-lg-9
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Select category:
-                                        select(class="form-control" id="exampleInputEmail1")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Select brand:
-                                        select(class="form-control" id="exampleInputPassword1")
-                                legend
-                            div.col-lg-12
-                                div.generalInfo.col-lg-6
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Email address
-                                        input(type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Password
-                                        input(type="password" class="form-control" id="exampleInputPassword1" placeholder="Password")
-                                    div.form-group
-                                        label(for="exampleInputFile") File input
-                                        input(type="file" id="exampleInputFile")
-                                        p.help-block Example block-level help text here.
-                                    div.checkbox
-                                        label
-                                            input(type="checkbox")
-                                            | Check me out
-                                legend
-                            div.form-group
-                                button.btn.btn-default.pull-right(type="submit") Submit
             div.suppliersSubTab.subTab
                 div.panel.panel-default
                     div.panel-heading
-                        h4 Suppliers
+                        strong Suppliers
                     div.panel-body
                         form(role="form")
-                            div.col-lg-12
-                                div.parentsInfo.col-lg-9
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Select category:
-                                        select(class="form-control" id="exampleInputEmail1")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Select brand:
-                                        select(class="form-control" id="exampleInputPassword1")
-                                legend
-                            div.col-lg-12
-                                div.generalInfo.col-lg-6
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Email address
-                                        input(type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Password
-                                        input(type="password" class="form-control" id="exampleInputPassword1" placeholder="Password")
-                                    div.form-group
-                                        label(for="exampleInputFile") File input
-                                        input(type="file" id="exampleInputFile")
-                                        p.help-block Example block-level help text here.
-                                    div.checkbox
-                                        label
-                                            input(type="checkbox")
-                                            | Check me out
-                                legend
-                            div.form-group
-                                button.btn.btn-default.pull-right(type="submit") Submit
             div.ceoSubTab.subTab
                 div.panel.panel-default
                     div.panel-heading
-                        h4 CEO
+                        strong CEO
                     div.panel-body
                         form(role="form")
-                            div.col-lg-12
-                                div.parentsInfo.col-lg-9
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Select category:
-                                        select(class="form-control" id="exampleInputEmail1")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Select brand:
-                                        select(class="form-control" id="exampleInputPassword1")
-                                legend
-                            div.col-lg-12
-                                div.generalInfo.col-lg-6
-                                    div.form-group
-                                        label(for="exampleInputEmail1") Email address
-                                        input(type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email")
-                                    div.form-group
-                                        label(for="exampleInputPassword1") Password
-                                        input(type="password" class="form-control" id="exampleInputPassword1" placeholder="Password")
-                                    div.form-group
-                                        label(for="exampleInputFile") File input
-                                        input(type="file" id="exampleInputFile")
-                                        p.help-block Example block-level help text here.
-                                    div.checkbox
-                                        label
-                                            input(type="checkbox")
-                                            | Check me out
-                                legend
-                            div.form-group
-                                button.btn.btn-default.pull-right(type="submit") Submit
 
 
 

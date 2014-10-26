@@ -59,7 +59,13 @@
       "js": "min/moment-with-locales.min.js"
     },
     "backbone-computedfields": {
-       "js": "lib/amd/*.min.js"
+      "js": "lib/amd/*.min.js"
+    },
+    "ckeditor": {
+        "js": [
+            "*.js",
+            "*.css"
+        ]
     }
   },
   "devDependencies": {
@@ -74,7 +80,8 @@
     "chartjs": "~1.0.1",
     "requirejs": "*",
     "moment": "~2.8.3",
-    "backbone-computedfields": "~0.0.8"
+    "backbone-computedfields": "~0.0.8",
+    "ckeditor": "~4.4.5"
   },
   "license": "free",
   "ignore": [
@@ -83,5 +90,7 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+  }
 }

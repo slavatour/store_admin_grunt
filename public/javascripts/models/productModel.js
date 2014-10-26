@@ -11,7 +11,8 @@ define(["marionette", "Store"], function (Marionette, Store) {
 
                 product_full_name: null,
                 product_short_name: null,
-                product_description: null,
+                product_short_description: null,
+                product_full_description: null,
                 product_specification: null, // характеристика
                 product_barcode: null,
                 product_start_date: null,

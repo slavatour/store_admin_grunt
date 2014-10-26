@@ -9,7 +9,7 @@ define(["marionette", "Store", "BrandModelView", "views/spinnerView"], function 
                 "click .addNewCurrency": "openNewBrandModal"
             },
             initialize: function() {
-                Spinner.initialize(".brandsTableContainer");
+
             },
             onShow: function() {
 

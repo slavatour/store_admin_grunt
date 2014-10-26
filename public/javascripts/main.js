@@ -15,6 +15,7 @@ requirejs.config({
 		bootstrap: "libs/js/bootstrap-sass/bootstrap.min",
 		moment: "libs/js/moment/moment-with-locales.min",
 		"bootstrap-switch": "libs/js/bootstrap-switch/bootstrap-switch.min",
+		"ckeditor": "libs/bower_components/ckeditor/ckeditor",
 
 
 		//Application
@@ -34,6 +35,7 @@ requirejs.config({
         CurrencyHistoryModel: "models/currencyHistoryModel",
         PriceModel: "models/priceModel",
         PriceRulesModel: "models/priceRulesModel",
+        SpecificationModel: "models/specificationModel",
 
 		//collections
 		SlidersCollection: "collections/slidersCollection",
@@ -44,6 +46,7 @@ requirejs.config({
 		CurrenciesCollection: "collections/currenciesCollection",
 		CurrenciesHistoryCollection: "collections/currenciesHistoryCollection",
 		PricesCollection: "collections/pricesCollection",
+        SpecificationsCollection: "collections/specificationsCollection",
 
 		//models views
 		SliderModelView: "views/sliderModelView",
@@ -56,6 +59,7 @@ requirejs.config({
 		PriceModelView: "views/priceModelView",
 		PriceRulesModelView: "views/priceRulesModelView",
         PricesChartModelView: "views/pricesChartModelView",
+        SpecificationModelView: "views/specificationModelView",
 
 		//collections views
 		SlidersCollectionView: "views/slidersCollectionView",
@@ -66,6 +70,7 @@ requirejs.config({
 		CurrenciesCollectionView: "views/currenciesCollectionView",
 		CurrenciesHistoryCollectionView: "views/currenciesHistoryCollectionView",
 		PricesCollectionView: "views/pricesCollectionView",
+        SpecificationCollectionView: "views/specificationsCollectionView",
 
         //modals
         ModalCategoryView: "views/modalCategoryView",
@@ -83,7 +88,8 @@ requirejs.config({
 		BrandsController: "controllers/brandsController",
         CurrenciesController: "controllers/currenciesController",
         AlertsController: "controllers/alertsController",
-        PricesController: "controllers/pricesController"
+        PricesController: "controllers/pricesController",
+        SpecificationsController: "controllers/specificationsController"
 	},
 	shim: {
 		jquery: {
@@ -123,6 +129,9 @@ requirejs.config({
         },
         chartjs: {
             exports: "Chart"
+        },
+        ckeditor: {
+            exports: "CKEDITOR"
         }
 	}
 });

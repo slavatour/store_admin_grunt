@@ -7773,6 +7773,11 @@ body .main .contentContainer .productsContainer {
   line-height: 25px;
 }
 
+/* line 75, ../sass/imports/_myStyle.scss */
+.newProductsContainer .subTab {
+  display: none;
+}
+
 /* line 2, ../sass/imports/_leftNavBar.scss */
 #leftNavBar .panel-body {
   padding: 0px;

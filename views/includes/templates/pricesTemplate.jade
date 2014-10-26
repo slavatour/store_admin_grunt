@@ -1,6 +1,6 @@
 script(type="text/template" id="pricesCollectionTemplate")
     div.panel-heading
-        h4 Prices list
+        strong Prices list
             a.btn.btn-default.btn-xs.pull-right.addNewPrice(data-toggle="modal" data-target="#pricesModal") +add new
     div.panel-body
         table.table.table-condensed.table-hover
@@ -134,7 +134,7 @@ script(type="text/template" id="pricesEditModalTemplate")
             div.modal-header
                 button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
                     | &times;
-                h4.modal-title#myModalLabel Edit price
+                strong.modal-title#myModalLabel Edit price
             div.modal-body
                 div.alertContainer
                 form.form-horizontal(role="form")
@@ -201,7 +201,7 @@ script(type="text/template" id="pricesEditModalTemplate")
 script(type="text/template" id="pricesChartTemplate")
     div.panel.panel-default
             div.panel-heading
-                h4 Prices difference
+                strong Prices difference
             div.panel-body
                 canvas#pricesChartContainer.col-lg-12(style="padding: 0px")
 
@@ -248,7 +248,7 @@ mixin optionsNoCoins()
 
 script(type="text/template" id="pricesRulesTemplate")
     div.panel-heading
-        h4 Price rules
+        strong Price rules
     div.panel-body
         form.form-horizontal(role="form")
             div.form-group(data-toggle="tooltip" title="Base price is the main. All automatically prices calculated due to base it" data-placement="top" data-container="body").tooltipHas

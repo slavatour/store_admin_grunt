@@ -6,7 +6,9 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 			"categories" 			: "showCategories",
 			"products" 				: "showProducts",
 			"new_product"			: "showNewProduct",
-			"slider"				: "showSliderEdit",
+			"new_product/:subTab"	: "showNewProductSubTab",
+            "specifications"    	: "showSpecification",
+            "slider"				: "showSliderEdit",
 			"brands"				: "showBrands",
 			"currencies"			: "showCurrencies",
 			"discounts"	    		: "showDiscounts",
@@ -47,6 +49,33 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 toggleContainer: '.newProductsContainer',
                 selectorTab: '#tabCategories',
                 selectorBtn: "a[href='#products']"
+            });
+            Spinner.destroy({timeout: 700});
+        },
+        showNewProductSubTab: function(subTab) {
+            this.routeView({
+                toggleContainer: '.newProductsContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#products']"
+            });
+            Spinner.destroy();
+            $(".subTab").hide();
+            $("."+subTab).show(700);
+            $(".newProductNav").removeClass("active");
+            $(".newProductNav[href='#new_product/" + subTab + "']").addClass("active");
+            require(["ckeditor"], function(CKEDITOR){
+                CKEDITOR.replace( 'shortSprsificationProduct' );
+                CKEDITOR.replace( 'fullSprsificationProduct' );
+            });
+        },
+        showSpecification: function() {
+            this.routeView({
+                toggleContainer: '.specificationsContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#products']"
+            });
+            require(["SpecificationsController"], function(SpecificationsController){
+                new SpecificationsController().renderView();
             });
             Spinner.destroy({timeout: 700});
         },
