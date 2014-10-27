@@ -32,8 +32,25 @@ define([
                 var that = this;
                 that.specificationsCollection.fetch({
                     success: function() {
-                        console.log('done');
                         Store.specificationsRegion.show(that.specificationCollectionView);
+                    },
+                    error: function(model, xhr) {
+                        require(["AlertsController"], function(AlertsController){
+                            var msg = "Server could not get specifications, contact with server administrator or try later.";
+                            new AlertsController({
+                                type: "error",
+                                container: ".specificationsTable",
+                                message: msg
+                            });
+                        });
+                    }
+                });
+            },
+            rerenderView: function() {
+                var that = this;
+                that.specificationsCollection.fetch({
+                    success: function() {
+                        that.specificationCollectionView.render();
                     },
                     error: function(model, xhr) {
                         require(["AlertsController"], function(AlertsController){

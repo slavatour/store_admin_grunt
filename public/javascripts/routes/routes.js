@@ -75,7 +75,11 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 selectorBtn: "a[href='#products']"
             });
             require(["SpecificationsController"], function(SpecificationsController){
-                new SpecificationsController().renderView();
+                var specificationController = new SpecificationsController();
+                specificationController.renderView();
+                Store.reqres.setHandler("specifications:controller", function(){
+                    return this;
+                }, specificationController);
             });
             Spinner.destroy({timeout: 700});
         },

@@ -79,6 +79,7 @@ requirejs.config({
         ModalCurrencyView: "views/modalCurrenciesView",
         ModalPricesView: "views/modalPricesView",
         ModalProductsView: "views/modalProductsView",
+        ModalSpecificationsView: "views/modalSpecificationsView",
 
 		//controllers
 		SliderController: "controllers/slidersController",

@@ -8139,6 +8139,67 @@ body .main .contentContainer .productsContainer {
   margin-right: 5px;
 }
 
+/* line 7, ../sass/imports/_specificationsTab.scss */
+.specificationsContainer .specificationsTable ul li a i.fa-caret-right,
+.specificationsContainer .specificationsTable ul li a i.fa-caret-down {
+  margin-right: 10px;
+}
+/* line 10, ../sass/imports/_specificationsTab.scss */
+.specificationsContainer .specificationsTable ul li a:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+}
+/* line 14, ../sass/imports/_specificationsTab.scss */
+.specificationsContainer .specificationsTable ul li a.specificationName {
+  text-decoration: none;
+  color: #656565;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  display: block;
+  line-height: 40px;
+}
+/* line 22, ../sass/imports/_specificationsTab.scss */
+.specificationsContainer .specificationsTable ul li .serviceBtns {
+  margin: -30px 20px 0 0;
+}
+/* line 25, ../sass/imports/_specificationsTab.scss */
+.specificationsContainer .specificationsTable ul li ul.child {
+  display: none;
+}
+/* line 32, ../sass/imports/_specificationsTab.scss */
+.specificationsContainer .specificationsTable ul li .serviceBtns ul li a i {
+  margin-right: 7px;
+}
+
+/* line 44, ../sass/imports/_specificationsTab.scss */
+.level0 .specificationName {
+  padding-left: 10px;
+}
+
+/* line 47, ../sass/imports/_specificationsTab.scss */
+.level1 .specificationName {
+  padding-left: 10px;
+}
+
+/* line 50, ../sass/imports/_specificationsTab.scss */
+.level2 .specificationName {
+  padding-left: 40px;
+}
+
+/* line 53, ../sass/imports/_specificationsTab.scss */
+.level3 .specificationName {
+  padding-left: 60px;
+}
+
+/* line 56, ../sass/imports/_specificationsTab.scss */
+.level4 .specificationName {
+  padding-left: 80px;
+}
+
+/* line 59, ../sass/imports/_specificationsTab.scss */
+.level5 .specificationName {
+  padding-left: 100px;
+}
+
 /* line 2, ../sass/widgets/_switch.scss */
 .switch,
 .switchYesNo {

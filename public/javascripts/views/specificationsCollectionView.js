@@ -5,7 +5,22 @@ define(["Store", "marionette", "SpecificationModelView", "views/spinnerView"], f
             template: "#specificationsCollectionView",
             childView: SpecificationModelView,
             childViewContainer: ".specificationsItemsContainer",
-            className: "panel panel-default subPanel"
+            className: "panel panel-default subPanel",
+            events: {
+                "click .addNewSpecificationClass": "addNewSpecificationClass"
+            },
+            onShow: function() {
+                this.$el.find(".tooltipHas").tooltip();
+            },
+            addNewSpecificationClass: function(event) {
+                require(["SpecificationModel", "ModalSpecificationsView"], function(SpecificationModel, ModalSpecificationsView){
+                    var modalSpecificationsView = new ModalSpecificationsView({
+                        template: "#specificationsModalTemplate",
+                        model: new SpecificationModel
+                    });
+                    Store.modalSpecificationPrices.show(modalSpecificationsView);
+                });
+            }
         });
     });
     return Store.Specifications.Views.SpecificationCollectionView;

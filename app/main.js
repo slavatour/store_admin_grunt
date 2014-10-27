@@ -6,6 +6,7 @@ var app = require('./app_config'),
     BrandsController = require('./controllers/BrandsController'),
     CurrenciesController = require('./controllers/CurrenciesController'),
     PricesController = require('./controllers/PricesController'),
+    SpecificationsController = require('./controllers/SpecificationsController'),
     conString = 'postgres://' + postgresConfig.role.role_name + ':' + postgresConfig.role.role_password +
                 '@localhost/' + postgresConfig.database.database_name,
     categoriesController = new CategoriesController.CategoriesController(conString),
@@ -13,7 +14,8 @@ var app = require('./app_config'),
     productsController = new ProductsController.ProductsController(conString),
     brandsController = new BrandsController.BrandsController(conString),
     currenciesController = new CurrenciesController.CurrenciesController(conString),
-    pricesController = new PricesController.PricesController(conString);
+    pricesController = new PricesController.PricesController(conString),
+    specificationsController = new SpecificationsController.SpecificationsController(conString);
 
 
 
@@ -242,11 +244,31 @@ app.put("/priceRules", function (req, res) {
 
 
 app.get("/specifications", function (req, res) {
-//    pricesController.fetchPrices(function(options){
-//        res.header();
-//        res.status(options.status).end(JSON.stringify(options.result));
-//    });
-    res.status(200).end(JSON.stringify({}));
+    specificationsController.fetchSpecifications(function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+app.post("/specification", function (req, res) {
+    specificationsController.saveSpecification(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+app.put("/specification/:id", function (req, res) {
+    specificationsController.putSpecification(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+app.delete("/specification/:id", function (req, res) {
+    specificationsController.deleteSpecification(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
 });
 
 

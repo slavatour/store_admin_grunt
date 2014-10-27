@@ -1,6 +1,130 @@
 script(type="text/template" id="specificationsModelView")
-    div Hi
+    a.specificationName
+        i.fa.fa-caret-right
+        | <%= specification_name %>
+    div.btn-group.pull-right.serviceBtns.tooltipHas(
+        data-toggle="tooltip"
+        title="Add new named group for specifications, united by common attributes or unnamed group, if you don't want grouping attributes"
+        data-placement="top"
+        data-container="body"
+        data-id!="<%= specification_id %>")
+        a.btn.btn-default.btn-xs.addNewSpecificationGroup(data-toggle="modal" data-target="#specificationsModal") +add new group
+        a.btn.btn-default.btn-xs.dropdown-toggle(data-toggle="dropdown")
+            i.fa.fa-gears
+        ul.dropdown-menu(role="menu")
+            li.editSpecification
+                a
+                    i.fa.fa-wrench
+                    |edit
+            li.divider
+            li.deleteSpecification
+                a
+                    i.fa.fa-times
+                    | delete
+    <%if(specifications && specifications.length){%>
+    <%= renderSpecificationsTre() %>
+    <%};%>
+
+
+script(type="text/template" id="specificationsGroupServiceBtnsTemplate")
+    a.btn.btn-default.btn-xs.addNewSpecificationItem(data-toggle="modal" data-target="#specificationsModal") +add new item
+    a.btn.btn-default.btn-xs.dropdown-toggle(data-toggle="dropdown")
+            i.fa.fa-gears
+        ul.dropdown-menu(role="menu")
+            li.editSpecification
+                a
+                    i.fa.fa-wrench
+                    |edit
+            li.divider
+            li.deleteSpecification
+                a
+                    i.fa.fa-times
+                    | delete
+
+script(type="text/template" id="specificationsServiceBtnsTemplate")
+    a.btn.btn-default.btn-xs.addNewSpecification(data-toggle="modal" data-target="#specificationsModal") +add new value
+    a.btn.btn-default.btn-xs.dropdown-toggle(data-toggle="dropdown")
+            i.fa.fa-gears
+        ul.dropdown-menu(role="menu")
+            li.editSpecification
+                a
+                    i.fa.fa-wrench
+                    |edit
+            li.divider
+            li.deleteSpecification
+                a
+                    i.fa.fa-times
+                    | delete
+
+script(type="text/template" id="specificationServiceBtnsTemplate")
+    a.btn.btn-default.btn-xs.dropdown-toggle(data-toggle="dropdown")
+            i.fa.fa-gears
+        ul.dropdown-menu(role="menu")
+            li.editSpecification
+                a
+                    i.fa.fa-wrench
+                    |edit
+            li.divider
+            li.deleteSpecificationValue
+                a
+                    i.fa.fa-times
+                    | delete
+
 script(type="text/template" id="specificationsCollectionView")
     div.panel-heading
         h4 Specifications
-    div.panel-body.specificationsItemsContainer
+            a.btn.btn-default.btn-xs.pull-right.addNewSpecificationClass(data-toggle="modal" data-target="#specificationsModal") +add new class
+    div.panel-body
+        ul.specificationsItemsContainer
+
+script(type="text/template" id="specificationsModalTemplate")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Add new:
+            div.modal-body
+                div.alertContainer
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-4(for="specificationName") Specification name:
+                        div.col-sm-8.controls
+                            input#specificationName.form-control.input-sm(type="text" name="specification_name" required)
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        label.col-sm-4(for="specificationDescription") Description:
+                        div.col-sm-8.controls
+                            textarea#specificationDescription.form-control.input-sm(name="specification_description")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        div.col-sm-2.col-sm-offset-10
+                            button.btn.btn-default.btn-sm.saveSpecificationGroup(type="submit") Submit
+
+script(type="text/template" id="specificationModalTemplate")
+    div.modal-dialog.modal-lg
+        div.modal-content
+            div.modal-header
+                button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+                    | &times;
+                h4.modal-title#myModalLabel Add new:
+            div.modal-body
+                div.alertContainer
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-4(for="specificationName") Specification name:
+                        div.col-sm-8.controls
+                            input#specificationName.form-control.input-sm(type="text" name="specification_name" required)
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                    div.form-group
+                        div.col-sm-2.col-sm-offset-10
+                            button.btn.btn-default.btn-sm.saveSpecification(type="submit") Submit

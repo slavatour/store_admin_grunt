@@ -1,0 +1,61 @@
+.specificationsContainer {
+  .specificationsTable {
+    ul {
+      li {
+        a {
+          i.fa-caret-right,
+          i.fa-caret-down {
+            margin-right: 10px;
+          }
+          &:hover {
+            cursor: pointer;
+            background: rgba(0,0,0,.1);
+          }
+          &.specificationName {
+            text-decoration: none;
+            color: rgb(101,101,101);
+            border-bottom: solid 1px rgba(0,0,0,.1);
+            display: block;
+            line-height: 40px;
+          }
+        }
+        .serviceBtns {
+          margin: -30px 20px 0 0;
+        }
+        ul.child {
+          display: none;
+        }
+        .serviceBtns {
+          ul {
+            li {
+              a {
+                i {
+                  margin-right: 7px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.level0 .specificationName {
+  padding-left: 10px;
+}
+.level1 .specificationName {
+  padding-left: 10px;
+}
+.level2 .specificationName {
+  padding-left: 40px;
+}
+.level3 .specificationName {
+  padding-left: 60px;
+}
+.level4 .specificationName {
+  padding-left: 80px;
+}
+.level5 .specificationName {
+  padding-left: 100px;
+}
