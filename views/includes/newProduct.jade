@@ -69,26 +69,6 @@ div.row.newProductsContainer
                                     small
                                         i.fa.fa-asterisk
                                         |  required
-                            div.form-group
-                                label.control-label.col-lg-2(for="shortNameProduct")
-                                    img.pull-left(src="images/en.jpg" style="width:30px; margin-right: 5px")
-                                    a Short name:
-                                div.col-lg-9
-                                    input#shortNameProduct.form-control.input-sm(type="text")
-                                p.help-block.text-muted
-                                    small
-                                        i.fa.fa-asterisk
-                                        |  required
-                            div.form-group
-                                label.control-label.col-lg-2(for="shortNameProduct")
-                                    img.pull-left(src="images/canada.png" style="width:30px; margin-right: 5px")
-                                    a Short name:
-                                div.col-lg-9
-                                    input#shortNameProduct.form-control.input-sm(type="text")
-                                p.help-block.text-muted
-                                    small
-                                        i.fa.fa-asterisk
-                                        |  required
                             legend
                             div.form-group
                                 label.control-label.col-lg-2(for="fullNameProduct")
@@ -132,8 +112,11 @@ div.row.newProductsContainer
                                     a Barcode UPC:
                                 div.col-lg-9
                                     input#usaBarcodeProduct.form-control.input-sm
-                            div.form-group
-                                button.btn.btn-default.pull-right(type="submit") save
+
+
+                    div.panel-footer
+                        div.text-right
+                            button.btn.btn-default(type="submit") save
             div.spacificationSubTab.subTab
                 div.panel.panel-default
                     div.panel-heading
