@@ -190,13 +190,11 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
             d3.selectAll("div.line")
                 .append("div")
                 .attr("class", "bar")
+                .transition()
+                .duration(3000)
                 .style("width", function(d){return d.value+"px"})
                 .style("background-color", function(d){
-                    if(d.value < 51) {
-                        return "green";
-                    } else {
-                        return "DarkRed";
-                    }
+                    return "DarkRed";
                 })
                 .text(function(d){return Math.round(d.value)});
 
@@ -230,7 +228,6 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 }
             ];
 
-            d3.json("give_me_json_please.html", function(error, data){console.log(error)});
 
             d3.select(".d3study")
                 .append("svg")
@@ -251,13 +248,8 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
             d3.selectAll("circle")
                 .attr("cx", function(d){return x_scale(d.collision_with_injury)})
                 .attr("cy", function(d){return y_scale(d.dist_between_fail)});
-
-
             d3.selectAll("circle")
                 .attr("r", 5);
-
-
-
         },
         routeView: function(options) {
             Spinner.initialize(options.toggleContainer);
