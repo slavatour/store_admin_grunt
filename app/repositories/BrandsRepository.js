@@ -41,6 +41,12 @@ exports.BrandsRepository = function(conString) {
             });
         });
     };
+    self.fetchBrandsList = function(callbackFunction){
+        var command = "SELECT brand_id, brand_name FROM brands;";
+        dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({status: 500, result: options.error}) : callbackFunction({status: 200, result: options.result});
+        });
+    };
     self.saveBrands = function(req, callbackFunction) {
         var model = req.body,
             command = "INSERT INTO brands (" +

@@ -7773,11 +7773,6 @@ body .main .contentContainer .productsContainer {
   line-height: 25px;
 }
 
-/* line 75, ../sass/imports/_myStyle.scss */
-.newProductsContainer .subTab {
-  display: none;
-}
-
 /* line 2, ../sass/imports/_leftNavBar.scss */
 #leftNavBar .panel-body {
   padding: 0px;
@@ -8683,4 +8678,32 @@ ul, li {
 .ui-datepicker .ui-datepicker-calendar .ui-datepicker-unselectable:hover {
   background-color: #fff;
   cursor: default;
+}
+
+/* line 3, ../sass/imports/_d3js.scss */
+div.chart {
+  font-family: sans-serif;
+  font-size: 0.7em;
+}
+
+/* line 8, ../sass/imports/_d3js.scss */
+div.bar {
+  color: white;
+  height: 3em;
+  line-height: 3em;
+  padding-right: 1em;
+  margin-bottom: 2px;
+  text-align: right;
+  display: inline-block;
+}
+
+/* line 19, ../sass/imports/_d3js.scss */
+div.lab {
+  height: 3em;
+  line-height: 3em;
+  padding-right: 1em;
+  margin-bottom: 2px;
+  float: left;
+  width: 20em;
+  text-align: right;
 }

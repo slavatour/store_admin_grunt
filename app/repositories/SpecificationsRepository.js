@@ -82,5 +82,12 @@ exports.SpecificationsRepository = function(conString) {
         });
     };
 
+    self.fetchSpecificationsClasses = function(callbackFunction) {
+        var command = "SELECT specification_id, specification_name FROM specifications WHERE specification_parent_id IS NULL;";
+        dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({status: 500, result: options.error}) : callbackFunction({status: 200, result: options.result});
+        });
+    };
+
     return self;
 };

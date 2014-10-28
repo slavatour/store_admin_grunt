@@ -19,7 +19,5 @@ exports.ProductsRepository = function (conString) {
             callbackFunction(options);
         });
     };
-
-
     return self;
 };

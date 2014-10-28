@@ -1,0 +1,158 @@
+script(type="text/template" id="productNewModelTemplate")
+    div.parentsInfo.col-lg-2
+        div.list-group
+            a(data-target-container="infoSubTab").list-group-item.newProductNav.active Information
+            a(data-target-container="spacificationSubTab").list-group-item.newProductNav Spacification
+            a(data-target-container="pricesSubTab").list-group-item.newProductNav Prices
+            a(data-target-container="photosSubTab").list-group-item.newProductNav Photos
+            a(data-target-container="discountsSubTab").list-group-item.newProductNav Discounts
+            a(data-target-container="stockSubTab").list-group-item.newProductNav Stock
+            a(data-target-container="suppliersSubTab").list-group-item.newProductNav Suppliers
+            a(data-target-container="ceoSubTab").list-group-item.newProductNav CEO
+    div.col-lg-10
+        div.infoSubTab.subTab
+            div.panel.panel-default
+                div.panel-heading
+                    h5
+                        strong Information
+                div.panel-body
+                    form.form-horizontal(role="form")
+                        div.form-group
+                            label.control-label.col-lg-2(for="startDateProduct")
+                                a Start date:
+                            div.col-lg-3
+                                div.input-group.input-group-sm
+                                    input.form-control.hasDatePicker#startDateProduct(tepe="text")
+                                    label.input-group-addon(for="startDateProduct")
+                                        i.fa.fa-calendar.fa-lg
+                        div.form-group
+                            label.control-label.col-lg-2(for="endDateProduct")
+                                a End date:
+                            div.col-lg-3
+                                div.input-group.input-group-sm
+                                    input.form-control.hasDatePicker#endDateProduct(tepe="text")
+                                    label.input-group-addon(for="endDateProduct")
+                                        i.fa.fa-calendar.fa-lg
+                        legend
+                        div.form-group
+                            label.control-label.col-lg-2(for="categoryProduct")
+                                a Category:
+                            div.col-lg-3
+                                select#categoryProduct.form-control.input-sm(type="text")
+                                    <%_.each(categories, function(category){%>
+                                    option(data-id!="<%= category.category_id %>") <%= category.path %>
+                                    <%});%>
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                        div.form-group
+                            label.control-label.col-lg-2(for="brandProduct")
+                                a Brand:
+                            div.col-lg-3
+                                select#brandProduct.form-control.input-sm(type="text")
+                                    <%_.each(brands, function(brand){%>
+                                    option(data-id!="<%= brand.brand_id %>") <%= brand.brand_name %>
+                                    <%});%>
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                        legend
+                        div.form-group
+                            label.control-label.col-lg-2(for="shortNameProduct")
+                                a Short name:
+                            div.col-lg-9
+                                input#shortNameProduct.form-control.input-sm(type="text")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                        legend
+                        div.form-group
+                            label.control-label.col-lg-2(for="fullNameProduct")
+                                a Full name:
+                            div.col-lg-9
+                                input#fullNameProduct.form-control.input-sm(type="text")
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                        legend
+                        div.form-group
+                            label.control-label.col-lg-2(for="shortSprsificationProduct")
+                                a Short description:
+                            div.col-lg-9
+                                textarea#shortSprsificationProduct.form-control.input-sm
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                        div.form-group
+                            label.control-label.col-lg-2(for="fullSprsificationProduct")
+                                a Full description:
+                            div.col-lg-9
+                                textarea#fullSprsificationProduct.form-control.input-sm
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
+                        legend
+                        div.form-group
+                            label.control-label.col-lg-2(for="europeBarcodeProduct")
+                                a Barcode EAN-13(JAN):
+                            div.col-lg-9
+                                input#europeBarcodeProduct.form-control.input-sm
+                        div.form-group
+                            label.control-label.col-lg-2(for="usaBarcodeProduct")
+                                a Barcode UPC:
+                            div.col-lg-9
+                                input#usaBarcodeProduct.form-control.input-sm
+                div.panel-footer
+                    div.text-right
+                        button.btn.btn-default.saveNewProductInfo(type="submit") save
+        div.spacificationSubTab.savingAlert.hide
+            div.panel.panel-default
+                div.panel-heading
+                    strong Specification
+                div.panel-body
+                    form(role="form")
+
+        div.pricesSubTab.savingAlert.hide
+            div.panel.panel-default
+                div.panel-heading
+                    strong Prices
+                div.panel-body
+                    form(role="form")
+
+        div.photosSubTab.savingAlert.hide
+            div.panel.panel-default
+                div.panel-heading
+                    strong Photos
+                div.panel-body
+                    form(role="form")
+
+        div.discountsSubTab.savingAlert.hide
+            div.panel.panel-default
+                div.panel-heading
+                    strong Discounts
+                div.panel-body
+                    form(role="form")
+        div.stockSubTab.savingAlert.hide
+            div.panel.panel-default
+                div.panel-heading
+                    strong Stock
+                div.panel-body
+                    form(role="form")
+        div.suppliersSubTab.savingAlert.hide
+            div.panel.panel-default
+                div.panel-heading
+                    strong Suppliers
+                div.panel-body
+                    form(role="form")
+        div.ceoSubTab.savingAlert.hide
+            div.panel.panel-default
+                div.panel-heading
+                    strong CEO
+                div.panel-body
+                    form(role="form")

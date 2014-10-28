@@ -3,6 +3,7 @@ var ProductsRepository = require ("../repositories/ProductsRepository");
 
 exports.ProductsController = function (conString) {
     return {
-        fetchProducts: new ProductsService.ProductsService(conString).fetchProducts
+        fetchProducts: new ProductsService.ProductsService(conString).fetchProducts,
+        fetchNewProductData: new ProductsService.ProductsService(conString).fetchNewProductData
     }
 };

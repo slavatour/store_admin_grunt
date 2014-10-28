@@ -13,6 +13,7 @@ define(["marionette"], function (Marionette) {
         sliderRegion: ".sliderTable",
         warningRegion: ".warningContainer",
         productsRegion: ".productsTable",
+        productsNewRegion: ".productForm",
         brandsRegion: ".brandsTableContainer",
         currenciesRegion: ".currenciesList",
         currenciesHistoryRegion: ".currenciesHistory",

@@ -6,7 +6,7 @@ var pg = require('pg'),
 exports.CategoriesRepository = function (conString) {
 	var self = {};
     var dbRepository = new DbRepository.DatabaseRepository(conString);
-	self.fetchCategories = function (callbackFunction) {
+        self.fetchCategories = function (callbackFunction) {
         var command = 'WITH RECURSIVE categories_temp ("category_id", PATH, LEVEL ) AS (' +
             'SELECT "category_id", CAST (T1."category_name" AS VARCHAR (50)) as PATH, 1 ' +
             'FROM categories T1 WHERE T1."category_parent_id" IS NULL union select T2."category_id", ' +
@@ -31,11 +31,11 @@ exports.CategoriesRepository = function (conString) {
         var command = 'WITH RECURSIVE categories_temp ("category_id", PATH, LEVEL ) AS (' +
             'SELECT "category_id", CAST (T1."category_name" AS VARCHAR (50)) as PATH, 1 ' +
             'FROM categories T1 WHERE T1."category_parent_id" IS NULL union select T2."category_id", ' +
-            'CAST ( categories_temp.PATH ||\'/\'|| T2."category_name" AS VARCHAR(50)) ,LEVEL + 1 ' +
+            'CAST ( categories_temp.PATH ||\' / \'|| T2."category_name" AS VARCHAR(50)) ,LEVEL + 1 ' +
             'FROM categories T2 INNER JOIN categories_temp ON( categories_temp."category_id"= T2."category_parent_id")) ' +
             'select * from categories_temp ORDER BY PATH;';
         dbRepository.actionData(command, function (options) {
-            callbackFunction({result: options.result});
+            options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: options.result, status: 200});
         });
     };
     self.saveCategory = function (req, callbackFunction) {

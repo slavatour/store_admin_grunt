@@ -77,6 +77,12 @@ app.get("/products", function (req, res) {
     });
 });
 
+app.get("/newProduct", function (req, res) {
+    productsController.fetchNewProductData(function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
 
 
 
