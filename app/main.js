@@ -287,3 +287,15 @@ app.post("/upload", function (req, res) {
     }
     res.status(status).end(JSON.stringify(response));
 });
+
+
+app.get("/ua-all.json", function(req, res){
+    var fs = require('fs'),
+        obj;
+    var json = fs.readFile("files/ua-all.json", 'utf8', function(error, data){
+        console.log(data);
+//        obj = JSON.parse(data);
+        console.log(obj);
+        res.end(JSON.stringify(data));
+    });
+});
