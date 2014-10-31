@@ -19,5 +19,48 @@ exports.ProductsRepository = function (conString) {
             callbackFunction(options);
         });
     };
+    self.saveProduct = function(req, callbackFunction) {
+        var model = req.body,
+            command = "INSERT INTO products (" +
+                "product_parent_id, " +
+                "product_brand_id, " +
+                "product_full_name, " +
+                "product_short_name, " +
+                "product_short_description, " +
+                "product_full_description, " +
+                "product_start_date";
+        if(model.product_barcode_EAN13) {
+            command += ", product_barcode_EAN13";
+        }
+        if(model.product_barcode_UPC) {
+            command += ", product_barcode_UPC";
+        }
+        if(model.product_end_date) {
+            command += ", product_end_date";
+        }
+        command += ") VALUES (" +
+            model.product_parent_id + ", " +
+            model.product_brand_id + ", " +
+            "'" + model.product_full_name + "', " +
+            "'" + model.product_short_name + "', " +
+            "'" + model.product_short_description + "', " +
+            "'" + model.product_full_description + "', " +
+            + model.product_start_date;
+        if(model.product_barcode_EAN13) {
+            command += ", " + model.product_barcode_EAN13;
+        }
+        if(model.product_barcode_UPC) {
+            command += ", " + model.product_barcode_UPC;
+        }
+        if(model.product_end_date) {
+            command += ", " + model.product_end_date;
+        }
+        command += ");";
+        console.log(command);
+        dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: {}, status: 200});
+        });
+    };
+
     return self;
 };

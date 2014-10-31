@@ -25,6 +25,10 @@ script(type="text/template" id="productNewModelTemplate")
                                     input.form-control.hasDatePicker#startDateProduct(tepe="text")
                                     label.input-group-addon(for="startDateProduct")
                                         i.fa.fa-calendar.fa-lg
+                            p.help-block.text-muted
+                                small
+                                    i.fa.fa-asterisk
+                                    |  required
                         div.form-group
                             label.control-label.col-lg-2(for="endDateProduct")
                                 a End date:
@@ -38,7 +42,7 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="categoryProduct")
                                 a Category:
                             div.col-lg-3
-                                select#categoryProduct.form-control.input-sm(type="text")
+                                select#categoryProduct.form-control.input-sm(type="text" name="product_parent_id")
                                     <%_.each(categories, function(category){%>
                                     option(data-id!="<%= category.category_id %>") <%= category.path %>
                                     <%});%>
@@ -50,7 +54,7 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="brandProduct")
                                 a Brand:
                             div.col-lg-3
-                                select#brandProduct.form-control.input-sm(type="text")
+                                select#brandProduct.form-control.input-sm(type="text" name="product_brand_id")
                                     <%_.each(brands, function(brand){%>
                                     option(data-id!="<%= brand.brand_id %>") <%= brand.brand_name %>
                                     <%});%>
@@ -63,7 +67,7 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="shortNameProduct")
                                 a Short name:
                             div.col-lg-9
-                                input#shortNameProduct.form-control.input-sm(type="text")
+                                input#shortNameProduct.form-control.input-sm(type="text" name="product_short_name")
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk
@@ -73,7 +77,7 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="fullNameProduct")
                                 a Full name:
                             div.col-lg-9
-                                input#fullNameProduct.form-control.input-sm(type="text")
+                                input#fullNameProduct.form-control.input-sm(type="text" name="product_full_name")
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk
@@ -83,7 +87,7 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="shortSprsificationProduct")
                                 a Short description:
                             div.col-lg-9
-                                textarea#shortSprsificationProduct.form-control.input-sm
+                                textarea#shortSprsificationProduct.form-control.input-sm(name="product_short_description")
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk
@@ -92,7 +96,7 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="fullSprsificationProduct")
                                 a Full description:
                             div.col-lg-9
-                                textarea#fullSprsificationProduct.form-control.input-sm
+                                textarea#fullSprsificationProduct.form-control.input-sm(name="product_full_description")
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk
@@ -102,12 +106,12 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="europeBarcodeProduct")
                                 a Barcode EAN-13(JAN):
                             div.col-lg-9
-                                input#europeBarcodeProduct.form-control.input-sm
+                                input#europeBarcodeProduct.form-control.input-sm(name="product_barcode_EAN13")
                         div.form-group
                             label.control-label.col-lg-2(for="usaBarcodeProduct")
                                 a Barcode UPC:
                             div.col-lg-9
-                                input#usaBarcodeProduct.form-control.input-sm
+                                input#usaBarcodeProduct.form-control.input-sm(name="product_barcode_UPC")
                 div.panel-footer
                     div.text-right
                         button.btn.btn-default.saveNewProductInfo(type="submit") save
@@ -128,9 +132,79 @@ script(type="text/template" id="productNewModelTemplate")
         div.photosSubTab.savingAlert.hide
             div.panel.panel-default
                 div.panel-heading
-                    strong Photos
+                    strong.photosSubTabHeader Photos
+                        div.pull-right.photosSubTabServiceBtns
+                            a.btn.btn-default.btn-xs.dropdown-toggle(title="edit" data-toggle="dropdown")
+                                i.fa.fa-gears
+                            ul.dropdown-menu(role="menu")
+                                li
+                                    a
+                                        i.fa.fa-times
+                                        | delete
+
                 div.panel-body
-                    form(role="form")
+                    div.col-lg-12
+                        div.col-lg-6
+                            a.thumbnail
+                                img(src="images/temp/slider6.png")
+                        div.col-lg-6.smallPhotos
+                            div.col-lg-3
+                                a.thumbnail
+                                    div.checkboxFour
+                                        input(type="checkbox" value="1" id="checkboxFourInput" name="")
+                                        label(for="checkboxFourInput")
+                                    img(src="images/temp/slider6.png")
+                            div.col-lg-3
+                                a.thumbnail
+                                    div.checkboxFour
+                                        input(type="checkbox" value="1" id="checkboxFourInput1" name="")
+                                        label(for="checkboxFourInput1")
+                                    img(src="images/temp/slider6.png")
+                            div.col-lg-3
+                                a.thumbnail
+                                    div.checkboxFour
+                                        input(type="checkbox" value="1" id="checkboxFourInput2" name="")
+                                        label(for="checkboxFourInput2")
+                                    img(src="images/temp/slider6.png")
+                            div.col-lg-3
+                                a.thumbnail
+                                    div.checkboxFour
+                                        input(type="checkbox" value="1" id="checkboxFourInput3" name="")
+                                        label(for="checkboxFourInput3")
+                                    img(src="images/temp/slider6.png")
+                            div.col-lg-3
+                                a.thumbnail
+                                    div.checkboxFour
+                                        input(type="checkbox" value="1" id="checkboxFourInput4" name="")
+                                        label(for="checkboxFourInput4")
+                                    img(src="images/temp/slider6.png")
+                            div.col-lg-3
+                                a.thumbnail
+                                    div.checkboxFour
+                                        input(type="checkbox" value="1" id="checkboxFourInput5" name="")
+                                        label(for="checkboxFourInput5")
+                                    img(src="images/temp/slider6.png")
+                            div.col-lg-3
+                                a.thumbnail
+                                    div.checkboxFour
+                                        input(type="checkbox" value="1" id="checkboxFourInput5" name="")
+                                        label(for="checkboxFourInput5")
+                                    img(src="images/temp/slider6.png")
+                            div.col-lg-3
+                                a.thumbnail
+                                    div.checkboxFour
+                                        input(type="checkbox" value="1" id="checkboxFourInput6" name="")
+                                        label(for="checkboxFourInput6")
+                                    img(src="images/temp/slider6.png")
+                    form.col-lg-12.form-horizontal(role="form")
+                        div.form-group
+                            label.control-label.col-lg-2(for="productNewPhoto")
+                                a Select file:
+                            div.col-lg-4
+                                input#productNewPhoto.input-sm(type="file")
+                                div.progress.uploadPhoto
+                                    div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100")
+
 
         div.discountsSubTab.savingAlert.hide
             div.panel.panel-default

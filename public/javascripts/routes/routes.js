@@ -145,6 +145,63 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 selectorBtn: "a[href='#examples']"
             });
             Spinner.destroy({timeout: 700});
+            $(".d3study").empty();
+
+
+
+
+            var width = 1000,
+                height = 300,
+                padding = 20,
+                data = [
+                    ['name1', 10],
+                    ['name2', 21],
+                    ['name3', 65],
+                    ['name4', 96],
+                    ['name5', 124],
+                    ['name6', 32],
+                    ['name7', 14],
+                    ['name8', 49],
+                    ['name9', 81],
+                    ['name0', 18],
+                ];
+            d3.select(".d3study").append("div").attr("class", "newDiv");
+            var canvas = d3.select(".newDiv").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("padding", padding)
+                .attr("class", "plots");
+            canvas.selectAll("circle")
+                .data(data, function(d){return d[1]})
+                .enter()
+                .append("circle")
+                .attr("cx", function(d, i){return i*50})
+                .attr("cy", function(d){return height - d[1]})
+                .attr("r", 3)
+                .attr("fill", "steelblue")
+                .attr("transform", "translate(20, 0)")
+                .attr("class", "points");
+            canvas.selectAll("text")
+                .data(data)
+                .enter()
+                .append("text")
+                .text(function(d){return d[0]})
+                .attr("transform", function(d, i){return "translate("+ (i*50 + 25) +","+ (height - d[1] + 3) +")"})
+                .attr("font-size", "11px")
+                .attr("fill", "rgba(0,0,0,.7)")
+                .attr("class", "labelPlots");
+
+            var line = d3.svg.line()
+                .x(function(d,i){return i*50})
+                .y(function(d,i){console.log(d);return height - d})
+                .interpolate("basis");
+            canvas.selectAll("g")
+                .data(data, function(d){return d[1];})
+                .enter()
+                .append("g")
+                .attr("d", function(d){return line});
+
+
 
 
 //pie bar
@@ -240,7 +297,6 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 
             ];
 
-            $(".d3study").prepend("<button class='btn btn-default foo'>click</button>");
 
             d3.select(".d3study")
             .append("div")
