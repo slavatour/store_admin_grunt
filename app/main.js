@@ -84,6 +84,13 @@ app.get("/newProduct", function (req, res) {
     });
 });
 
+app.post("/product", function (req, res) {
+    productsController.saveProduct(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
 
 
 
@@ -286,16 +293,4 @@ app.post("/upload", function (req, res) {
         response = {path: req.files.file.path};
     }
     res.status(status).end(JSON.stringify(response));
-});
-
-
-app.get("/ua-all.json", function(req, res){
-    var fs = require('fs'),
-        obj;
-    var json = fs.readFile("files/ua-all.json", 'utf8', function(error, data){
-        console.log(data);
-//        obj = JSON.parse(data);
-        console.log(obj);
-        res.end(JSON.stringify(data));
-    });
 });

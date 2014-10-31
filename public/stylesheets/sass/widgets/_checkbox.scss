@@ -24,3 +24,7 @@
 .checkboxFour input[type=checkbox]:checked + label {
   background: #26ca28;
 }
+
+.checkboxFour input[type=checkbox] {
+  visibility: hidden;
+}

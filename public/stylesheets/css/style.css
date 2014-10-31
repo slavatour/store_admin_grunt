@@ -7773,6 +7773,16 @@ body .main .contentContainer .productsContainer {
   line-height: 25px;
 }
 
+/* line 70, ../sass/imports/_myStyle.scss */
+.uploadPhoto {
+  height: 5px;
+}
+/* line 72, ../sass/imports/_myStyle.scss */
+.uploadPhoto .progress-bar {
+  width: 1%;
+  transition: width 1s ease-in-out;
+}
+
 /* line 2, ../sass/imports/_leftNavBar.scss */
 #leftNavBar .panel-body {
   padding: 0px;
@@ -8021,6 +8031,18 @@ body .main .contentContainer .productsContainer {
 /* line 1, ../sass/imports/_newProductTab.scss */
 .newProductsContainer {
   display: none;
+}
+/* line 5, ../sass/imports/_newProductTab.scss */
+.newProductsContainer .photosSubTab .photosSubTabHeader .photosSubTabServiceBtns {
+  position: relative;
+}
+/* line 10, ../sass/imports/_newProductTab.scss */
+.newProductsContainer .photosSubTab .smallPhotos .checkboxFour {
+  position: absolute;
+  top: -3px;
+  right: 10px;
+  box-shadow: none;
+  margin: 0px;
 }
 
 /* line 1, ../sass/imports/_brandsTab.scss */
@@ -8338,6 +8360,11 @@ body .main .contentContainer .productsContainer {
 /* line 24, ../sass/widgets/_checkbox.scss */
 .checkboxFour input[type=checkbox]:checked + label {
   background: #26ca28;
+}
+
+/* line 28, ../sass/widgets/_checkbox.scss */
+.checkboxFour input[type=checkbox] {
+  visibility: hidden;
 }
 
 /* line 5, ../sass/widgets/_profile.scss */

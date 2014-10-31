@@ -1,3 +1,19 @@
 .newProductsContainer {
   display: none;
+  .photosSubTab {
+    .photosSubTabHeader {
+      .photosSubTabServiceBtns {
+        position: relative;
+      }
+    }
+    .smallPhotos {
+      .checkboxFour {
+        position: absolute;
+        top: -3px;
+        right: 10px;
+        box-shadow: none;
+        margin: 0px;
+      }
+    }
+  }
 }
