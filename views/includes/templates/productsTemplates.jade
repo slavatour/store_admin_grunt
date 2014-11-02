@@ -45,11 +45,11 @@ script(type="text/template" id="productModelTemplate")
         a.sortableSelector.pull-right
     td.col-md-1.text-center.productImage
         img.img-thumbnail(src="/images/temp/slider2.png")
-    td.col-md-4 <%= product_shortname %>
+    td.col-md-4 <%= product_short_name %>
     td.col-md-2 
         a
             | <%= path %>
-    td.text-center.col-md-1 <%= product_price.sale %>
+    td.text-center.col-md-1 <%= product_price %>
     td.text-center.col-md-1
         <%if(product_quantitystock == "0"){%>
         span.badge  <%= product_quantitystock %>

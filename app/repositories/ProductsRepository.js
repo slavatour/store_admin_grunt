@@ -21,14 +21,19 @@ exports.ProductsRepository = function (conString) {
     };
     self.saveProduct = function(req, callbackFunction) {
         var model = req.body,
-            command = "INSERT INTO products (" +
+            command = "WITH rows AS (" +
+                "SELECT max(product_position_in_list) " +
+                "FROM products " +
+                "WHERE product_parent_id = 22) " +
+                "INSERT INTO products (" +
                 "product_parent_id, " +
                 "product_brand_id, " +
                 "product_full_name, " +
                 "product_short_name, " +
                 "product_short_description, " +
                 "product_full_description, " +
-                "product_start_date";
+                "product_start_date, " +
+                "product_position_in_list";
         if(model.product_barcode_EAN13) {
             command += ", product_barcode_EAN13";
         }
@@ -45,7 +50,8 @@ exports.ProductsRepository = function (conString) {
             "'" + model.product_short_name + "', " +
             "'" + model.product_short_description + "', " +
             "'" + model.product_full_description + "', " +
-            + model.product_start_date;
+            + model.product_start_date + ", " +
+            "(SELECT max FROM rows)+1";
         if(model.product_barcode_EAN13) {
             command += ", " + model.product_barcode_EAN13;
         }
