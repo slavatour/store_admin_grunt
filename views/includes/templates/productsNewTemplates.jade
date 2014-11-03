@@ -177,8 +177,21 @@ script(type="text/template" id="productNewModelTemplate")
                 div.panel-heading
                     strong Specification
                 div.panel-body
-                    form(role="form")
-
+                    form.form-horizontal(role="form")
+                        div.form-group
+                            label.control-label.col-lg-4(for="specificationSelect")
+                                | Select specification class:
+                            div.col-lg-5
+                                select.form-control.input-sm#specificationSelect(type="text")
+                                    option
+                                    <% _.each(specifications, function(specification) { %>
+                                    option(data-id!="<%= specification.specification_id %>") <%= specification.specification_name %>
+                                    <%});%>
+                        legend
+                    form.form-horizontal.productSpecificationsContainer(role="form")
+                div.panel-footer
+                    div.text-right
+                        button.btn.btn-default.saveSpecifications(type="submit" data-id!="<%= editableModel.product_id %>") save
         div.pricesSubTab.savingAlert.hide
             div.panel.panel-default
                 div.panel-heading
@@ -203,56 +216,56 @@ script(type="text/template" id="productNewModelTemplate")
                     div.col-lg-12
                         div.col-lg-6
                             a.thumbnail
-                                img(src="images/temp/slider6.png")
+                                img(src="images/temp/slider4.png")
                         div.col-lg-6.smallPhotos
                             div.col-lg-3
                                 a.thumbnail
                                     div.checkboxFour
                                         input(type="checkbox" value="1" id="checkboxFourInput" name="")
                                         label(for="checkboxFourInput")
-                                    img(src="images/temp/slider6.png")
+                                    img(src="images/temp/slider4.png")
                             div.col-lg-3
                                 a.thumbnail
                                     div.checkboxFour
                                         input(type="checkbox" value="1" id="checkboxFourInput1" name="")
                                         label(for="checkboxFourInput1")
-                                    img(src="images/temp/slider6.png")
+                                    img(src="images/temp/slider4.png")
                             div.col-lg-3
                                 a.thumbnail
                                     div.checkboxFour
                                         input(type="checkbox" value="1" id="checkboxFourInput2" name="")
                                         label(for="checkboxFourInput2")
-                                    img(src="images/temp/slider6.png")
+                                    img(src="images/temp/slider4.png")
                             div.col-lg-3
                                 a.thumbnail
                                     div.checkboxFour
                                         input(type="checkbox" value="1" id="checkboxFourInput3" name="")
                                         label(for="checkboxFourInput3")
-                                    img(src="images/temp/slider6.png")
+                                    img(src="images/temp/slider4.png")
                             div.col-lg-3
                                 a.thumbnail
                                     div.checkboxFour
                                         input(type="checkbox" value="1" id="checkboxFourInput4" name="")
                                         label(for="checkboxFourInput4")
-                                    img(src="images/temp/slider6.png")
+                                    img(src="images/temp/slider4.png")
                             div.col-lg-3
                                 a.thumbnail
                                     div.checkboxFour
                                         input(type="checkbox" value="1" id="checkboxFourInput5" name="")
                                         label(for="checkboxFourInput5")
-                                    img(src="images/temp/slider6.png")
+                                    img(src="images/temp/slider4.png")
                             div.col-lg-3
                                 a.thumbnail
                                     div.checkboxFour
                                         input(type="checkbox" value="1" id="checkboxFourInput5" name="")
                                         label(for="checkboxFourInput5")
-                                    img(src="images/temp/slider6.png")
+                                    img(src="images/temp/slider4.png")
                             div.col-lg-3
                                 a.thumbnail
                                     div.checkboxFour
                                         input(type="checkbox" value="1" id="checkboxFourInput6" name="")
                                         label(for="checkboxFourInput6")
-                                    img(src="images/temp/slider6.png")
+                                    img(src="images/temp/slider4.png")
                     form.col-lg-12.form-horizontal(role="form")
                         div.form-group
                             label.control-label.col-lg-2(for="productNewPhoto")

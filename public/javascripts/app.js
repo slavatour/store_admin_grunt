@@ -14,6 +14,7 @@ define(["marionette"], function (Marionette) {
         warningRegion: ".warningContainer",
         productsRegion: ".productsTable",
         productsNewRegion: ".productForm",
+        productSpecificationSubTabRegion: ".productSpecificationsContainer",
         brandsRegion: ".brandsTableContainer",
         currenciesRegion: ".currenciesList",
         currenciesHistoryRegion: ".currenciesHistory",

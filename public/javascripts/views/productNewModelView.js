@@ -20,7 +20,8 @@ define(["Store",
                 "click .newProductNav": "toggleNewProductTab",
                 "click .saveNewProductInfo": "saveProductInfo",
                 "click .saveProductInfo": "saveProductInfo",
-                "click .specificationSubTab": "specificationSubTab"
+                "click .specificationSubTab": "specificationSubTab",
+                "click .saveSpecifications": "saveSpecificationClass"
             },
             onShow: function() {
                 //init CKE editor
@@ -115,6 +116,16 @@ define(["Store",
             },
             specificationSubTab: function(event) {
 
+            },
+            saveSpecificationClass: function(event) {
+                var specificationsClassId = $("#specificationSelect").find("option:selected").attr("data-id"),
+                    modelId = $(event.target).attr("data-id");
+                var productModel = new ProductModel();
+
+                productModel.save({
+                    id: modelId,
+                    
+                });
             },
             showInvalidInputs: function(array) {
                 var that = this;

@@ -57,16 +57,20 @@ exports.SpecificationsRepository = function(conString) {
             id = req.params.id,
             command = "BEGIN; ";
         if(model.specification_parent_id !== null) {
-            command += "UPDATE specifications SET specification_parent_id = " + model.specification_parent_id + " WHERE specification_id = " + id + "; "
+            command += "UPDATE specifications SET specification_parent_id = " +
+                model.specification_parent_id + " WHERE specification_id = " + id + "; "
         }
         if(model.specification_name !== null) {
-            command += "UPDATE specifications SET specification_name = '" + model.specification_name + "' WHERE specification_id = " + id + "; "
+            command += "UPDATE specifications SET specification_name = '" +
+                model.specification_name + "' WHERE specification_id = " + id + "; "
         }
         if(model.specification_description !== null) {
-            command += "UPDATE specifications SET specification_description = '" + model.specification_description + "' WHERE specification_id = " + id + "; "
+            command += "UPDATE specifications SET specification_description = '" +
+                model.specification_description + "' WHERE specification_id = " + id + "; "
         }
         if(model.specification_values !== null) {
-            command += "UPDATE specifications SET specification_values = '" + JSON.stringify(model.specification_values) + "' WHERE specification_id = " + id + "; "
+            command += "UPDATE specifications SET specification_values = '" +
+                JSON.stringify(model.specification_values) + "' WHERE specification_id = " + id + "; "
         }
         command += "COMMIT;";
         dbRepository.actionData(command, function(options){
