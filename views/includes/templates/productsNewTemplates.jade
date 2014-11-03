@@ -1,14 +1,27 @@
 script(type="text/template" id="productNewModelTemplate")
     div.parentsInfo.col-lg-2
-        div.list-group
+        <%if(editableModel) {%>
+        div.list-group(data-id!="<%= editableModel.product_id %>")
             a(data-target-container="infoSubTab").list-group-item.newProductNav.active Information
-            a(data-target-container="spacificationSubTab").list-group-item.newProductNav Spacification
+            a(data-target-container="specificationSubTab").list-group-item.newProductNav.specificationSubTab Spacification
             a(data-target-container="pricesSubTab").list-group-item.newProductNav Prices
             a(data-target-container="photosSubTab").list-group-item.newProductNav Photos
             a(data-target-container="discountsSubTab").list-group-item.newProductNav Discounts
             a(data-target-container="stockSubTab").list-group-item.newProductNav Stock
             a(data-target-container="suppliersSubTab").list-group-item.newProductNav Suppliers
             a(data-target-container="ceoSubTab").list-group-item.newProductNav CEO
+        <%}else{%>
+        div.list-group
+            a(data-target-container="infoSubTab").list-group-item.newProductNav.active Information
+            a(data-target-container="specificationSubTab").list-group-item.newProductNav.specificationSubTab Spacification
+            a(data-target-container="pricesSubTab").list-group-item.newProductNav Prices
+            a(data-target-container="photosSubTab").list-group-item.newProductNav Photos
+            a(data-target-container="discountsSubTab").list-group-item.newProductNav Discounts
+            a(data-target-container="stockSubTab").list-group-item.newProductNav Stock
+            a(data-target-container="suppliersSubTab").list-group-item.newProductNav Suppliers
+            a(data-target-container="ceoSubTab").list-group-item.newProductNav CEO
+        <%};%>
+
     div.col-lg-10
         div.infoSubTab.subTab
             div.panel.panel-default
@@ -22,7 +35,11 @@ script(type="text/template" id="productNewModelTemplate")
                                 a Start date:
                             div.col-lg-3
                                 div.input-group.input-group-sm
+                                    <% if(editableModel) { %>
+                                    input.form-control.hasDatePicker#startDateProduct(tepe="text" value!="<%= editableModel.product_start_date_readable %>")
+                                    <% }else{ %>
                                     input.form-control.hasDatePicker#startDateProduct(tepe="text")
+                                    <% }; %>
                                     label.input-group-addon(for="startDateProduct")
                                         i.fa.fa-calendar.fa-lg
                             p.help-block.text-muted
@@ -34,7 +51,11 @@ script(type="text/template" id="productNewModelTemplate")
                                 a End date:
                             div.col-lg-3
                                 div.input-group.input-group-sm
+                                    <% if(editableModel && editableModel.product_end_date_readable) { %>
+                                    input.form-control.hasDatePicker#endDateProduct(tepe="text" value!="<%= editableModel.product_end_date_readable %>")
+                                    <% }else{ %>
                                     input.form-control.hasDatePicker#endDateProduct(tepe="text")
+                                    <% }; %>
                                     label.input-group-addon(for="endDateProduct")
                                         i.fa.fa-calendar.fa-lg
                         legend
@@ -44,7 +65,11 @@ script(type="text/template" id="productNewModelTemplate")
                             div.col-lg-3
                                 select#categoryProduct.form-control.input-sm(type="text" name="product_parent_id")
                                     <%_.each(categories, function(category){%>
+                                    <%if(editableModel && category.category_id == editableModel.product_parent_id){%>
+                                    option(data-id!="<%= category.category_id %>" selected) <%= category.path %>
+                                    <%}else{%>
                                     option(data-id!="<%= category.category_id %>") <%= category.path %>
+                                    <%};%>
                                     <%});%>
                             p.help-block.text-muted
                                 small
@@ -56,7 +81,11 @@ script(type="text/template" id="productNewModelTemplate")
                             div.col-lg-3
                                 select#brandProduct.form-control.input-sm(type="text" name="product_brand_id")
                                     <%_.each(brands, function(brand){%>
+                                    <%if(editableModel && brand.brand_id == editableModel.product_brand_id){%>
+                                    option(data-id!="<%= brand.brand_id %>" selected) <%= brand.brand_name %>
+                                    <%}else{%>
                                     option(data-id!="<%= brand.brand_id %>") <%= brand.brand_name %>
+                                    <%};%>
                                     <%});%>
                             p.help-block.text-muted
                                 small
@@ -67,7 +96,11 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="shortNameProduct")
                                 a Short name:
                             div.col-lg-9
+                                <% if(editableModel){ %>
+                                input#shortNameProduct.form-control.input-sm(type="text" name="product_short_name" value!="<%= editableModel.product_short_name %>")
+                                <% }else{ %>
                                 input#shortNameProduct.form-control.input-sm(type="text" name="product_short_name")
+                                <% }; %>
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk
@@ -77,7 +110,11 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="fullNameProduct")
                                 a Full name:
                             div.col-lg-9
+                                <% if(editableModel){ %>
+                                input#fullNameProduct.form-control.input-sm(type="text" name="product_full_name" value!="<%= editableModel.product_full_name %>")
+                                <% }else{ %>
                                 input#fullNameProduct.form-control.input-sm(type="text" name="product_full_name")
+                                <% }; %>
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk
@@ -87,7 +124,11 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="shortSprsificationProduct")
                                 a Short description:
                             div.col-lg-9
+                                <% if(editableModel){ %>
+                                textarea#shortSprsificationProduct.form-control.input-sm(name="product_short_description") <%= editableModel.product_short_description %>
+                                <% }else{ %>
                                 textarea#shortSprsificationProduct.form-control.input-sm(name="product_short_description")
+                                <% }; %>
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk
@@ -96,7 +137,11 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="fullSprsificationProduct")
                                 a Full description:
                             div.col-lg-9
+                                <% if(editableModel){ %>
+                                textarea#fullSprsificationProduct.form-control.input-sm(name="product_full_description") <%= editableModel.product_full_description %>
+                                <% }else{ %>
                                 textarea#fullSprsificationProduct.form-control.input-sm(name="product_full_description")
+                                <% }; %>
                             p.help-block.text-muted
                                 small
                                     i.fa.fa-asterisk
@@ -106,16 +151,28 @@ script(type="text/template" id="productNewModelTemplate")
                             label.control-label.col-lg-2(for="europeBarcodeProduct")
                                 a Barcode EAN-13(JAN):
                             div.col-lg-9
-                                input#europeBarcodeProduct.form-control.input-sm(name="product_barcode_EAN13")
+                                <% if(editableModel && editableModel.product_barcode_ean13){ %>
+                                input#europeBarcodeProduct.form-control.input-sm(name="product_barcode_ean13" value!="<%= editableModel.product_barcode_ean13 %>")
+                                <% }else{ %>
+                                input#europeBarcodeProduct.form-control.input-sm(name="product_barcode_ean13")
+                                <% }; %>
                         div.form-group
                             label.control-label.col-lg-2(for="usaBarcodeProduct")
                                 a Barcode UPC:
                             div.col-lg-9
-                                input#usaBarcodeProduct.form-control.input-sm(name="product_barcode_UPC")
+                                <% if(editableModel && editableModel.product_barcode_upc){ %>
+                                input#usaBarcodeProduct.form-control.input-sm(name="product_barcode_upc" value!="<%= editableModel.product_barcode_upc %>")
+                                <% }else{ %>
+                                input#usaBarcodeProduct.form-control.input-sm(name="product_barcode_upc")
+                                <% }; %>
                 div.panel-footer
                     div.text-right
+                        <% if(editableModel){ %>
+                        button.btn.btn-default.saveProductInfo(type="submit" data-id!="<%= editableModel.product_id %>") save
+                        <%}else{%>
                         button.btn.btn-default.saveNewProductInfo(type="submit") save
-        div.spacificationSubTab.savingAlert.hide
+                        <%};%>
+        div.specificationSubTab.savingAlert.hide
             div.panel.panel-default
                 div.panel-heading
                     strong Specification

@@ -6,6 +6,7 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 			"categories" 			: "showCategories",
 			"products" 				: "showProducts",
 			"new_product"			: "showNewProduct",
+			"edit_product/:id"  	: "showEditProduct",
             "specifications"    	: "showSpecification",
             "slider"				: "showSliderEdit",
 			"brands"				: "showBrands",
@@ -55,6 +56,22 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 productNewController.renderView();
                 Spinner.destroy();
                 Store.reqres.setHandler("productsNew:controller", function(){
+                    return this;
+                }, productNewController);
+            });
+        },
+        showEditProduct: function(id) {
+            this.routeView({
+                toggleContainer: '.newProductsContainer',
+                selectorTab: '#tabCategories',
+                selectorBtn: "a[href='#products']"
+            });
+            require(["ProductsNewController"], function(ProductsNewController){
+                var productNewController = new ProductsNewController();
+                productNewController.productModelId = id;
+                productNewController.renderEditView();
+                Spinner.destroy();
+                Store.reqres.setHandler("productEdit:controller", function(){
                     return this;
                 }, productNewController);
             });

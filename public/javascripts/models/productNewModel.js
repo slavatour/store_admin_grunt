@@ -8,7 +8,8 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 specifications: null,
                 discounts: null,
                 stocks: null,
-                suppliers: null
+                suppliers: null,
+                editableModel: null
 			},
             urlRoot: "newProduct"
 		});

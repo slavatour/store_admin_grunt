@@ -77,6 +77,13 @@ app.get("/products", function (req, res) {
     });
 });
 
+app.get("/product/:id", function (req, res) {
+    productsController.fetchProduct(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result[0]));
+    });
+});
+
 app.get("/newProduct", function (req, res) {
     productsController.fetchNewProductData(function(options){
         res.header();
@@ -86,6 +93,13 @@ app.get("/newProduct", function (req, res) {
 
 app.post("/product", function (req, res) {
     productsController.saveProduct(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
+
+app.put("/product/:id", function (req, res) {
+    productsController.putProduct(req, function(options){
         res.header();
         res.status(options.status).end(JSON.stringify(options.result));
     });

@@ -1,4 +1,13 @@
-define(["marionette", "Store"], function (Marionette, Store) {
+define([
+    "marionette",
+    "Store",
+    "backbone-computedfields",
+    "moment"
+], function (
+    Marionette,
+    Store,
+    Computedfields,
+    moment) {
 
     Store.module("Products.Models", function (Models, Store, Backbone, Marionette, $, _) {
 		Models.ProductModel = Backbone.Model.extend({
@@ -14,7 +23,8 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 product_short_description: null,
                 product_full_description: null,
                 product_specification: null, // характеристика
-                product_barcode: null,
+                product_barcode_ean13: null,
+                product_barcode_upc: null,
                 product_start_date: null,
                 product_end_date: null,
 
@@ -37,6 +47,10 @@ define(["marionette", "Store"], function (Marionette, Store) {
 
 			},
             urlRoot: "product",
+            initialize: function() {
+                //initialize backbone-computedfields lib
+                this.computedFields = new Backbone.ComputedFields(this);
+            },
             validate: function(attr) {
                 var invalid = [];
 
@@ -71,8 +85,28 @@ define(["marionette", "Store"], function (Marionette, Store) {
                 if(invalid.length) {
                     return invalid;
                 }
+            },
+            computed: {
+                product_start_date_readable: {
+                    depends: ["product_start_date"],
+                    toJSON: true,
+                    get: function(fields) {
+                        return moment.unix(parseInt(fields.product_start_date)).format("DD.MM.YYYY");
+                    }
+                },
+                product_end_date_readable: {
+                    depends: ["product_end_date"],
+                    toJSON: true,
+                    get: function(fields) {
+                        if(fields.product_end_date) {
+                            return moment.unix(parseInt(fields.product_end_date)).format("DD.MM.YYYY");
+                        } else {
+                            return null;
+                        }
+                    }
+                }
             }
-		});
+        });
 	});
     return Store.Products.Models.ProductModel;
 });
