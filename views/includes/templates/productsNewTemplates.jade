@@ -2,14 +2,14 @@ script(type="text/template" id="productNewModelTemplate")
     div.parentsInfo.col-lg-2
         <%if(editableModel) {%>
         div.list-group(data-id!="<%= editableModel.product_id %>")
-            a(data-target-container="infoSubTab").list-group-item.newProductNav.active Information
-            a(data-target-container="specificationSubTab").list-group-item.newProductNav.specificationSubTab Spacification
-            a(data-target-container="pricesSubTab").list-group-item.newProductNav Prices
-            a(data-target-container="photosSubTab").list-group-item.newProductNav Photos
-            a(data-target-container="discountsSubTab").list-group-item.newProductNav Discounts
-            a(data-target-container="stockSubTab").list-group-item.newProductNav Stock
-            a(data-target-container="suppliersSubTab").list-group-item.newProductNav Suppliers
-            a(data-target-container="ceoSubTab").list-group-item.newProductNav CEO
+            a(data-target-container="infoSubTab" href!="#edit_product/infoSubTab/<%= editableModel.product_id %>").list-group-item.newProductNav.active Information
+            a(data-target-container="specificationsSubTab" href!="#edit_product/specificationsSubTab/<%= editableModel.product_id %>").list-group-item.newProductNav.specificationSubTab Spacification
+            a(data-target-container="pricesSubTab" href!="#edit_product/pricesSubTab/<%= editableModel.product_id %>").list-group-item.newProductNav Prices
+            a(data-target-container="photosSubTab" href!="#edit_product/photosSubTab/<%= editableModel.product_id %>").list-group-item.newProductNav Photos
+            a(data-target-container="discountsSubTab" href!="#edit_product/discountsSubTab/<%= editableModel.product_id %>").list-group-item.newProductNav Discounts
+            a(data-target-container="stockSubTab" href!="#edit_product/stockSubTab/<%= editableModel.product_id %>").list-group-item.newProductNav Stock
+            a(data-target-container="suppliersSubTab" href!="#edit_product/suppliersSubTab/<%= editableModel.product_id %>").list-group-item.newProductNav Suppliers
+            a(data-target-container="ceoSubTab" href!="#edit_product/ceoSubTab/<%= editableModel.product_id %>").list-group-item.newProductNav CEO
         <%}else{%>
         div.list-group
             a(data-target-container="infoSubTab").list-group-item.newProductNav.active Information
@@ -172,7 +172,7 @@ script(type="text/template" id="productNewModelTemplate")
                         <%}else{%>
                         button.btn.btn-default.saveNewProductInfo(type="submit") save
                         <%};%>
-        div.specificationSubTab.savingAlert.hide
+        div.specificationsSubTab.savingAlert.hide
             div.panel.panel-default
                 div.panel-heading
                     strong Specification
@@ -189,6 +189,7 @@ script(type="text/template" id="productNewModelTemplate")
                                     <%});%>
                         legend
                     form.form-horizontal.productSpecificationsContainer(role="form")
+                        <%= renderSpecificationsView() %>
                 div.panel-footer
                     div.text-right
                         button.btn.btn-default.saveSpecifications(type="submit" data-id!="<%= editableModel.product_id %>") save

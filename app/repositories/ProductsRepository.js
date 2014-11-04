@@ -27,7 +27,6 @@ exports.ProductsRepository = function (conString) {
                 'CAST ( categories_temp.PATH ||\'/\'|| T2."category_name" AS VARCHAR(50)) ,LEVEL + 1 ' +
                 'FROM categories T2 INNER JOIN categories_temp ON( categories_temp."category_id"= T2."category_parent_id")) ' +
                 'SELECT p.*, c.path, c.level FROM categories_temp c INNER JOIN products p ON (p.product_parent_id = c.category_id) WHERE product_id = ' + id + ' ;';
-//            command = "SELECT * FROM products WHERE product_id = " + id + ";";
         dbRepository.actionData(command, function(options){
             options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: options.result, status: 200});
         });
@@ -78,12 +77,13 @@ exports.ProductsRepository = function (conString) {
             command += ", " + model.product_end_date;
         }
         command += ") RETURNING product_id;";
+
         dbRepository.actionData(command, function(options){
             options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: options.result[0], status: 200});
         });
     };
 
-    self.putProduct = function(req, callbackFunction) {
+    self.putProductInfo = function(req, callbackFunction) {
         var id = req.params.id,
             model = req.body,
             command = "UPDATE products SET " +
@@ -107,6 +107,39 @@ exports.ProductsRepository = function (conString) {
                 id + " " +
                 "RETURNING product_id;";
         dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: options.result[0], status: 200});
+        });
+    };
+
+    self.patchProductSpecifications = function(req, callbackFunction) {
+        var productId = req.product_id,
+            specificationId = req.specification_id,
+            specifications = req.specification_value,
+            command = "UPDATE productsSpecifications SET " +
+                "product_specification_product_id = " + productId + ", " +
+                "product_specification_class_id = " + specificationId + ", " +
+                "product_specification_value = '" + JSON.stringify(specifications) + "' " +
+                "WHERE product_specification_product_id = " + productId + " RETURNING *; " +
+                "INSERT INTO productsSpecifications (" +
+                "product_specification_product_id, " +
+                "product_specification_class_id, " +
+                "product_specification_value" +
+                ") SELECT " +
+                productId + "," +
+                specificationId + "," +
+                "'" + JSON.stringify(specifications) + "' " +
+                "WHERE NOT EXISTS (" +
+                "SELECT * FROM productsSpecifications " +
+                "WHERE product_specification_product_id = " + productId + ") RETURNING product_specification_value;";
+        dbRepository.actionData(command, function(options){
+            options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: options.result[0], status: 200});
+        });
+    };
+
+    self.getSpecifications = function(req, callbackFunction) {
+        var id = req.params.id,
+            command = "SELECT * FROM productsSpecifications WHERE product_specification_product_id = " + id + ";";
+        dbRepository.actionData(command, function(options) {
             options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: options.result[0], status: 200});
         });
     };

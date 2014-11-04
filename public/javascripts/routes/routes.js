@@ -1,20 +1,21 @@
 define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
 	var StoreRouter = Backbone.Marionette.AppRouter.extend({
 		routes: {
-			"" 						: "index",
-			"/" 					: "index",
-			"categories" 			: "showCategories",
-			"products" 				: "showProducts",
-			"new_product"			: "showNewProduct",
-			"edit_product/:id"  	: "showEditProduct",
-            "specifications"    	: "showSpecification",
-            "slider"				: "showSliderEdit",
-			"brands"				: "showBrands",
-			"currencies"			: "showCurrencies",
-			"discounts"	    		: "showDiscounts",
-			"prices"		    	: "showPrices",
-			"examples"				: "examples",
-			"d3js"			    	: "d3js"
+			"" 						        : "index",
+			"/" 			        		: "index",
+			"categories" 			        : "showCategories",
+			"products" 			        	: "showProducts",
+			"new_product"			        : "showNewProduct",
+			"edit_product/:id"              : "showEditProduct",
+			"edit_product/:subTab/:id"  	: "showEditProductSubTab",
+            "specifications"    	        : "showSpecification",
+            "slider"			        	: "showSliderEdit",
+			"brands"				        : "showBrands",
+			"currencies"        			: "showCurrencies",
+			"discounts"	    	        	: "showDiscounts",
+			"prices"		            	: "showPrices",
+			"examples"      				: "examples",
+			"d3js"			            	: "d3js"
 
 		},
 		index: function () {
@@ -74,6 +75,16 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
                 Store.reqres.setHandler("productEdit:controller", function(){
                     return this;
                 }, productNewController);
+            });
+        },
+        showEditProductSubTab: function(subTab, id) {
+            $(".subTab").addClass("hide");
+            $("." + subTab).removeClass("hide");
+            $(".newProductNav").removeClass("active");
+            $("a[data-target-container='" + subTab + "']").addClass("active");
+            require(["ProductsNewController"], function(ProductsNewController){
+                var productNewController = Store.request("productEdit:controller");
+                productNewController.renderSubTabView(subTab);
             });
         },
         showSpecification: function() {

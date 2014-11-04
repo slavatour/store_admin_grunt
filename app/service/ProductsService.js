@@ -1,6 +1,7 @@
 var CategoriesRepository = require('../repositories/CategoriesRepository'),
     ProductsRepository = require('../repositories/ProductsRepository'),
     SpecificationsRepository = require('../repositories/SpecificationsRepository'),
+    SpecificationsService = require('../service/SpecificationsService'),
     BrandsRepository = require('../repositories/BrandsRepository');
 
 exports.ProductsService = function (conString) {
@@ -8,6 +9,7 @@ exports.ProductsService = function (conString) {
         categoriesRepository = new CategoriesRepository.CategoriesRepository(conString),
         productsRepository = new ProductsRepository.ProductsRepository(conString),
         brandsRepository = new BrandsRepository.BrandsRepository(conString),
+        specificationsService = new SpecificationsService.SpecificationsService(conString),
         specificationsRepository = new SpecificationsRepository.SpecificationsRepository(conString);
 
     self.fetchProducts = function(callbackFunction) {
@@ -46,6 +48,33 @@ exports.ProductsService = function (conString) {
             });
         });
     };
+    self.patchProductSpecifications = function(req, callbackFunction) {
+        var productId = req.params.id,
+            specificationId = req.body.specification_class_id,
+            specifications = {};
+        specificationsService.fetchSpecifications(function(options){
+            if(options.error) {
+                callbackFunction({result: options.error, status: 500});
+                return;
+            }
+            for(var i= 0, length = options.result.length; i < length; i++) {
+                if(specificationId == options.result[i].specification_id) {
+                    specifications = options.result[i];
+                }
+            }
+            productsRepository.patchProductSpecifications({
+                product_id: productId,
+                specification_id: specificationId,
+                specification_value: specifications
+            },
+                function(options) {
+                    options.error ? callbackFunction({result: options.error, status: 500}) : callbackFunction({result: options.result, status: 200});
+                }
+            );
+
+        });
+    };
+
 
     return self;
 };

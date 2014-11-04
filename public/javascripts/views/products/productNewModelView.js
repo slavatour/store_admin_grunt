@@ -23,6 +23,13 @@ define(["Store",
                 "click .specificationSubTab": "specificationSubTab",
                 "click .saveSpecifications": "saveSpecificationClass"
             },
+            templateHelpers: {
+                renderSpecificationsView: function() {
+                    if(this.editableModel.product_specification_class_id){
+
+                    }
+                }
+            },
             onShow: function() {
                 //init CKE editor
                 CKEDITOR.replace( 'shortSprsificationProduct' );
@@ -44,26 +51,26 @@ define(["Store",
                 }
             },
             toggleNewProductTab: function(event) {
-                var target = $(event.target),
-                    subTabClass = target.attr("data-target-container"),
-                    subTab = $("." + subTabClass);
-                if(subTab.hasClass("subTab")) {
-                    $(".subTab").addClass("hide");
-                    subTab.removeClass("hide");
-                    $(".newProductNav").removeClass("active");
-                    target.addClass("active");
-                }
-                if(subTab.hasClass("savingAlert")) {
-                    require(["AlertsController"], function(AlertsController){
-                        var msg = "Save this page before switch another tab!";
-                        new AlertsController({
-                            type: "warning",
-                            message: msg,
-                            container: ".infoSubTab",
-                            temporary: true
-                        });
-                    });
-                }
+//                var target = $(event.target),
+//                    subTabClass = target.attr("data-target-container"),
+//                    subTab = $("." + subTabClass);
+//                if(subTab.hasClass("subTab")) {
+//                    $(".subTab").addClass("hide");
+//                    subTab.removeClass("hide");
+//                    $(".newProductNav").removeClass("active");
+//                    target.addClass("active");
+//                }
+//                if(subTab.hasClass("savingAlert")) {
+//                    require(["AlertsController"], function(AlertsController){
+//                        var msg = "Save this page before switch another tab!";
+//                        new AlertsController({
+//                            type: "warning",
+//                            message: msg,
+//                            container: ".infoSubTab",
+//                            temporary: true
+//                        });
+//                    });
+//                }
             },
             saveProductInfo: function(event) {
                 event.preventDefault();
@@ -118,13 +125,39 @@ define(["Store",
 
             },
             saveSpecificationClass: function(event) {
-                var specificationsClassId = $("#specificationSelect").find("option:selected").attr("data-id"),
-                    modelId = $(event.target).attr("data-id");
-                var productModel = new ProductModel();
+                var that = this;
+                require(["ProductModel"], function(ProductModel) {
+                    var specificationsClassId = $("#specificationSelect").find("option:selected").attr("data-id"),
+                        modelId = $(event.target).attr("data-id");
+                    var productModel = new ProductModel();
+                    productModel.urlRoot = "product_specification";
+                    productModel.set({
+                        id: modelId
+                    }, {validate: false});
+                    productModel.save({
+                        specification_class_id: specificationsClassId
+                    },{
+                        validate: false,
+                        wait: true,
+                        patch: true,
+                        success: function (model, json) {
+                            var editableModel = that.model.toJSON().editableModel;
+                            editableModel.product_specification_value = json.product_specification_value;
+                            editableModel.product_specification_class_id = json.product_specification_class_id;
+                            that.model.set({
+                                editableModel: editableModel
+                            });
 
-                productModel.save({
-                    id: modelId,
-                    
+                        },
+                        error: function () {
+                            var msg = "Server could not save specifications, contact with server administrator or try later.";
+                            new AlertController ({
+                                type: "error",
+                                container: ".specificationsSubTab",
+                                message: msg
+                            });
+                        }
+                    });
                 });
             },
             showInvalidInputs: function(array) {

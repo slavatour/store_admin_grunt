@@ -45,6 +45,25 @@ define([
                     }
                 });
             },
+            renderSubTabView: function(subTab) {
+                var url = "/" + subTab + "/" + this.productModelId,
+                    that = this;
+                $.ajax({
+                    type: "get",
+                    url: url,
+                    success: function(data) {
+                        var specifications = JSON.parse(data),
+                            editableModel = that.productNewModel.get("editableModel");
+                        editableModel.product_specification_class_id = specifications.product_specification_class_id;
+                        editableModel.product_specification_value = specifications.product_specification_value;
+                        that.productNewModel.set("editableModel", editableModel);
+                    },
+                    error: function() {
+                        var msg = "Server could not find this data, contact with server administrator or try later.";
+                        that.showAlert(msg);
+                    }
+                });
+            },
             showAlert: function(msg) {
                 require(["controllers/AlertsController"], function(AlertsController){
                     new AlertsController ({

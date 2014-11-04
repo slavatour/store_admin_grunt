@@ -99,13 +99,25 @@ app.post("/product", function (req, res) {
 });
 
 app.put("/product/:id", function (req, res) {
-    productsController.putProduct(req, function(options){
+    productsController.putProductInfo(req, function(options){
         res.header();
         res.status(options.status).end(JSON.stringify(options.result));
     });
 });
 
+app.patch("/product_specification/:id", function (req, res) {
+    productsController.patchProductSpecifications(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
 
+app.get("/specificationsSubTab/:id", function (req, res) {
+    productsController.getSpecifications(req, function(options){
+        res.header();
+        res.status(options.status).end(JSON.stringify(options.result));
+    });
+});
 
 
 
