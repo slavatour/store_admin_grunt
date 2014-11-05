@@ -25,3 +25,18 @@ div.lab {
   width: 20em;
   text-align: right;
 }
+
+.points {
+  cursor: pointer;
+  &:hover {
+    fill: darken(steelblue, 20%);
+  }
+}
+
+.axis {
+  path {
+    fill: none;
+    stroke: rgba(0,0,0,.2);
+    shape-rendering: crispEdges;
+  }
+}

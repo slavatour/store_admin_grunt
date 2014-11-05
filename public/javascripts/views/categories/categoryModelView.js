@@ -1,6 +1,6 @@
 define(["marionette",
     "Store",
-    "views/modalCategoryView",
+    "ModalCategoryView",
     "views/spinnerView",
     "CategoryModel"], function (Marionette, Store, ModalView, Spinner, CategoryModel) {
 

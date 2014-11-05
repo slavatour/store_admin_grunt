@@ -73,13 +73,13 @@ requirejs.config({
         SpecificationCollectionView: "views/specifications/specificationsCollectionView",
 
         //modals
-        ModalCategoryView: "views/modalCategoryView",
-        ModalBrandsView: "views/modalBrandsView",
-        ModalSliderView: "views/modalSliderView",
-        ModalCurrencyView: "views/modalCurrenciesView",
-        ModalPricesView: "views/modalPricesView",
-        ModalProductsView: "views/modalProductsView",
-        ModalSpecificationsView: "views/modalSpecificationsView",
+        ModalCategoryView: "views/categories/modalCategoryView",
+        ModalBrandsView: "views/brands/modalBrandsView",
+        ModalSliderView: "views/sliders/modalSliderView",
+        ModalCurrencyView: "views/currencies/modalCurrenciesView",
+        ModalPricesView: "views/prices/modalPricesView",
+        ModalProductsView: "views/products/modalProductsView",
+        ModalSpecificationsView: "views/specifications/modalSpecificationsView",
 
 		//controllers
 		SliderController: "controllers/slidersController",

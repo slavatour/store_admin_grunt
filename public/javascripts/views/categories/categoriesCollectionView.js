@@ -1,4 +1,4 @@
-define(["marionette", "Store", "CategoryModel", "CategoryModelView", "views/modalCategoryView", "views/spinnerView"],
+define(["marionette", "Store", "CategoryModel", "CategoryModelView", "ModalCategoryView", "views/spinnerView"],
     function (Marionette, Store, CategoryModel, CategoryModelView, ModalView, Spinner) {
 
 	Store.module("Categories.Views", function (Views, Store, Backbone, Marionette, $, _) {
