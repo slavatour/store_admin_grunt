@@ -176,8 +176,8 @@ define(["marionette", "views/spinnerView"], function (Marionette, Spinner) {
             $(".d3study").empty();
 
             drawPlots();
-            drawBars();
             drawCharts();
+            drawBars();
             drawTree();
             drawMap();
         },
@@ -213,6 +213,11 @@ function drawPlots() {
             ['name10', 18],
             ['name11', 218],
             ['name12', 125],
+            ['name13', 325],
+            ['name13', 135],
+            ['name13', 225],
+            ['name13', 326],
+            ['name13', 31],
             ['name14', 58]
         ];
 
@@ -468,33 +473,67 @@ function drawCharts() {
         }
 
     ];
-
-
-    d3.select(".d3study")
-        .append("div")
-        .attr("class", "chart")
+    var padding = {top: 20, right: 20, bottom: 20, left:40},
+        width = 600 - padding.left - padding.right,
+        height = 350 - padding.top - padding.bottom,
+        data = dataHA,
+        names = _.pluck(data, "name"),
+        values = _.pluck(data, "value");
+    var xScale = d3.scale.ordinal()
+        .domain(d3.range(names.length))
+        .rangeBands([0, width - padding.left], 0.05, 0.1);
+    var yScale1 = d3.scale.linear()
+        .domain([0, d3.max(values)])
+        .range([height - padding.top, 0]);
+    var yScale = d3.scale.linear()
+        .domain([0, d3.max(values)])
+        .range([0, height - padding.top]);
+    var canvas = d3.select(".d3study")
+        .append("svg")
         .attr("class", "col-lg-6")
-        .selectAll("div.line")
-        .data(dataHA)
-        .enter()
-        .append("div")
-        .attr("class", "line");
+        .attr("width", width)
+        .attr("height", height);
 
-    d3.selectAll("div.line")
-        .append('div')
-        .attr("class", "lab")
-        .text(function(d){return d.name});
-    d3.selectAll("div.line")
-        .append("div")
-        .attr("class", "bar")
-        .style("background-color", function(d){
-            return "steelblue";
-        })
-        .transition()
+    var rect = canvas.selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", function(d,i){return xScale(i)})
+        .attr("y", function(d,i){return height})
+        .attr("height", function(d,i){return 0})
+        .attr("width", xScale.rangeBand())
+        .attr("transform", "translate("+ padding.left + ", -" + padding.top + ")")
+        .attr("class", "bar");
+
+    rect.transition()
+        .delay(1000)
         .duration(2000)
-        .style("width", function(d){return d.value+"px"})
-        .text(function(d){return Math.round(d.value)});
+        .attr("y", function(d,i){return height - yScale(d.value)})
+        .attr("height", function(d,i){return yScale(d.value)});
+console.log(names);
+    var xScale1 = d3.scale.ordinal()
+        .domain(names)
+        .rangeBands([0, width - padding.left], 0.05, 0.1);
+    var xAxis = d3.svg.axis()
+        .scale(xScale1)
+        .orient("bottom");
+    var yAxis = d3.svg.axis()
+        .scale(yScale1)
+        .orient("left")
+        .ticks(5);
+    canvas.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate( " + padding.left + ", " + (height - padding.bottom) + ")")
+        .call(xAxis);
+    canvas.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(" + padding.left + ", 0)")
+        .call(yAxis);
 }
+
+
+
+
 
 function drawBars() {
     var dataset = [10,30,60];

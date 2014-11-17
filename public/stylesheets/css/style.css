@@ -8750,3 +8750,16 @@ div.lab {
   stroke: rgba(0, 0, 0, 0.2);
   shape-rendering: crispEdges;
 }
+
+/* line 44, ../sass/imports/_d3js.scss */
+.bar {
+  fill: green;
+  fill-opacity: .4;
+  stroke: white;
+  stroke-width: 1px;
+}
+/* line 49, ../sass/imports/_d3js.scss */
+.bar:hover {
+  fill: #00b300;
+  cursor: pointer;
+}
