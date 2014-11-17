@@ -11,7 +11,7 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
             },
             openEditModal: function(event) {
                 var that = this;
-                require(["../modalBrandsView"], function(ModalBrandsView){
+                require(["ModalBrandsView"], function(ModalBrandsView){
                     var modalBrandsView = new ModalBrandsView({
                         template: "#modalEditBrand",
                         model: that.model
@@ -44,7 +44,7 @@ define(["marionette", "Store", "views/spinnerView"], function (Marionette, Store
             },
             openPhotoModal: function(event) {
                 var that = this;
-                require(["../modalBrandsView"], function(ModalBrandsView){
+                require(["ModalBrandsView"], function(ModalBrandsView){
                     var modalBrandsView = new ModalBrandsView({
                         template: "#modalPhotoView",
                         model: that.model
